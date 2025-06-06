@@ -318,47 +318,47 @@ const PortfolioSection = () => {
   const projects = [
     {
       id: 1,
-      client: "Nova Memorial",
-      title: "Nova Memorial",
+      client: "Nice Guides",
+      title: "Nice Guides",
       description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
       tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
       reverse: false
     },
-    {
-      id: 2,
-      client: "Nova Memorial", 
-      title: "Where Memories Blossom into Timeless Legacies",
-      description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-      tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
-      reverse: true
-    },
-    {
-      id: 3,
-      client: "Nova Memorial",
-      title: "Nova Memorial",
-      description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-      tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO", 
-      reverse: false
-    },
-    {
-      id: 4,
-      client: "Nova Memorial",
-      title: "Nova Memorial",
-      description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-      tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
-      reverse: true
-    }
+    // {
+    //   id: 2,
+    //   client: "Nova Memorial", 
+    //   title: "Where Memories Blossom into Timeless Legacies",
+    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
+    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
+    //   reverse: true
+    // },
+    // {
+    //   id: 3,
+    //   client: "Nova Memorial",
+    //   title: "Nova Memorial",
+    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
+    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO", 
+    //   reverse: false
+    // },
+    // {
+    //   id: 4,
+    //   client: "Nova Memorial",
+    //   title: "Nova Memorial",
+    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
+    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
+    //   reverse: true
+    // }
   ];
 
   return (
-    <PortfolioWrapper>
+    <PortfolioWrapper id="portfolio">
       <Container>
         <Header>
           <Eyebrow>CASE STUDIES</Eyebrow>
-          <MainHeading>What we have delivered</MainHeading>
+          <MainHeading>What We Deliver</MainHeading>
           <Description>
-            From new digital projects to process optimization and support, 
-            we partner with businesses to deliver impactful results.
+          From focused digital solutions to ongoing support and optimization, we work with
+          companies of all sizes to achieve eQicient, lasting impact.
           </Description>
         </Header>
         
@@ -374,7 +374,7 @@ const PortfolioSection = () => {
               <ProjectContent reverse={project.reverse}>
                 <ContentHeader>
                   <ProjectBadge>
-                    <ProjectIcon>🌸</ProjectIcon>
+                    <ProjectIcon>N</ProjectIcon>
                     <ProjectClient>{project.client}</ProjectClient>
                   </ProjectBadge>
                   <ViewProjectButton>

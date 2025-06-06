@@ -106,12 +106,12 @@ const Description = styled.p`
   font-size: 1.6rem; /* 16px */
   line-height: 1.6;
   color: #64748b;
-  max-width: 50rem; /* 500px */
+  max-width: 60rem; /* 500px */
   margin: 0 auto;
   
   @media (max-width: 76.8rem) { /* 768px */
     font-size: 1.4rem; /* 14px */
-    max-width: 45rem; /* 450px */
+    max-width: 50rem; /* 450px */
   }
 `;
 
@@ -314,15 +314,16 @@ const ToolIcon = styled.div`
 
 const ServicesSection = () => {
   return (
-    <ServicesWrapper>
+    <ServicesWrapper id="services">
       <OuterContainer>
         <InnerContainer>
           <Header>
-            <Eyebrow>SERVICES</Eyebrow>
+            <Eyebrow>OUR SERVICES</Eyebrow>
             <MainHeading>What we can do for you</MainHeading>
             <Description>
-              From new digital projects to process optimization and support, 
-              we partner with businesses to deliver impactful results.
+            From one-off digital initiatives to long-term partnerships, we support businesses
+with everything from process optimization to full-scale product development -
+delivering results that last.
             </Description>
           </Header>
           

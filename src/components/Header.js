@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -99,43 +101,33 @@ const LogoText = styled.span`
 
 const LinksContainer = styled.div`
   display: flex;
+  gap: 4rem;
   align-items: center;
   justify-content: center;
-  gap: 4rem; /* 40px */
   
-  @media (max-width: 120rem) { /* 1200px */
-    gap: 3.5rem; /* 35px */
-  }
-  
-  @media (max-width: 102.4rem) { /* 1024px */
-    gap: 3rem; /* 30px */
-  }
-  
-  @media (max-width: 96rem) { /* 960px */
-    gap: 2.5rem; /* 25px */
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
+  @media (max-width: 76.8rem) {
     display: ${props => props.isOpen ? 'flex' : 'none'};
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(2rem); /* 20px */
-    border-radius: 2rem; /* 20px */
-    margin-top: 0.8rem; /* 8px */
-    padding: 2.4rem; /* 24px */
+    top: calc(100% + 1rem);
+    left: 2rem;
+    right: 2rem;
+    background: white;
     flex-direction: column;
-    gap: 2rem; /* 20px */
-    box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.08);
-    border: 0.1rem solid rgba(255, 255, 255, 0.8); /* 1px */
-    transform: ${props => props.isOpen ? 'translateY(0) scale(1)' : 'translateY(-1rem) scale(0.95)'};
-    opacity: ${props => props.isOpen ? '1' : '0'};
-    visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: normal;
-    justify-content: flex-start;
+    gap: 2rem;
+    padding: 2.4rem;
+    box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    border: 0.1rem solid rgba(100, 116, 139, 0.1);
+    transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-1rem)'};
+    opacity: ${props => props.isOpen ? 1 : 0};
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 48rem) {
+    left: 1.5rem;
+    right: 1.5rem;
+    padding: 2rem;
+    border-radius: 1.6rem;
   }
 `;
 
@@ -335,8 +327,199 @@ const HamburgerLine = styled.span`
   `}
 `;
 
+const LanguageButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.8rem 1.2rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  margin-right: 2rem;
+  position: relative;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+  }
+
+  @media (max-width: 76.8rem) {
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 0.1rem solid rgba(100, 116, 139, 0.1);
+    border-radius: 0;
+    padding: 1.2rem 0;
+  }
+`;
+
+const LanguageButtonWrapper = styled.div`
+  position: relative;
+  
+  @media (max-width: 76.8rem) {
+    display: none;
+    
+    ${({ isMobile }) => isMobile && `
+      display: block;
+      width: 100%;
+    `}
+  }
+
+  @media (min-width: 76.9rem) {
+    display: ${({ isMobile }) => isMobile ? 'none' : 'block'};
+  }
+`;
+
+const LanguageDropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.8rem;
+  background: white;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.1);
+  padding: 0.8rem;
+  display: ${props => props.isOpen ? 'block' : 'none'};
+  min-width: 12rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  @media (max-width: 76.8rem) {
+    position: static;
+    width: 100%;
+    margin-top: 0;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+`;
+
+const LanguageOption = styled.button`
+  width: 100%;
+  padding: 1rem 1.6rem;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: ${props => props.isActive ? '#E11D48' : '#64748b'};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 0.8rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+  }
+
+  @media (max-width: 76.8rem) {
+    padding: 1.2rem 2rem;
+    font-size: 1.6rem;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 0.1rem solid rgba(100, 116, 139, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+`;
+
+const GlobeIcon = styled.svg`
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: currentColor;
+`;
+
+const MobileLanguageWrapper = styled.div`
+  display: none;
+  width: 100%;
+  position: relative;
+  
+  @media (max-width: 76.8rem) {
+    display: block;
+  }
+`;
+
+const MobileLanguageButton = styled.button`
+  width: 100%;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: all 0.2s ease;
+  border-bottom: 0.1rem solid rgba(100, 116, 139, 0.1);
+
+  &:hover {
+    color: #1a1a1a;
+  }
+`;
+
+const MobileLanguageList = styled.div`
+  width: 100%;
+  display: ${props => props.isOpen ? 'flex' : 'none'};
+  flex-direction: column;
+  background: white;
+`;
+
+const MobileLanguageOption = styled.button`
+  width: 100%;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: ${props => props.isActive ? '#E11D48' : '#64748b'};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: all 0.2s ease;
+  border-bottom: 0.1rem solid rgba(100, 116, 139, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.05);
+  }
+`;
+
 const HeaderComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isMobileLanguageOpen, setIsMobileLanguageOpen] = useState(false);
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const languageDropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target)) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -344,6 +527,96 @@ const HeaderComponent = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  const toggleLanguageDropdown = (e) => {
+    e.stopPropagation();
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
+
+  const selectLanguage = (language) => {
+    changeLanguage(language);
+    setIsLanguageDropdownOpen(false);
+    closeMenu();
+  };
+
+  const toggleMobileLanguage = (e) => {
+    e.stopPropagation();
+    setIsMobileLanguageOpen(!isMobileLanguageOpen);
+  };
+
+  const selectMobileLanguage = (language) => {
+    changeLanguage(language);
+    setIsMobileLanguageOpen(false);
+    closeMenu();
+  };
+
+  const t = translations[currentLanguage].nav;
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('letsTalk');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      closeMenu();
+    }
+  };
+
+  const renderLanguageButton = (isMobile = false) => {
+    const dropdownOpen = isMobile ? isLanguageDropdownOpen : isLanguageDropdownOpen;
+    
+    return (
+      <LanguageButtonWrapper ref={languageDropdownRef} isMobile={isMobile}>
+        <LanguageButton onClick={toggleLanguageDropdown}>
+          <GlobeIcon viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+          </GlobeIcon>
+          {currentLanguage.toUpperCase()}
+        </LanguageButton>
+        <LanguageDropdown isOpen={dropdownOpen}>
+          <LanguageOption
+            isActive={currentLanguage === 'en'}
+            onClick={() => selectLanguage('en')}
+          >
+            English
+          </LanguageOption>
+          <LanguageOption
+            isActive={currentLanguage === 'de'}
+            onClick={() => selectLanguage('de')}
+          >
+            Deutsch
+          </LanguageOption>
+        </LanguageDropdown>
+      </LanguageButtonWrapper>
+    );
+  };
+
+  const renderMobileLanguages = () => {
+    return (
+      <MobileLanguageWrapper>
+        <MobileLanguageButton onClick={toggleMobileLanguage}>
+          <GlobeIcon viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+          </GlobeIcon>
+          {currentLanguage.toUpperCase()}
+        </MobileLanguageButton>
+        <MobileLanguageList isOpen={isMobileLanguageOpen}>
+          <MobileLanguageOption
+            isActive={currentLanguage === 'en'}
+            onClick={() => selectMobileLanguage('en')}
+          >
+            English
+          </MobileLanguageOption>
+          <MobileLanguageOption
+            isActive={currentLanguage === 'de'}
+            onClick={() => selectMobileLanguage('de')}
+          >
+            Deutsch
+          </MobileLanguageOption>
+        </MobileLanguageList>
+      </MobileLanguageWrapper>
+    );
   };
 
   return (
@@ -357,16 +630,18 @@ const HeaderComponent = () => {
         </LogoContainer>
         
         <LinksContainer isOpen={isMenuOpen}>
-          <NavLink href="#services" onClick={closeMenu}>SERVICES</NavLink>
-          <NavLink href="#case-studies" onClick={closeMenu}>CASE STUDIES</NavLink>
-          <NavLink href="#about" onClick={closeMenu}>ABOUT</NavLink>
-          <NavLink href="#blog" onClick={closeMenu}>BLOG</NavLink>
-          <MobileCtaButton onClick={closeMenu}>Let's talk</MobileCtaButton>
+          <NavLink href="#services" onClick={closeMenu}>{t.services}</NavLink>
+          <NavLink href="#approach" onClick={closeMenu}>Our Approach</NavLink>
+          <NavLink href="#portfolio" onClick={closeMenu}>{t.caseStudies}</NavLink>
+          <NavLink href="#about" onClick={closeMenu}>{t.about}</NavLink>
+          {renderMobileLanguages()}
+          <MobileCtaButton href="#letsTalk" onClick={scrollToContact}>{t.letsTalk}</MobileCtaButton>
         </LinksContainer>
         
         <ButtonContainer>
-          <DesktopCtaButton onClick={closeMenu}>
-            Let's talk
+          {renderLanguageButton(false)}
+          <DesktopCtaButton onClick={scrollToContact}>
+            {t.letsTalk}
           </DesktopCtaButton>
         </ButtonContainer>
         
@@ -380,4 +655,4 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent; 
+export default HeaderComponent;

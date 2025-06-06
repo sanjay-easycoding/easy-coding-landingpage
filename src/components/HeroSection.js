@@ -1,5 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
+import { useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 
 const HeroWrapper = styled.section`
   padding: 16rem 2rem 8rem; /* 160px 20px 80px */
@@ -29,13 +33,37 @@ const Container = styled.div`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const gradientMove = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
+
 const ContentSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem; /* 30px */
+  gap: 3rem;
+  animation: ${fadeIn} 0.8s ease-out forwards;
   
-  @media (max-width: 76.8rem) { /* 768px */
-    gap: 2.5rem; /* 25px */
+  @media (max-width: 76.8rem) {
+    gap: 2.5rem;
   }
 `;
 
@@ -207,6 +235,7 @@ const AnimatedSVG = styled.svg`
   height: auto;
   filter: drop-shadow(0 1rem 3rem rgba(225, 29, 72, 0.2));
   transition: all 0.3s ease;
+  animation: ${fadeIn} 0.8s ease-out forwards;
   
   &:hover {
     transform: scale(1.02);
@@ -214,69 +243,139 @@ const AnimatedSVG = styled.svg`
   }
 
   .code-line {
-    animation: typingAnimation 2s ease-in-out infinite alternate;
+    opacity: 0;
+    animation: typingAnimation 0.5s ease-in-out forwards;
   }
 
-  .code-line:nth-child(2) {
-    animation-delay: 0.3s;
-  }
-
-  .code-line:nth-child(3) {
-    animation-delay: 0.6s;
-  }
+  .code-line:nth-child(2) { animation-delay: 0.8s; }
+  .code-line:nth-child(3) { animation-delay: 1.6s; }
+  .code-line:nth-child(4) { animation-delay: 2.4s; }
+  .code-line:nth-child(5) { animation-delay: 3.2s; }
 
   .floating-elements {
-    animation: floatAnimation 3s ease-in-out infinite;
+    animation: floatAnimation 4s ease-in-out infinite;
+    transform-origin: center;
   }
 
   .floating-elements:nth-child(2) {
     animation-delay: 1s;
+    animation-duration: 5s;
   }
 
   .pulse-circle {
     animation: pulseAnimation 2s ease-in-out infinite;
   }
 
+  .glow-effect {
+    animation: ${gradientMove} 3s ease infinite;
+  }
+
   @keyframes typingAnimation {
-    0%, 50% { opacity: 0.3; }
-    100% { opacity: 1; }
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @keyframes floatAnimation {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(5px, -5px) rotate(2deg);
+    }
+    50% {
+      transform: translate(0, -10px) rotate(-2deg);
+    }
+    75% {
+      transform: translate(-5px, -5px) rotate(2deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
   }
 
   @keyframes pulseAnimation {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.1); opacity: 1; }
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
   }
 `;
 
+const GlowingBackground = styled.div`
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(225, 29, 72, 0.1) 0%,
+    rgba(190, 24, 93, 0.05) 25%,
+    transparent 70%
+  );
+  animation: ${gradientMove} 10s ease infinite;
+  pointer-events: none;
+  z-index: -1;
+`;
+
 const HeroSection = () => {
+  const [codeLines, setCodeLines] = useState([]);
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage].hero;
+  
+  useEffect(() => {
+    const lines = [
+      { code: "function createSolution() {", color: "#E11D48" },
+      { code: "  const innovation = new Ideas();", color: "#8B5CF6" },
+      { code: "  const success = transform(business);", color: "#10B981" },
+      { code: "  return growth.exponential();", color: "#F59E0B" },
+      { code: "}", color: "#EC4899" }
+    ];
+    setCodeLines(lines);
+  }, []);
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('letsTalk');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <HeroWrapper>
       <Container>
         <ContentSection>
-          <Eyebrow>YOUR RELIABLE OUTSOURCED IT PARTNER</Eyebrow>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
           
           <MainHeading>
-            <span className="red-text">Software solutions for</span><br />
-            <span className="dark-text">growing businesses</span>
+            <span className="red-text">{t.title.part1}</span><br />
+            <span className="dark-text">{t.title.part2}</span>
           </MainHeading>
           
           <Description>
-            From new digital projects to process optimization and support, we partner with businesses to deliver impactful results.
+            {t.description}
           </Description>
           
           <ButtonGroup>
-            <PrimaryButton>Book a call</PrimaryButton>
-            <SecondaryButton>View our work</SecondaryButton>
+            <PrimaryButton onClick={scrollToContact}>{translations[currentLanguage].nav.letsTalk}</PrimaryButton>
+            <SecondaryButton>{translations[currentLanguage].services.viewMore}</SecondaryButton>
           </ButtonGroup>
         </ContentSection>
         
         <VisualSection>
           <AnimationContainer>
+            <GlowingBackground />
             <AnimatedSVG viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
               {/* Laptop Base */}
               <rect x="50" y="220" width="300" height="20" rx="10" fill="#1E293B" />
@@ -294,43 +393,35 @@ const HeroSection = () => {
               <circle className="pulse-circle" cx="125" cy="102.5" r="4" fill="#10B981" />
               
               {/* Code Lines */}
-              <g className="code-line">
-                <rect x="90" y="125" width="120" height="3" fill="#E11D48" />
-                <rect x="215" y="125" width="80" height="3" fill="#64748B" />
-              </g>
-              
-              <g className="code-line">
-                <rect x="90" y="140" width="80" height="3" fill="#8B5CF6" />
-                <rect x="175" y="140" width="100" height="3" fill="#06B6D4" />
-              </g>
-              
-              <g className="code-line">
-                <rect x="90" y="155" width="150" height="3" fill="#10B981" />
-              </g>
-              
-              <g className="code-line">
-                <rect x="90" y="170" width="90" height="3" fill="#F59E0B" />
-                <rect x="185" y="170" width="110" height="3" fill="#64748B" />
-              </g>
-              
-              <g className="code-line">
-                <rect x="90" y="185" width="200" height="3" fill="#EC4899" />
-              </g>
+              {codeLines.map((line, index) => (
+                <g key={index} className="code-line" transform={`translate(0, ${125 + index * 15})`}>
+                  <text x="90" y="0" fill={line.color} fontSize="10" fontFamily="monospace">
+                    {line.code}
+                  </text>
+                </g>
+              ))}
               
               {/* Floating Elements */}
               <g className="floating-elements">
                 <circle cx="350" cy="60" r="8" fill="#E11D48" opacity="0.7" />
                 <polygon points="360,45 370,65 350,65" fill="#8B5CF6" opacity="0.6" />
+                <circle cx="365" cy="40" r="4" fill="#10B981" opacity="0.5" />
               </g>
               
               <g className="floating-elements">
                 <rect x="40" y="50" width="15" height="15" rx="3" fill="#06B6D4" opacity="0.6" />
                 <circle cx="25" cy="80" r="6" fill="#10B981" opacity="0.7" />
+                <polygon points="30,60 40,70 20,70" fill="#E11D48" opacity="0.5" />
               </g>
               
               {/* Cursor */}
-              <rect x="290" y="185" width="2" height="4" fill="#E11D48">
-                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+              <rect className="cursor" x="90" y="185" width="2" height="12" fill="#E11D48">
+                <animate
+                  attributeName="opacity"
+                  values="1;0;1"
+                  dur="0.8s"
+                  repeatCount="indefinite"
+                />
               </rect>
             </AnimatedSVG>
           </AnimationContainer>

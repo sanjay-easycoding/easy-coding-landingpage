@@ -229,50 +229,33 @@ const ClientsSection = () => {
   return (
     <ClientsWrapper>
       <Container>
-        <SectionTitle>Trusted by leading companies</SectionTitle>
+        <SectionTitle>Building Digital Solutions with Trusted Partners</SectionTitle>
         
         <LogosGrid>
           <LogoItem>
             <Logo>
               <NovaIcon>N</NovaIcon>
-              logoipsum
+              Nice Guides
             </Logo>
           </LogoItem>
           
           <LogoItem>
             <Logo>
-              <DeliveryIcon>D</DeliveryIcon>
-              logoipsum
+              <DeliveryIcon>A</DeliveryIcon>
+              Aspilos
             </Logo>
           </LogoItem>
           
           <LogoItem>
             <Logo>
-              <LogoipsumIcon>L</LogoipsumIcon>
-              logoipsum
+              <LogoipsumIcon>G</LogoipsumIcon>
+              G24
             </Logo>
           </LogoItem>
           
-          <LogoItem>
-            <Logo>
-              <BrandIcon>L</BrandIcon>
-              logoipsum
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <TechIcon>L</TechIcon>
-              logoipsum
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <StudioIcon>L</StudioIcon>
-              logoipsum
-            </Logo>
-          </LogoItem>
+       
+
+
         </LogosGrid>
       </Container>
     </ClientsWrapper>

@@ -324,32 +324,220 @@ const CompanyLogo = styled.div`
   }
 `;
 
+const ContactGrid = styled.div`
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (max-width: 48rem) { /* 480px */
+    padding: 0 1.5rem;
+  }
+`;
+
+const ContactForm = styled.form`
+  background: #2d3748;
+  border-radius: 1.2rem;
+  padding: 4rem 3rem;
+  margin: 6rem 0 8rem 0;
+  
+  @media (max-width: 76.8rem) {
+    padding: 3rem 2rem;
+  }
+`;
+
+const InputGroup = styled.div`
+  margin-bottom: 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 48rem) { /* 480px */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+`;
+
+const Label = styled.label`
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  width: 14rem;
+  flex-shrink: 0;
+  text-align: left;
+  
+  @media (max-width: 48rem) { /* 480px */
+    width: 100%;
+  }
+`;
+
+const InputWrapper = styled.div`
+  flex: 1;
+  width: 100%;
+`;
+
+const FormTitle = styled.h3`
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 3rem;
+  text-align: center;
+`;
+
+// Special case for the message input group to align with text area
+const MessageInputGroup = styled(InputGroup)`
+  align-items: flex-start;
+  
+  ${Label} {
+    margin-top: 1.2rem;
+  }
+  
+  @media (max-width: 48rem) {
+    ${Label} {
+      margin-top: 0;
+    }
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 1.2rem;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 0.6rem;
+  color: white;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #e11d48;
+    box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.2);
+  }
+  
+  &::placeholder {
+    color: #64748b;
+  }
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  padding: 1.2rem;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 0.6rem;
+  color: white;
+  font-size: 1.4rem;
+  min-height: 12rem;
+  resize: vertical;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #e11d48;
+    box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.2);
+  }
+  
+  &::placeholder {
+    color: #64748b;
+  }
+`;
+
+const StepButton = styled.button`
+  background: ${props => props.variant === 'back' ? 'transparent' : '#e11d48'};
+  color: ${props => props.variant === 'back' ? '#cbd5e1' : 'white'};
+  border: ${props => props.variant === 'back' ? '1px solid #475569' : 'none'};
+  padding: 1.4rem 2.8rem;
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  
+  &:hover {
+    background: ${props => props.variant === 'back' ? 'rgba(203, 213, 225, 0.1)' : '#be185d'};
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  margin-top: 3rem;
+`;
+
 const ContactSection = () => {
-  const [selectedDate, setSelectedDate] = useState(30);
-  const [selectedTime, setSelectedTime] = useState('4:30pm');
+  const [step, setStep] = useState(1);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [timeFormat, setTimeFormat] = useState('12h');
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
-  const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  const timeSlots = ['4:30pm', '5:00pm', '5:30pm'];
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const timeSlots = [
+    { time12: '10:00 AM', time24: '10:00' },
+    { time12: '2:00 PM', time24: '14:00' },
+    { time12: '4:00 PM', time24: '16:00' }
+  ];
 
-  // Generate calendar days for January 2025
+  // Generate calendar days for the current month
   const generateCalendarDays = () => {
-    const days = [];
-    const today = 30; // Current day highlighted in the image
+    const year = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDay = firstDay.getDay();
+    const today = new Date();
     
-    // Previous month days (empty or grayed out)
-    for (let i = 0; i < 3; i++) {
-      days.push({ day: '', isDisabled: true });
+    const days = [];
+    
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < startingDay; i++) {
+      days.push({ day: null, isDisabled: true });
     }
     
-    // Current month days
-    for (let day = 1; day <= 31; day++) {
+    // Add the days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const isBeforeToday = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      
       days.push({
         day: day,
-        isToday: day === today,
-        isDisabled: day < today,
-        isSelected: day === selectedDate
+        isSelected: selectedDate === day,
+        isToday: day === today.getDate() && 
+                 month === today.getMonth() && 
+                 year === today.getFullYear(),
+        isDisabled: isBeforeToday
       });
+    }
+    
+    // Add empty cells for remaining days to complete the grid
+    const totalCells = Math.ceil((startingDay + daysInMonth) / 7) * 7;
+    for (let i = days.length; i < totalCells; i++) {
+      days.push({ day: null, isDisabled: true });
     }
     
     return days;
@@ -357,94 +545,238 @@ const ContactSection = () => {
 
   const calendarDays = generateCalendarDays();
 
+  const handlePrevMonth = () => {
+    setCurrentMonth(prev => {
+      const newDate = new Date(prev.getFullYear(), prev.getMonth() - 1);
+      // Don't allow going before current month
+      if (newDate < new Date(new Date().getFullYear(), new Date().getMonth(), 1)) {
+        return prev;
+      }
+      return newDate;
+    });
+    setSelectedDate(null);
+  };
+
+  const handleNextMonth = () => {
+    setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1));
+    setSelectedDate(null);
+  };
+
+  const formatMonth = (date) => {
+    return date.toLocaleString('default', { month: 'long', year: 'numeric' });
+  };
+
+  const handleDateSelect = (dayObj) => {
+    if (!dayObj.isDisabled && dayObj.day) {
+      setSelectedDate(dayObj.day);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    console.log('Selected Date:', selectedDate);
+    console.log('Selected Time:', selectedTime);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    setStep(1);
+  };
+
+  const handleNext = () => {
+    setStep(2);
+  };
+
+  const handleBack = () => {
+    setStep(1);
+  };
+
   return (
-    <ContactWrapper>
+    <ContactWrapper id="letsTalk">
       <ContactContainer>
         <Header>
           <Eyebrow>LET'S TALK</Eyebrow>
-          <MainHeading>Book a call today!</MainHeading>
+          <MainHeading>Book a call with us!</MainHeading>
           <Description>
-            Book a FREE discovery call to discuss your project and challenges
-            and find the best approach for executing it!
+            {step === 1 
+              ? "Choose your preferred date and time for a FREE discovery call."
+              : "Please provide your details and we'll confirm your booking."}
           </Description>
         </Header>
 
-        <BookingCard>
-          <CalendarHeader>
-            <MonthYear>January 2025</MonthYear>
-            <CalendarNavButtons>
-              <CalendarNavButton>‹</CalendarNavButton>
-              <CalendarNavButton>›</CalendarNavButton>
-            </CalendarNavButtons>
-          </CalendarHeader>
-          
-          <WeekDays>
-            {weekDays.map((day) => (
-              <WeekDay key={day}>{day}</WeekDay>
-            ))}
-          </WeekDays>
-          
-          <CalendarDays>
-            {calendarDays.map((dayObj, index) => (
-              <CalendarDay
-                key={index}
-                isSelected={dayObj.isSelected}
-                isToday={dayObj.isToday}
-                isDisabled={dayObj.isDisabled}
-                onClick={() => !dayObj.isDisabled && dayObj.day && setSelectedDate(dayObj.day)}
-              >
-                {dayObj.day}
-              </CalendarDay>
-            ))}
-          </CalendarDays>
+        <ContactGrid>
+          {step === 1 ? (
+            <>
+              <BookingCard>
+                <CalendarHeader>
+                  <MonthYear>{formatMonth(currentMonth)}</MonthYear>
+                  <CalendarNavButtons>
+                    <CalendarNavButton onClick={handlePrevMonth}>‹</CalendarNavButton>
+                    <CalendarNavButton onClick={handleNextMonth}>›</CalendarNavButton>
+                  </CalendarNavButtons>
+                </CalendarHeader>
+                
+                <WeekDays>
+                  {weekDays.map((day) => (
+                    <WeekDay key={day}>{day}</WeekDay>
+                  ))}
+                </WeekDays>
+                
+                <CalendarDays>
+                  {calendarDays.map((dayObj, index) => (
+                    <CalendarDay
+                      key={index}
+                      isSelected={dayObj.isSelected}
+                      isToday={dayObj.isToday}
+                      isDisabled={dayObj.isDisabled}
+                      onClick={() => handleDateSelect(dayObj)}
+                    >
+                      {dayObj.day}
+                    </CalendarDay>
+                  ))}
+                </CalendarDays>
 
-          <TimeSlotSection>
-            <TimeSlotHeader>
-              <DateLabel>Thu 30</DateLabel>
-              <TimeFormatToggle>
-                <ToggleButton 
-                  isActive={timeFormat === '12h'}
-                  onClick={() => setTimeFormat('12h')}
+                <TimeSlotSection>
+                  <TimeSlotHeader>
+                    <DateLabel>
+                      {selectedDate ? `${currentMonth.toLocaleString('default', { month: 'short' })} ${selectedDate}` : 'Select a date'}
+                    </DateLabel>
+                    <TimeFormatToggle>
+                      <ToggleButton 
+                        isActive={timeFormat === '12h'}
+                        onClick={() => setTimeFormat('12h')}
+                      >
+                        12h
+                      </ToggleButton>
+                      <ToggleButton 
+                        isActive={timeFormat === '24h'}
+                        onClick={() => setTimeFormat('24h')}
+                      >
+                        24h
+                      </ToggleButton>
+                    </TimeFormatToggle>
+                  </TimeSlotHeader>
+                  
+                  <TimeSlotList>
+                    {timeSlots.map((slot) => (
+                      <TimeSlot
+                        key={slot.time12}
+                        isSelected={selectedTime === slot.time12}
+                        onClick={() => setSelectedTime(slot.time12)}
+                      >
+                        {timeFormat === '12h' ? slot.time12 : slot.time24}
+                      </TimeSlot>
+                    ))}
+                  </TimeSlotList>
+                </TimeSlotSection>
+
+                <StepButton 
+                  onClick={handleNext}
+                  disabled={!selectedDate || !selectedTime}
                 >
-                  12h
-                </ToggleButton>
-                <ToggleButton 
-                  isActive={timeFormat === '24h'}
-                  onClick={() => setTimeFormat('24h')}
-                >
-                  24h
-                </ToggleButton>
-              </TimeFormatToggle>
-            </TimeSlotHeader>
-            
-            <TimeSlotList>
-              {timeSlots.map((time) => (
-                <TimeSlot
-                  key={time}
-                  isSelected={selectedTime === time}
-                  onClick={() => setSelectedTime(time)}
-                >
-                  {time}
-                </TimeSlot>
-              ))}
-            </TimeSlotList>
-          </TimeSlotSection>
-        </BookingCard>
+                  Next Step →
+                </StepButton>
+              </BookingCard>
+            </>
+          ) : (
+            <ContactForm onSubmit={handleSubmit}>
+              <FormTitle>Enter your details</FormTitle>
+              
+              <InputGroup>
+                <Label htmlFor="name">Full Name</Label>
+                <InputWrapper>
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="John Doe"
+                    required
+                  />
+                </InputWrapper>
+              </InputGroup>
+
+              <InputGroup>
+                <Label htmlFor="email">Email Address</Label>
+                <InputWrapper>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="john@example.com"
+                    required
+                  />
+                </InputWrapper>
+              </InputGroup>
+
+              <InputGroup>
+                <Label htmlFor="phone">Phone Number</Label>
+                <InputWrapper>
+                  <Input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+1 (555) 000-0000"
+                  />
+                </InputWrapper>
+              </InputGroup>
+
+              <MessageInputGroup>
+                <Label htmlFor="message">Message</Label>
+                <InputWrapper>
+                  <TextArea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us about your project..."
+                    required
+                  />
+                </InputWrapper>
+              </MessageInputGroup>
+
+              <ButtonGroup>
+                <StepButton type="button" variant="back" onClick={handleBack}>
+                  ← Back
+                </StepButton>
+                <StepButton type="submit">
+                  Confirm Booking
+                </StepButton>
+              </ButtonGroup>
+            </ContactForm>
+          )}
+        </ContactGrid>
 
         <OldSchoolSection>
-          <OldSchoolHeading>Wanna go old school? No problem!</OldSchoolHeading>
+          <OldSchoolHeading>Prefer traditional contact methods?</OldSchoolHeading>
           <p style={{ color: '#cbd5e1', marginBottom: '2rem', fontSize: '1.4rem' }}>
-            Feel free to shoot us an email or give us a call any time
+            Feel free to reach out directly through email or phone
           </p>
           
-                     <ContactInfo>
-                         <ContactItem href="mailto:info@easy-coding.io" icon="📧">
+          <ContactInfo>
+            <ContactItem href="mailto:info@easy-coding.io" icon="📧">
               info@easy-coding.io
-             </ContactItem>
-             <ContactItem href="tel:+359897879980" icon="📞">
-               +359 897 87 99 80
-             </ContactItem>
-           </ContactInfo>
+            </ContactItem>
+            <ContactItem href="tel:+359897879980" icon="📞">
+              +359 897 87 99 80
+            </ContactItem>
+          </ContactInfo>
         </OldSchoolSection>
 
         <CompanyLogos>

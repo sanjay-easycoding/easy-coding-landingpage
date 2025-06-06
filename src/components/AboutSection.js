@@ -381,7 +381,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <AboutWrapper>
+    <AboutWrapper id="about">
       <AboutContainer>
         <Container>
           <Header>
