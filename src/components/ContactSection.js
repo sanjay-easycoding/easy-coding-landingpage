@@ -8,6 +8,10 @@ const ContactWrapper = styled.section`
   @media (max-width: 76.8rem) { /* 768px */
     padding: 8rem 1.5rem; /* 80px 15px */
   }
+
+  @media (max-width: 48rem) {
+    padding: 6rem 1.2rem;
+  }
 `;
 
 const ContactContainer = styled.div`
@@ -27,7 +31,7 @@ const ContactContainer = styled.div`
   }
   
   @media (max-width: 48rem) { /* 480px */
-    padding: 4rem 1.5rem; /* 40px 15px */
+    padding: 4rem 1.2rem; /* 40px 12px */
     border-radius: 1.6rem; /* 16px */
   }
 `;
@@ -92,11 +96,18 @@ const BookingCard = styled.div`
   padding: 2.4rem; /* 24px */
   max-width: 40rem; /* 400px */
   margin: 0 auto 8rem auto;
+  width: 100%;
   
   @media (max-width: 76.8rem) { /* 768px */
     margin-bottom: 6rem;
     max-width: 36rem; /* 360px */
     padding: 2rem; /* 20px */
+  }
+
+  @media (max-width: 48rem) { /* 480px */
+    max-width: 100%;
+    padding: 1.6rem;
+    margin-bottom: 4rem;
   }
 `;
 
@@ -106,6 +117,11 @@ const CalendarHeader = styled.div`
   align-items: center;
   margin-bottom: 2rem; /* 20px */
   padding: 0 0.4rem; /* 0 4px */
+
+  @media (max-width: 48rem) {
+    padding: 0;
+    margin-bottom: 1.6rem;
+  }
 `;
 
 const MonthYear = styled.h3`
@@ -139,6 +155,10 @@ const WeekDays = styled.div`
   grid-template-columns: repeat(7, 1fr);
   gap: 0.4rem;
   margin-bottom: 1rem; /* 10px */
+
+  @media (max-width: 48rem) {
+    gap: 0.2rem;
+  }
 `;
 
 const WeekDay = styled.div`
@@ -147,6 +167,11 @@ const WeekDay = styled.div`
   color: #64748b;
   text-align: center;
   padding: 0.8rem 0; /* 8px 0 */
+
+  @media (max-width: 48rem) {
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+  }
 `;
 
 const CalendarDays = styled.div`
@@ -154,6 +179,11 @@ const CalendarDays = styled.div`
   grid-template-columns: repeat(7, 1fr);
   gap: 0.4rem;
   margin-bottom: 3rem; /* 30px */
+
+  @media (max-width: 48rem) {
+    gap: 0.2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const CalendarDay = styled.button`
@@ -171,10 +201,21 @@ const CalendarDay = styled.button`
   &:hover {
     background: ${props => props.isDisabled ? 'transparent' : props.isSelected ? '#dc2626' : '#475569'};
   }
+
+  @media (max-width: 48rem) {
+    font-size: 1.3rem;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+  }
+
+  @media (max-width: 36rem) {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
 `;
 
 const TimeSlotSection = styled.div`
-  /* Time slots section */
+  margin-top: 2rem;
 `;
 
 const TimeSlotHeader = styled.div`
@@ -182,6 +223,12 @@ const TimeSlotHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.6rem; /* 16px */
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 `;
 
 const DateLabel = styled.h4`
@@ -194,6 +241,11 @@ const DateLabel = styled.h4`
 const TimeFormatToggle = styled.div`
   display: flex;
   gap: 0.8rem; /* 8px */
+
+  @media (max-width: 48rem) {
+    width: 100%;
+    justify-content: flex-end;
+  }
 `;
 
 const ToggleButton = styled.button`
@@ -216,6 +268,10 @@ const TimeSlotList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem; /* 8px */
+
+  @media (max-width: 48rem) {
+    gap: 0.6rem;
+  }
 `;
 
 const TimeSlot = styled.button`
@@ -229,15 +285,25 @@ const TimeSlot = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
+  width: 100%;
   
   &:hover {
     background: #374151;
     border-color: #6b7280;
   }
+
+  @media (max-width: 48rem) {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
 `;
 
 const OldSchoolSection = styled.div`
   margin-bottom: 6rem; /* 60px */
+
+  @media (max-width: 48rem) {
+    margin-bottom: 4rem;
+  }
 `;
 
 const OldSchoolHeading = styled.h3`
@@ -256,11 +322,10 @@ const ContactInfo = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4rem; /* 40px */
-  margin-bottom: 2rem; /* 20px */
-   letter-spacing: 0.2em;
-  @media (max-width: 48rem) { /* 480px */
+  
+  @media (max-width: 48rem) {
     flex-direction: column;
-    gap: 2rem; /* 20px */
+    gap: 2rem;
   }
 `;
 
@@ -328,9 +393,15 @@ const ContactGrid = styled.div`
   max-width: 60rem;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
   
-  @media (max-width: 48rem) { /* 480px */
+  @media (max-width: 76.8rem) {
     padding: 0 1.5rem;
+  }
+  
+  @media (max-width: 48rem) {
+    padding: 0;
+    max-width: 100%;
   }
 `;
 
@@ -339,9 +410,15 @@ const ContactForm = styled.form`
   border-radius: 1.2rem;
   padding: 4rem 3rem;
   margin: 6rem 0 8rem 0;
+  width: 100%;
   
   @media (max-width: 76.8rem) {
     padding: 3rem 2rem;
+  }
+
+  @media (max-width: 48rem) {
+    padding: 2rem 1.6rem;
+    margin: 4rem 0 6rem 0;
   }
 `;
 
@@ -351,10 +428,11 @@ const InputGroup = styled.div`
   align-items: center;
   gap: 2rem;
   
-  @media (max-width: 48rem) { /* 480px */
+  @media (max-width: 48rem) {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.8rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -366,8 +444,9 @@ const Label = styled.label`
   flex-shrink: 0;
   text-align: left;
   
-  @media (max-width: 48rem) { /* 480px */
+  @media (max-width: 48rem) {
     width: 100%;
+    font-size: 1.3rem;
   }
 `;
 
@@ -418,6 +497,11 @@ const Input = styled.input`
   &::placeholder {
     color: #64748b;
   }
+
+  @media (max-width: 48rem) {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -440,6 +524,12 @@ const TextArea = styled.textarea`
   
   &::placeholder {
     color: #64748b;
+  }
+
+  @media (max-width: 48rem) {
+    font-size: 1.3rem;
+    padding: 1rem;
+    min-height: 10rem;
   }
 `;
 
@@ -474,12 +564,23 @@ const StepButton = styled.button`
     cursor: not-allowed;
     transform: none;
   }
+
+  @media (max-width: 48rem) {
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+    margin-top: 1.6rem;
+  }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 1.6rem;
   margin-top: 3rem;
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 const ContactSection = () => {

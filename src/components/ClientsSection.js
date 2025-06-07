@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ClientsWrapper = styled.section`
-  padding: 8rem 2rem; /* 80px 20px */
+  padding: 2rem 2rem; /* 80px 20px */
   background: rgb(245, 247, 251);
   
   @media (max-width: 76.8rem) { /* 768px */
-    padding: 6rem 1.5rem; /* 60px 15px */
+    padding: 2rem 1.5rem; /* 60px 15px */
   }
 `;
 
@@ -23,7 +23,7 @@ const SectionTitle = styled.h2`
   letter-spacing: 0.1em; /* 1px equivalent */
   color: #64748b;
   margin-bottom: 4rem; /* 40px */
-  
+  line-height: 3rem;
   @media (max-width: 76.8rem) { /* 768px */
     font-size: 1.2rem; /* 12px */
     margin-bottom: 3rem; /* 30px */

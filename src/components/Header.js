@@ -54,6 +54,12 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     white-space: normal;
     position: relative;
+    grid-template-columns: auto auto auto; /* Adjust grid for mobile */
+  }
+
+  @media (max-width: 48rem) { /* 480px */
+    padding: 1.2rem 1.6rem; /* Reduce padding further on mobile */
+    border-radius: 2rem;
   }
 `;
 
@@ -61,6 +67,10 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  @media (max-width: 76.8rem) {
+    flex: 0 1 auto; /* Allow logo to shrink if needed */
+  }
 `;
 
 const Logo = styled.div`
@@ -74,6 +84,10 @@ const Logo = styled.div`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media (max-width: 48rem) {
+    gap: 0.8rem; /* Reduce gap on mobile */
+  }
 `;
 
 const LogoImage = styled.img`
@@ -84,6 +98,10 @@ const LogoImage = styled.img`
   
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 48rem) {
+    height: 2rem; /* Slightly smaller on mobile */
   }
 `;
 
@@ -97,6 +115,10 @@ const LogoText = styled.span`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   white-space: nowrap;
+
+  @media (max-width: 48rem) {
+    font-size: 1.6rem; /* Slightly smaller on mobile */
+  }
 `;
 
 const LinksContainer = styled.div`
@@ -111,7 +133,8 @@ const LinksContainer = styled.div`
     top: calc(100% + 1rem);
     left: 2rem;
     right: 2rem;
-    background: white;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(1rem);
     flex-direction: column;
     gap: 2rem;
     padding: 2.4rem;
@@ -120,7 +143,8 @@ const LinksContainer = styled.div`
     border: 0.1rem solid rgba(100, 116, 139, 0.1);
     transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-1rem)'};
     opacity: ${props => props.isOpen ? 1 : 0};
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 99; /* Below the toggle button */
   }
 
   @media (max-width: 48rem) {
@@ -128,6 +152,14 @@ const LinksContainer = styled.div`
     right: 1.5rem;
     padding: 2rem;
     border-radius: 1.6rem;
+    gap: 1.6rem; /* Reduce gap on mobile */
+  }
+
+  @media (max-width: 36rem) { /* 360px */
+    left: 1rem;
+    right: 1rem;
+    padding: 1.6rem;
+    gap: 1.2rem;
   }
 `;
 
@@ -176,6 +208,15 @@ const NavLink = styled.a`
     &:last-child {
       border-bottom: none;
     }
+
+    &::before {
+      bottom: -0.1rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    font-size: 1.3rem;
+    padding: 1rem 0;
   }
 `;
 
@@ -183,8 +224,9 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 1.6rem; /* Add gap between language selector and CTA */
   
-  @media (max-width: 76.8rem) { /* 768px */
+  @media (max-width: 76.8rem) {
     display: none;
   }
 `;
@@ -291,6 +333,7 @@ const MobileToggle = styled.button`
   border-radius: 0.8rem; /* 8px */
   transition: all 0.2s ease;
   flex-shrink: 0;
+  z-index: 100; /* Ensure toggle is above mobile menu */
   
   &:hover {
     background: rgba(0, 0, 0, 0.05);
@@ -301,6 +344,7 @@ const MobileToggle = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: auto; /* Push to the right */
   }
 `;
 

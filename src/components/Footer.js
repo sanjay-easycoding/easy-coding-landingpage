@@ -20,13 +20,15 @@ const FooterContainer = styled.div`
 const TopRow = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 2.4rem; /* 24px */
+  flex-wrap: wrap;
+  gap: 2rem;
   
   @media (max-width: 76.8rem) { /* 768px */
     flex-direction: column;
     gap: 1.6rem; /* 16px */
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 2rem; /* 20px */
   }
   
@@ -79,7 +81,7 @@ const Tagline = styled.p`
 `;
 
 const TopRight = styled.div`
-  align-self: flex-end;
+  
 `;
 
 const HorizontalLine = styled.div`
@@ -97,11 +99,13 @@ const BottomRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
   
   @media (max-width: 76.8rem) { /* 768px */
     flex-direction: column;
     gap: 1.6rem; /* 16px */
-    align-items: flex-start;
+    align-items: center;
   }
   
   @media (max-width: 48rem) { /* 480px */
@@ -230,7 +234,7 @@ const Footer = () => {
               <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" />
               <LogoText>easy-coding</LogoText>
             </LogoRow>
-            <Tagline>Your outsourced IT partner</Tagline>
+            <Tagline>Your reliable development partner</Tagline>
           </TopLeft>
           
           <TopRight>

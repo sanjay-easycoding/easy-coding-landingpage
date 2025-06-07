@@ -1,200 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useContext } from 'react';
 import { LanguageContext } from '../context/LanguageContext';
 
 const HeroWrapper = styled.section`
-  padding: 16rem 2rem 8rem; /* 160px 20px 80px */
-  background: rgb(245, 247, 251);
+  width: 100%;
+  padding: 12rem 0 6rem;
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  overflow: hidden;
   
-  @media (max-width: 76.8rem) { /* 768px */
-    padding: 14rem 1.5rem 6rem; /* 140px 15px 60px */
+  @media (max-width: 76.8rem) {
+    padding: 10rem 0 4rem;
   }
 `;
 
-const Container = styled.div`
-  max-width: 140rem; /* 1400px */
+const HeroContainer = styled.div`
+  width: 100%;
+  max-width: 120rem;
   margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 8rem; /* 80px */
-  
-  @media (max-width: 96rem) { /* 960px */
-    gap: 6rem; /* 60px */
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
+  gap: 4rem;
+
+  @media (max-width: 76.8rem) {
     grid-template-columns: 1fr;
-    gap: 4rem; /* 40px */
+    gap: 3rem;
     text-align: center;
   }
 `;
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const gradientMove = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-`;
-
 const ContentSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  animation: ${fadeIn} 0.8s ease-out forwards;
+  max-width: 54rem;
   
   @media (max-width: 76.8rem) {
-    gap: 2.5rem;
-  }
-`;
-
-const Eyebrow = styled.p`
-  font-size: 1.3rem; /* 13px */
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em; /* 2px equivalent */
-  color: #e11d48; /* Red color */
-  margin-bottom: 1rem; /* 10px */
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    font-size: 1.2rem; /* 12px */
-  }
-`;
-
-const MainHeading = styled.h1`
-  font-size: 5.5rem; /* 55px */
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 2rem; /* 20px */
-  
-  .red-text {
-    color: #e11d48; /* Red color */
-  }
-  
-  .dark-text {
-    color: #1e293b; /* Dark blue-gray */
-  }
-  
-  @media (max-width: 120rem) { /* 1200px */
-    font-size: 5rem; /* 50px */
-  }
-  
-  @media (max-width: 96rem) { /* 960px */
-    font-size: 4.5rem; /* 45px */
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    font-size: 3.8rem; /* 38px */
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
-    font-size: 3.2rem; /* 32px */
-  }
-`;
-
-const Description = styled.p`
-  font-size: 1.8rem; /* 18px */
-  line-height: 1.6;
-  color: #64748b; /* Gray color */
-  max-width: 50rem; /* 500px */
-  margin-bottom: 1rem; /* 10px */
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    font-size: 1.6rem; /* 16px */
-    max-width: none;
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 2rem; /* 20px */
-  align-items: center;
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    justify-content: center;
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
-    flex-direction: column;
-    gap: 1.5rem; /* 15px */
-    width: 100%;
-  }
-`;
-
-const PrimaryButton = styled.button`
-  background: linear-gradient(135deg, #e11d48 0%, #be185d 100%);
-  color: white;
-  border: none;
-  padding: 1.6rem 3.2rem; /* 16px 32px */
-  border-radius: 5rem; /* 50px */
-  font-size: 1.6rem; /* 16px */
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0.4rem 1.6rem rgba(225, 29, 72, 0.25);
-  white-space: nowrap;
-  
-  &:hover {
-    background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
-    transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.8rem 2.4rem rgba(225, 29, 72, 0.35);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
-    width: 100%;
-    padding: 1.8rem 3.2rem; /* 18px 32px */
-  }
-`;
-
-const SecondaryButton = styled.button`
-  background: transparent;
-  color: #64748b;
-  border: 0.2rem solid #e2e8f0; /* 2px */
-  padding: 1.4rem 3rem; /* 14px 30px */
-  border-radius: 5rem; /* 50px */
-  font-size: 1.6rem; /* 16px */
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-  
-  &:hover {
-    border-color: #e11d48;
-    color: #e11d48;
-    transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.4rem 1.2rem rgba(225, 29, 72, 0.15);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
-    width: 100%;
-    padding: 1.6rem 3rem; /* 16px 30px */
+    max-width: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -203,146 +47,594 @@ const VisualSection = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  width: 100%;
+  min-height: 40rem;
   
-  @media (max-width: 76.8rem) { /* 768px */
-    order: -1; /* Show visual above content on mobile */
+  @media (max-width: 76.8rem) {
+    order: -1;
+    min-height: 35rem;
+  }
+
+  @media (max-width: 48rem) {
+    min-height: 30rem;
   }
 `;
 
-const AnimationContainer = styled.div`
+const float = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const TechContainer = styled.div`
+  position: relative;
+  width: 40rem;
+  height: 40rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  max-width: 50rem; /* 500px */
+`;
+
+const Circle = styled.div`
+  position: absolute;
   width: 100%;
+  height: 100%;
+  border: 2px solid rgba(99, 102, 241, 0.2);
+  border-radius: 50%;
+  animation: ${rotate} ${props => props.duration || '20s'} linear infinite;
   
-  @media (max-width: 96rem) { /* 960px */
-    max-width: 45rem; /* 450px */
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    max-width: 40rem; /* 400px */
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
-    max-width: 35rem; /* 350px */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #6366f1;
+    border-radius: 50%;
+    transform: translateX(-50%);
   }
 `;
 
-const AnimatedSVG = styled.svg`
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 1rem 3rem rgba(225, 29, 72, 0.2));
-  transition: all 0.3s ease;
-  animation: ${fadeIn} 0.8s ease-out forwards;
+const InnerCircle = styled(Circle)`
+  width: 70%;
+  height: 70%;
+  animation-direction: reverse;
+  animation-duration: 15s;
+`;
+
+const CodeBlock = styled.div`
+  position: absolute;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
+  color: #1e293b;
+  animation: ${float} 3s ease-in-out infinite;
+  animation-delay: ${props => props.delay || '0s'};
   
-  &:hover {
-    transform: scale(1.02);
-    filter: drop-shadow(0 2rem 4rem rgba(225, 29, 72, 0.3));
+  &:nth-child(1) {
+    top: 0;
+    transform: translateY(-50%);
+  }
+  
+  &:nth-child(2) {
+    right: 0;
+    transform: translateX(50%);
+  }
+  
+  &:nth-child(3) {
+    bottom: 0;
+    transform: translateY(50%);
+  }
+  
+  &:nth-child(4) {
+    left: 0;
+    transform: translateX(-50%);
+  }
+`;
+
+const blink = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+`;
+
+const typing = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
+const reset = keyframes`
+  from { opacity: 1 }
+  to { opacity: 0 }
+`;
+
+const MonitorContainer = styled.div`
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  position: relative;
+`;
+
+const Monitor = styled.div`
+  background: #1e293b;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.1);
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 65%;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 3rem;
+    background: #334155;
+    border-radius: 0.5rem;
+  }
+`;
+
+const Screen = styled.div`
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  background: #0f172a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 2rem;
+`;
+
+const fadeOut = keyframes`
+  from { opacity: 1; }
+  to { opacity: 0; }
+`;
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const TextLine = styled.div`
+  position: absolute;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+
+  @media (max-width: 48rem) {
+    font-size: 1rem;
   }
 
-  .code-line {
-    opacity: 0;
-    animation: typingAnimation 0.5s ease-in-out forwards;
+  &.line1 {
+    top: 4rem;
+    left: 2rem;
+    animation: ${typing} 3s steps(40) forwards;
   }
 
-  .code-line:nth-child(2) { animation-delay: 0.8s; }
-  .code-line:nth-child(3) { animation-delay: 1.6s; }
-  .code-line:nth-child(4) { animation-delay: 2.4s; }
-  .code-line:nth-child(5) { animation-delay: 3.2s; }
-
-  .floating-elements {
-    animation: floatAnimation 4s ease-in-out infinite;
-    transform-origin: center;
+  &.line2 {
+    top: 6.5rem;
+    left: 2rem;
+    animation: ${typing} 3s steps(40) 3s forwards;
   }
 
-  .floating-elements:nth-child(2) {
-    animation-delay: 1s;
-    animation-duration: 5s;
+  &.line3 {
+    top: 9rem;
+    left: 2rem;
+    animation: ${typing} 3s steps(40) 6s forwards;
   }
 
-  .pulse-circle {
-    animation: pulseAnimation 2s ease-in-out infinite;
+  &.line4 {
+    top: 11.5rem;
+    left: 2rem;
+    animation: ${typing} 3s steps(40) 9s forwards;
   }
 
-  .glow-effect {
-    animation: ${gradientMove} 3s ease infinite;
+  &.comment {
+    color: #6ee7b7;
   }
 
-  @keyframes typingAnimation {
-    from {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  &.keyword {
+    color: #93c5fd;
   }
 
-  @keyframes floatAnimation {
-    0% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-      transform: translate(5px, -5px) rotate(2deg);
-    }
-    50% {
-      transform: translate(0, -10px) rotate(-2deg);
-    }
-    75% {
-      transform: translate(-5px, -5px) rotate(2deg);
-    }
-    100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
+  &.string {
+    color: #fca5a5;
   }
 
-  @keyframes pulseAnimation {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 0.7;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 1;
-    }
+  &.function {
+    color: #c4b5fd;
   }
+
+  &.variable {
+    color: #fcd34d;
+  }
+
+  @media (max-width: 48rem) {
+    &.line1 { top: 3.5rem; left: 1.5rem; }
+    &.line2 { top: 5.5rem; left: 1.5rem; }
+    &.line3 { top: 7.5rem; left: 1.5rem; }
+    &.line4 { top: 9.5rem; left: 1.5rem; }
+  }
+`;
+
+const Cursor = styled.span`
+  display: inline-block;
+  width: 1rem;
+  height: 1.6rem;
+  background: #e2e8f0;
+  margin-left: 2px;
+  animation: ${blink} 1s step-end infinite;
 `;
 
 const GlowingBackground = styled.div`
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(225, 29, 72, 0.1) 0%,
-    rgba(190, 24, 93, 0.05) 25%,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(99, 102, 241, 0.08) 30%,
     transparent 70%
   );
-  animation: ${gradientMove} 10s ease infinite;
-  pointer-events: none;
+  filter: blur(40px);
   z-index: -1;
 `;
 
+const Eyebrow = styled.p`
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #e11d48;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 76.8rem) {
+    font-size: 1.2rem;
+  }
+`;
+
+const MainHeading = styled.h1`
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  
+  .red-text {
+    color: #e11d48;
+  }
+  
+  .dark-text {
+    color: #1e293b;
+  }
+  
+  @media (max-width: 120rem) {
+    font-size: 5rem;
+  }
+  
+  @media (max-width: 96rem) {
+    font-size: 4.5rem;
+  }
+  
+  @media (max-width: 76.8rem) {
+    font-size: 3.8rem;
+  }
+  
+  @media (max-width: 48rem) {
+    font-size: 3.2rem;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #64748b;
+  max-width: 50rem;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 76.8rem) {
+    font-size: 1.6rem;
+    max-width: none;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  
+  @media (max-width: 76.8rem) {
+    justify-content: center;
+  }
+  
+  @media (max-width: 48rem) {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+`;
+
+const PrimaryButton = styled.button`
+  background: linear-gradient(135deg, #e11d48 0%, #be185d 100%);
+  color: white;
+  border: none;
+  padding: 1.6rem 3.2rem;
+  border-radius: 5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0.4rem 1.6rem rgba(225, 29, 72, 0.25);
+  white-space: nowrap;
+  
+  &:hover {
+    background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.8rem 2.4rem rgba(225, 29, 72, 0.35);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 48rem) {
+    width: 100%;
+    padding: 1.8rem 3.2rem;
+  }
+`;
+
+const SecondaryButton = styled.button`
+  background: transparent;
+  color: #64748b;
+  border: 0.2rem solid #e2e8f0;
+  padding: 1.4rem 3rem;
+  border-radius: 5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  
+  &:hover {
+    border-color: #e11d48;
+    color: #e11d48;
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.4rem 1.2rem rgba(225, 29, 72, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 48rem) {
+    width: 100%;
+    padding: 1.6rem 3rem;
+  }
+`;
+
+const LaptopContainer = styled.div`
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem;
+
+  @media (max-width: 76.8rem) {
+    max-width: 50rem;
+  }
+
+  @media (max-width: 48rem) {
+    max-width: 40rem;
+    padding: 1.5rem;
+  }
+`;
+
+const BackgroundShapes = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background: #22d3ee;
+    border-radius: 0.5rem;
+    animation: ${float} 3s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #f472b6;
+    border-radius: 50%;
+    animation: ${float} 3s ease-in-out infinite 1s;
+  }
+`;
+
+const FloatingCircle = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  right: 4rem;
+  width: 1rem;
+  height: 1rem;
+  background: #818cf8;
+  border-radius: 50%;
+  animation: ${float} 3s ease-in-out infinite 0.5s;
+`;
+
+const Triangle = styled.div`
+  position: absolute;
+  top: 5rem;
+  left: 5rem;
+  width: 0;
+  height: 0;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+  border-bottom: 1.7rem solid #34d399;
+  animation: ${float} 3s ease-in-out infinite 1.5s;
+`;
+
+const Laptop = styled.div`
+  background: #ffffff;
+  border-radius: 1.6rem;
+  padding: 0.8rem;
+  box-shadow: 
+    0 2.5rem 5rem rgba(0, 0, 0, 0.1),
+    0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 60%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0.4rem;
+    left: 1.2rem;
+    display: flex;
+    gap: 0.6rem;
+    width: 4.4rem;
+    height: 0.4rem;
+  }
+`;
+
+const WindowButtons = styled.div`
+  position: absolute;
+  top: clamp(0.8rem, 1vw, 1.2rem);
+  left: clamp(1.2rem, 1.5vw, 1.6rem);
+  display: flex;
+  gap: clamp(0.4rem, 0.5vw, 0.6rem);
+  z-index: 1;
+
+  &::before,
+  &::after,
+  span {
+    content: '';
+    width: clamp(0.6rem, 0.8vw, 0.8rem);
+    height: clamp(0.6rem, 0.8vw, 0.8rem);
+    border-radius: 50%;
+    display: block;
+  }
+
+  &::before {
+    background: #ff5f56;
+  }
+
+  span {
+    background: #ffbd2e;
+  }
+
+  &::after {
+    background: #27c93f;
+  }
+`;
+
+const LaptopScreen = styled.div`
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  background: #0f172a;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: clamp(1rem, 1.5vw, 1.5rem);
+  box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.2);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: clamp(2.4rem, 3vw, 3.2rem);
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+  }
+`;
+
+const Base = styled.div`
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 0.8rem;
+  background: #ffffff;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 
+    0 0.5rem 1rem rgba(0, 0, 0, 0.1),
+    0 0.2rem 0.4rem rgba(0, 0, 0, 0.05);
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 0.4rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 0 1rem 1rem;
+  }
+`;
+
+const BlinkingCursor = styled.div`
+  position: absolute;
+  width: clamp(0.8rem, 1vw, 1rem);
+  height: clamp(1.6rem, 2vw, 2rem);
+  background: #ffffff;
+  animation: ${blink} 1s step-end infinite;
+  opacity: 0.7;
+
+  @media (max-width: 48rem) {
+    top: 11.5rem !important;
+    left: 1.5rem !important;
+  }
+`;
+
 const HeroSection = () => {
-  const [codeLines, setCodeLines] = useState([]);
   const { currentLanguage } = useLanguage();
   const t = translations[currentLanguage].hero;
-  
-  useEffect(() => {
-    const lines = [
-      { code: "function createSolution() {", color: "#E11D48" },
-      { code: "  const innovation = new Ideas();", color: "#8B5CF6" },
-      { code: "  const success = transform(business);", color: "#10B981" },
-      { code: "  return growth.exponential();", color: "#F59E0B" },
-      { code: "}", color: "#EC4899" }
-    ];
-    setCodeLines(lines);
-  }, []);
 
   const scrollToContact = (e) => {
     e.preventDefault();
@@ -354,7 +646,7 @@ const HeroSection = () => {
 
   return (
     <HeroWrapper>
-      <Container>
+      <HeroContainer>
         <ContentSection>
           <Eyebrow>{t.eyebrow}</Eyebrow>
           
@@ -368,65 +660,45 @@ const HeroSection = () => {
           </Description>
           
           <ButtonGroup>
-            <PrimaryButton onClick={scrollToContact}>{translations[currentLanguage].nav.letsTalk}</PrimaryButton>
-            <SecondaryButton>{translations[currentLanguage].services.viewMore}</SecondaryButton>
+            <PrimaryButton onClick={scrollToContact}>
+              {translations[currentLanguage].nav.letsTalk}
+            </PrimaryButton>
+            <SecondaryButton>
+              {translations[currentLanguage].services.viewMore}
+            </SecondaryButton>
           </ButtonGroup>
         </ContentSection>
-        
         <VisualSection>
-          <AnimationContainer>
-            <GlowingBackground />
-            <AnimatedSVG viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-              {/* Laptop Base */}
-              <rect x="50" y="220" width="300" height="20" rx="10" fill="#1E293B" />
-              
-              {/* Laptop Screen */}
-              <rect x="70" y="80" width="260" height="150" rx="8" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="3" />
-              
-              {/* Screen Content - Terminal Window */}
-              <rect x="80" y="90" width="240" height="130" rx="4" fill="#0F172A" />
-              
-              {/* Terminal Header */}
-              <rect x="80" y="90" width="240" height="25" rx="4" fill="#1E293B" />
-              <circle className="pulse-circle" cx="95" cy="102.5" r="4" fill="#EF4444" />
-              <circle className="pulse-circle" cx="110" cy="102.5" r="4" fill="#F59E0B" />
-              <circle className="pulse-circle" cx="125" cy="102.5" r="4" fill="#10B981" />
-              
-              {/* Code Lines */}
-              {codeLines.map((line, index) => (
-                <g key={index} className="code-line" transform={`translate(0, ${125 + index * 15})`}>
-                  <text x="90" y="0" fill={line.color} fontSize="10" fontFamily="monospace">
-                    {line.code}
-                  </text>
-                </g>
-              ))}
-              
-              {/* Floating Elements */}
-              <g className="floating-elements">
-                <circle cx="350" cy="60" r="8" fill="#E11D48" opacity="0.7" />
-                <polygon points="360,45 370,65 350,65" fill="#8B5CF6" opacity="0.6" />
-                <circle cx="365" cy="40" r="4" fill="#10B981" opacity="0.5" />
-              </g>
-              
-              <g className="floating-elements">
-                <rect x="40" y="50" width="15" height="15" rx="3" fill="#06B6D4" opacity="0.6" />
-                <circle cx="25" cy="80" r="6" fill="#10B981" opacity="0.7" />
-                <polygon points="30,60 40,70 20,70" fill="#E11D48" opacity="0.5" />
-              </g>
-              
-              {/* Cursor */}
-              <rect className="cursor" x="90" y="185" width="2" height="12" fill="#E11D48">
-                <animate
-                  attributeName="opacity"
-                  values="1;0;1"
-                  dur="0.8s"
-                  repeatCount="indefinite"
-                />
-              </rect>
-            </AnimatedSVG>
-          </AnimationContainer>
+          <LaptopContainer>
+            <BackgroundShapes>
+              <FloatingCircle />
+              <Triangle />
+            </BackgroundShapes>
+            <Laptop>
+              <WindowButtons>
+                <span />
+              </WindowButtons>
+              <LaptopScreen>
+                <TextLine className="line1 comment">
+                  // Your Vision + Our Code = Amazing Solutions
+                </TextLine>
+                <TextLine className="line2">
+                  <span className="keyword">import</span> {'{'} innovation, quality {'}'} <span className="keyword">from</span> <span className="string">'easy-coding'</span>;
+                </TextLine>
+                <TextLine className="line3">
+                  <span className="keyword">function</span> <span className="function">buildYourDream</span>() {'{'} 
+                  <span className="string">"Web | Mobile | Cloud"</span> {'}'}
+                </TextLine>
+                <TextLine className="line4">
+                  <span className="comment">// Let's transform your ideas into reality</span>
+                </TextLine>
+                <BlinkingCursor style={{ top: '14rem', left: '2rem' }} />
+              </LaptopScreen>
+              <Base />
+            </Laptop>
+          </LaptopContainer>
         </VisualSection>
-      </Container>
+      </HeroContainer>
     </HeroWrapper>
   );
 };

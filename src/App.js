@@ -26,8 +26,9 @@ function App() {
         <ApproachSection />
         <PortfolioSection />
         <AboutSection />
-        {/* <BlogSection /> */}
-        {/* <TestimonialSection /> */}
+
+        {/* <BlogSection /> not needed for now*/}
+        {/* <TestimonialSection /> not needed for now*/}
         <ContactSection />
         <Footer />
       </LanguageProvider>
