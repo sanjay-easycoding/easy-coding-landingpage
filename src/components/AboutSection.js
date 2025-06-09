@@ -386,7 +386,7 @@ const AboutSection = () => {
         <Container>
           <Header>
             <Eyebrow>ABOUT US</Eyebrow>
-            <MainHeading>Who's behind Easy-Coding</MainHeading>
+            <MainHeading>Who's behind Easy Coding</MainHeading>
             <Description>
               A team of experienced professionals dedicated to building smart, flexible, 
               and reliable software solutions - tailored to your business needs.

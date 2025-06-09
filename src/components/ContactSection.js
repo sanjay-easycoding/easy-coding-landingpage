@@ -330,13 +330,15 @@ const ContactInfo = styled.div`
 `;
 
 const ContactItem = styled.a`
+
+
   display: flex;
   align-items: center;
   gap: 1rem; /* 10px */
   color: #e11d48;
   text-decoration: none;
      font-size: 1.2rem;
-
+letter-spacing: 0.3em;
   font-weight: 600;
   transition: color 0.3s ease;
   

@@ -239,12 +239,6 @@ const ClientsSection = () => {
             </Logo>
           </LogoItem>
           
-          <LogoItem>
-            <Logo>
-              <DeliveryIcon>A</DeliveryIcon>
-              Aspilos
-            </Logo>
-          </LogoItem>
           
           <LogoItem>
             <Logo>

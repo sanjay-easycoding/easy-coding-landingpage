@@ -668,8 +668,8 @@ const HeaderComponent = () => {
       <NavContainer>
         <LogoContainer>
           <Logo onClick={closeMenu}>
-            <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" />
-            <LogoText>easy-coding</LogoText>
+            {/* <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" /> */}
+            <LogoText>easy Coding</LogoText>
           </Logo>
         </LogoContainer>
         

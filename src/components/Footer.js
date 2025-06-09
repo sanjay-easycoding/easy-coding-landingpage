@@ -231,8 +231,8 @@ const Footer = () => {
         <TopRow>
           <TopLeft>
             <LogoRow>
-              <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" />
-              <LogoText>easy-coding</LogoText>
+              {/* <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" /> */}
+              <LogoText>easy Coding</LogoText>
             </LogoRow>
             <Tagline>Your reliable development partner</Tagline>
           </TopLeft>
@@ -251,11 +251,11 @@ const Footer = () => {
         <HorizontalLine />
 
         <BottomRow>
-          <Copyright>© 2025 Easy-Coding. All rights reserved</Copyright>
+          <Copyright>© 2025 Easy Coding. All rights reserved</Copyright>
           
           <DesignCredit>
             <span>Design by</span>
-            <DesignLogo>easy-coding</DesignLogo>
+            <DesignLogo>easy Coding</DesignLogo>
           </DesignCredit>
         </BottomRow>
       </FooterContainer>
