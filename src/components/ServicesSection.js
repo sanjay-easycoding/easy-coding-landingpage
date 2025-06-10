@@ -26,7 +26,7 @@ import {
 
 const ServicesWrapper = styled.section`
   padding: 8rem 2rem; /* 80px 20px */
-  background: rgb(245, 247, 251);
+  
   
   @media (max-width: 76.8rem) { /* 768px */
     padding: 6rem 1.5rem; /* 60px 15px */
@@ -237,7 +237,7 @@ const Tag = styled.span`
 
 const ToolStackSection = styled.div`
   text-align: center;
-  background: rgb(245, 247, 251); /* Same as outer background */
+  // background: rgb(245, 247, 251); /* Same as outer background */
   padding: 3rem 2rem; /* 30px 20px */
   border-radius: 1.2rem; /* 12px - same as cards */
   margin-top: 3rem; /* 30px */
@@ -439,9 +439,7 @@ delivering results that last.
               <ToolIcon bgColor="#339933">
                 <SiNodedotjs />
               </ToolIcon>
-              <ToolIcon bgColor="#e11d48">
-                <FiHeart />
-              </ToolIcon>
+           
               <ToolIcon bgColor="#3178c6">
                 <SiTypescript />
               </ToolIcon>

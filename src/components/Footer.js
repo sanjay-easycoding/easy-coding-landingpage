@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
-  background: rgb(245, 247, 251);
+ 
   padding: 0 2rem; /* 0 20px */
   
   @media (max-width: 76.8rem) { /* 768px */

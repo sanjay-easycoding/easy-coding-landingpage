@@ -4,7 +4,7 @@ import { FiMessageCircle, FiPenTool, FiCode, FiSettings } from 'react-icons/fi';
 
 const ApproachWrapper = styled.section`
   padding: 10rem 2rem;
-  background: rgb(245, 247, 251);
+ 
   
   @media (max-width: 76.8rem) {
     padding: 8rem 1.5rem;

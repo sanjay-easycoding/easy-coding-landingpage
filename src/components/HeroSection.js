@@ -8,7 +8,7 @@ import animationData from '../assets/animations/coding-animation.json';
 const HeroWrapper = styled.section`
   width: 100%;
   padding: 12rem 0 6rem;
-  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  // background: linear-gradient(to bottom, #ffffff, #f8fafc);
   overflow: hidden;
   
   @media (max-width: 76.8rem) {

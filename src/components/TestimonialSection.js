@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TestimonialWrapper = styled.section`
   padding: 12rem 2rem; /* 120px 20px */
-  background: rgb(245, 247, 251);
+
   
   @media (max-width: 76.8rem) { /* 768px */
     padding: 8rem 1.5rem; /* 80px 15px */

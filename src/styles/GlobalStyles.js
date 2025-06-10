@@ -20,9 +20,9 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
-    color: #333;
+    color: ${({ theme }) => theme.colors.text.primary};
     overflow-x: hidden;
-    background: rgb(245, 247, 251);
+    background: ${({ theme }) => theme.colors.background.default};
   }
 
   *, *::before, *::after {
@@ -78,12 +78,12 @@ export const GlobalStyles = createGlobalStyle`
       sans-serif;
     font-weight: 600;
     line-height: 1.2;
-    color: #1a202c;
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   /* Gradient text utility */
   .gradient-text {
-    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.main} 0%, ${({ theme }) => theme.colors.primary.dark} 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -92,34 +92,34 @@ export const GlobalStyles = createGlobalStyle`
 
   /* Button utilities */
   .btn-primary {
-    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
-    color: white;
+    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.main} 0%, ${({ theme }) => theme.colors.primary.dark} 100%);
+    color: ${({ theme }) => theme.colors.common.white};
     padding: 1.2rem 2.4rem; /* 12px 24px */
     border-radius: 0.8rem; /* 8px */
     font-weight: 600;
     font-size: 1.6rem; /* 16px */
     transition: all 0.3s ease;
-    box-shadow: 0 0.4rem 1.2rem rgba(229, 62, 62, 0.25);
+    box-shadow: 0 0.4rem 1.2rem ${({ theme }) => `${theme.colors.primary.main}40`};
     
     &:hover {
       transform: translateY(-0.2rem); /* -2px */
-      box-shadow: 0 0.8rem 2.4rem rgba(229, 62, 62, 0.35);
+      box-shadow: 0 0.8rem 2.4rem ${({ theme }) => `${theme.colors.primary.main}59`};
     }
   }
 
   .btn-secondary {
     background: transparent;
-    color: #4a5568;
+    color: ${({ theme }) => theme.colors.text.secondary};
     padding: 1.2rem 2.4rem; /* 12px 24px */
-    border: 0.2rem solid #e2e8f0; /* 2px */
+    border: 0.2rem solid ${({ theme }) => theme.colors.border.light}; /* 2px */
     border-radius: 0.8rem; /* 8px */
     font-weight: 600;
     font-size: 1.6rem; /* 16px */
     transition: all 0.3s ease;
     
     &:hover {
-      border-color: #e53e3e;
-      color: #e53e3e;
+      border-color: ${({ theme }) => theme.colors.primary.main};
+      color: ${({ theme }) => theme.colors.primary.main};
       transform: translateY(-0.2rem); /* -2px */
     }
   }
@@ -127,18 +127,55 @@ export const GlobalStyles = createGlobalStyle`
 
 export const theme = {
   colors: {
-    primary: '#e53e3e',
-    primaryDark: '#c53030',
-    primaryLight: '#feb2b2',
-    secondary: '#ed64a6',
-    accent: '#38b2ac',
-    dark: '#1a202c',
-    gray: '#4a5568',
-    lightGray: '#e2e8f0',
-    white: '#ffffff',
-    black: '#1a202c',
-    background: 'rgb(245, 247, 251)',
-    backgroundAlt: '#edf2f7',
+    // Primary colors
+    primary: {
+      main: '#e53e3e',
+      dark: '#c53030',
+      light: '#feb2b2',
+    },
+    // Secondary colors
+    secondary: {
+      main: '#ed64a6',
+      dark: '#b83280',
+      light: '#f687b3',
+    },
+    // Accent colors
+    accent: {
+      main: '#38b2ac',
+      dark: '#2c7a7b',
+      light: '#4fd1c5',
+    },
+    // Background colors
+    background: {
+      default: 'rgb(245, 247, 251)',
+      paper: '#ffffff',
+      dark: 'rgb(15, 23, 42)',
+      darkGradient: 'rgb(30, 41, 59)',
+    },
+    // Text colors
+    text: {
+      primary: '#1a202c',
+      secondary: '#4a5568',
+      light: '#ffffff',
+      muted: '#718096',
+    },
+    // Border colors
+    border: {
+      light: '#e2e8f0',
+      dark: '#cbd5e0',
+    },
+    // Status colors
+    status: {
+      success: '#48bb78',
+      error: '#e53e3e',
+      warning: '#ed8936',
+      info: '#4299e1',
+    },
+    // Common colors
+    common: {
+      black: '#1a202c',
+      white: '#ffffff',
+    },
   },
   fonts: {
     primary: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",

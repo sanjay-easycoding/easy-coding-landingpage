@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ClientsWrapper = styled.section`
   padding: 2rem 2rem; /* 80px 20px */
-  background: rgb(245, 247, 251);
+  
   
   @media (max-width: 76.8rem) { /* 768px */
     padding: 2rem 1.5rem; /* 60px 15px */
