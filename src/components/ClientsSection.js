@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const ClientsWrapper = styled.section`
   padding: 2rem 2rem; /* 80px 20px */
@@ -226,30 +228,63 @@ const StudioIcon = styled(LogoIcon)`
 `;
 
 const ClientsSection = () => {
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
+
   return (
     <ClientsWrapper>
       <Container>
-        <SectionTitle>Building Digital Solutions with Trusted Partners</SectionTitle>
+        <SectionTitle>{t.clients.title}</SectionTitle>
         
         <LogosGrid>
           <LogoItem>
             <Logo>
               <NovaIcon>N</NovaIcon>
-              Nice Guides
+              {t.clients.companies.niceGuides}
             </Logo>
           </LogoItem>
-          
           
           <LogoItem>
             <Logo>
               <LogoipsumIcon>G</LogoipsumIcon>
-              G24
+              {t.clients.companies.g24}
             </Logo>
           </LogoItem>
           
-       
-
-
+          <LogoItem>
+            <Logo>
+              <DeliveryIcon>D</DeliveryIcon>
+              {t.clients.companies.delivery}
+            </Logo>
+          </LogoItem>
+          
+          <LogoItem>
+            <Logo>
+              <LogoipsumIcon>L</LogoipsumIcon>
+              {t.clients.companies.logoipsum}
+            </Logo>
+          </LogoItem>
+          
+          <LogoItem>
+            <Logo>
+              <BrandIcon>B</BrandIcon>
+              {t.clients.companies.brand}
+            </Logo>
+          </LogoItem>
+          
+          <LogoItem>
+            <Logo>
+              <TechIcon>T</TechIcon>
+              {t.clients.companies.tech}
+            </Logo>
+          </LogoItem>
+          
+          <LogoItem>
+            <Logo>
+              <StudioIcon>S</StudioIcon>
+              {t.clients.companies.studio}
+            </Logo>
+          </LogoItem>
         </LogosGrid>
       </Container>
     </ClientsWrapper>

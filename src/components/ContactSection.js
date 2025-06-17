@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const ContactWrapper = styled.section`
   padding: 10rem 2rem; /* 100px 20px */
@@ -586,6 +588,8 @@ const ButtonGroup = styled.div`
 `;
 
 const ContactSection = () => {
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const [timeFormat, setTimeFormat] = useState('12h');
@@ -709,12 +713,10 @@ const ContactSection = () => {
     <ContactWrapper id="letsTalk">
       <ContactContainer>
         <Header>
-          <Eyebrow>LET'S TALK</Eyebrow>
-          <MainHeading>Book a call with us!</MainHeading>
+          <Eyebrow>{t.contact.eyebrow}</Eyebrow>
+          <MainHeading>{t.contact.title}</MainHeading>
           <Description>
-            {step === 1 
-              ? "Choose your preferred date and time for a FREE discovery call."
-              : "Please provide your details and we'll confirm your booking."}
+            {step === 1 ? t.contact.step1Desc : t.contact.step2Desc}
           </Description>
         </Header>
 
@@ -753,7 +755,7 @@ const ContactSection = () => {
                 <TimeSlotSection>
                   <TimeSlotHeader>
                     <DateLabel>
-                      {selectedDate ? `${currentMonth.toLocaleString('default', { month: 'short' })} ${selectedDate}` : 'Select a date'}
+                      {selectedDate ? `${currentMonth.toLocaleString('default', { month: 'short' })} ${selectedDate}` : t.contact.selectDate}
                     </DateLabel>
                     <TimeFormatToggle>
                       <ToggleButton 
@@ -788,16 +790,16 @@ const ContactSection = () => {
                   onClick={handleNext}
                   disabled={!selectedDate || !selectedTime}
                 >
-                  Next Step →
+                  {t.contact.nextStep}
                 </StepButton>
               </BookingCard>
             </>
           ) : (
             <ContactForm onSubmit={handleSubmit}>
-              <FormTitle>Enter your details</FormTitle>
+              <FormTitle>{t.contact.formTitle}</FormTitle>
               
               <InputGroup>
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">{t.contact.name}</Label>
                 <InputWrapper>
                   <Input
                     type="text"
@@ -805,14 +807,14 @@ const ContactSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="John Doe"
+                    placeholder={t.contact.placeholderName}
                     required
                   />
                 </InputWrapper>
               </InputGroup>
 
               <InputGroup>
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">{t.contact.email}</Label>
                 <InputWrapper>
                   <Input
                     type="email"
@@ -820,14 +822,14 @@ const ContactSection = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="john@example.com"
+                    placeholder={t.contact.placeholderEmail}
                     required
                   />
                 </InputWrapper>
               </InputGroup>
 
               <InputGroup>
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone">{t.contact.phone}</Label>
                 <InputWrapper>
                   <Input
                     type="tel"
@@ -835,20 +837,20 @@ const ContactSection = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder={t.contact.placeholderPhone}
                   />
                 </InputWrapper>
               </InputGroup>
 
               <MessageInputGroup>
-                <Label htmlFor="message">Message</Label>
+                <Label htmlFor="message">{t.contact.message}</Label>
                 <InputWrapper>
                   <TextArea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tell us about your project..."
+                    placeholder={t.contact.placeholderMessage}
                     required
                   />
                 </InputWrapper>
@@ -856,10 +858,10 @@ const ContactSection = () => {
 
               <ButtonGroup>
                 <StepButton type="button" variant="back" onClick={handleBack}>
-                  ← Back
+                  {t.contact.back}
                 </StepButton>
                 <StepButton type="submit">
-                  Confirm Booking
+                  {t.contact.confirm}
                 </StepButton>
               </ButtonGroup>
             </ContactForm>
@@ -867,9 +869,9 @@ const ContactSection = () => {
         </ContactGrid>
 
         <OldSchoolSection>
-          <OldSchoolHeading>Prefer traditional contact methods?</OldSchoolHeading>
+          <OldSchoolHeading>{t.contact.oldSchoolHeading}</OldSchoolHeading>
           <p style={{ color: '#cbd5e1', marginBottom: '2rem', fontSize: '1.4rem' }}>
-            Feel free to reach out directly through email or phone
+            {t.contact.oldSchoolDesc}
           </p>
           
           <ContactInfo>
@@ -883,12 +885,9 @@ const ContactSection = () => {
         </OldSchoolSection>
 
         <CompanyLogos>
-          <CompanyLogo icon="🏢">Nova Memorial</CompanyLogo>
-          <CompanyLogo icon="🚚">Fast Delivery</CompanyLogo>
-          <CompanyLogo icon="⚖️">legalGenius</CompanyLogo>
-          <CompanyLogo icon="🔷">LogoDesign</CompanyLogo>
-          <CompanyLogo icon="🔷">legalGenius</CompanyLogo>
-          <CompanyLogo icon="⚖️">legalGenius</CompanyLogo>
+          {t.contact.companies.map((company, idx) => (
+            <CompanyLogo key={idx} icon={['🏢', '🚚', '⚖️', '🔷'][idx % 4]}>{company}</CompanyLogo>
+          ))}
         </CompanyLogos>
       </ContactContainer>
     </ContactWrapper>

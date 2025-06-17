@@ -147,7 +147,7 @@ export const theme = {
     },
     // Background colors
     background: {
-      default: 'rgb(245, 247, 251)',
+      default: '#F8FAFC',
       paper: '#ffffff',
       dark: 'rgb(15, 23, 42)',
       darkGradient: 'rgb(30, 41, 59)',

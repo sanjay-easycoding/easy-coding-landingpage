@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 import { 
   FiMonitor, 
   FiSmartphone, 
@@ -138,7 +140,7 @@ const ServicesGrid = styled.div`
 `;
 
 const ServiceCard = styled.div`
-  background: #f8fafc;
+  background: #eae0f3;
   border-radius: 1.2rem; /* 12px */
   padding: 2rem; /* 20px */
   transition: all 0.3s ease;
@@ -147,7 +149,7 @@ const ServiceCard = styled.div`
   &:hover {
     transform: translateY(-0.2rem); /* -2px */
     box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
-    border-color: #e11d48;
+    border-color: #7f2eb4;
   }
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -159,13 +161,13 @@ const CardIcon = styled.div`
   width: 4rem; /* 40px */
   height: 4rem; /* 40px */
   background: transparent;
-  border: 0.2rem solid #e11d48; /* 2px red border */
+  border: 0.2rem solid #7f2eb4; /* 2px red border */
   border-radius: 0.8rem; /* 8px */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.6rem; /* 16px */
-  color: #e11d48;
+  color: #7f2eb4;
   
   svg {
     width: 2rem; /* 20px */
@@ -187,7 +189,7 @@ const CardIcon = styled.div`
 const CardTitle = styled.h3`
   font-size: 1.6rem; /* 16px */
   font-weight: 700;
-  color: #1e293b;
+  color: #7f2eb4;
   margin-bottom: 0.4rem; /* 4px */
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -313,125 +315,64 @@ const ToolIcon = styled.div`
 `;
 
 const ServicesSection = () => {
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
+
+  const services = [
+    {
+      icon: <FiMonitor />,
+      ...t.services.cards.webApps
+    },
+    {
+      icon: <FiSmartphone />,
+      ...t.services.cards.mobileApps
+    },
+    {
+      icon: <FiGlobe />,
+      ...t.services.cards.businessWebsites
+    },
+    {
+      icon: <FiMail />,
+      ...t.services.cards.landingPages
+    },
+    {
+      icon: <FiSettings />,
+      ...t.services.cards.technicalTeam
+    },
+    {
+      icon: <FiTool />,
+      ...t.services.cards.customServices
+    }
+  ];
+
   return (
     <ServicesWrapper id="services">
       <OuterContainer>
         <InnerContainer>
           <Header>
-            <Eyebrow>OUR SERVICES</Eyebrow>
-            <MainHeading>What we can do for you</MainHeading>
-            <Description>
-            From one-off digital initiatives to long-term partnerships, we support businesses
-with everything from process optimization to full-scale product development -
-delivering results that last.
-            </Description>
+            <Eyebrow>{t.services.eyebrow}</Eyebrow>
+            <MainHeading>{t.services.title}</MainHeading>
+            <Description>{t.services.description}</Description>
           </Header>
           
           <ServicesGrid>
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiMonitor />
-              </CardIcon>
-              <CardTitle>Web Apps</CardTitle>
-              <CardSubtitle>DEV & SUPPORT</CardSubtitle>
-              <CardDescription>
-                From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.
-              </CardDescription>
+            {services.map((service, index) => (
+              <ServiceCard key={index} className="service-card">
+                <CardIcon>{service.icon}</CardIcon>
+                <CardTitle>{service.title}</CardTitle>
+                <CardSubtitle>{service.subtitle}</CardSubtitle>
+                <CardDescription>{service.description}</CardDescription>
               <CardTags>
-                <Tag>REACT</Tag>
-                <Tag>NEXT.JS</Tag>
-                <Tag>VUE.JS</Tag>
-                <Tag>TYPESCRIPT</Tag>
+                  {service.tags.map((tag, tagIndex) => (
+                    <Tag key={tagIndex}>{tag}</Tag>
+                  ))}
               </CardTags>
             </ServiceCard>
-            
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiSmartphone />
-              </CardIcon>
-              <CardTitle>Mobile Apps</CardTitle>
-              <CardSubtitle>DEV & SUPPORT</CardSubtitle>
-              <CardDescription>
-                We create mobile applications with a modern design that enhances the user experience.
-              </CardDescription>
-              <CardTags>
-                <Tag>IOS</Tag>
-                <Tag>ANDROID</Tag>
-                <Tag>REACT</Tag>
-                <Tag>NATIVE</Tag>
-              </CardTags>
-            </ServiceCard>
-            
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiGlobe />
-              </CardIcon>
-              <CardTitle>Business Websites</CardTitle>
-              <CardSubtitle>DEV & SUPPORT</CardSubtitle>
-              <CardDescription>
-                We create personalized websites that reflect the unique identity of your brand.
-              </CardDescription>
-              <CardTags>
-                <Tag>WORDPRESS</Tag>
-                <Tag>WEBFLOW</Tag>
-                <Tag>WORDPRESS</Tag>
-              </CardTags>
-            </ServiceCard>
-            
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiMail />
-              </CardIcon>
-              <CardTitle>Product & Marketing Landing Pages</CardTitle>
-              <CardSubtitle>DEV & SUPPORT</CardSubtitle>
-              <CardDescription>
-                We create effective landing pages that engage your audience, showcase the value of your product, and ensure they receive the attention they deserve.
-              </CardDescription>
-              <CardTags>
-                <Tag>A/B TESTING</Tag>
-                <Tag>SEO</Tag>
-                <Tag>ANALYTICS</Tag>
-              </CardTags>
-            </ServiceCard>
-            
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiSettings />
-              </CardIcon>
-              <CardTitle>Technical team as a service</CardTitle>
-              <CardSubtitle>BUILDING & MANAGING</CardSubtitle>
-              <CardDescription>
-                Whether you need ongoing technical support or assistance on demand, we can provide a flexible and professional extension to your team.
-              </CardDescription>
-              <CardTags>
-                <Tag>PROJECT</Tag>
-                <Tag>MANAGEMENT</Tag>
-                <Tag>PROGRAMMING</Tag>
-                <Tag>DIGITAL</Tag>
-                <Tag>DESIGN</Tag>
-              </CardTags>
-            </ServiceCard>
-            
-            <ServiceCard className="service-card">
-              <CardIcon>
-                <FiTool />
-              </CardIcon>
-              <CardTitle>Custom Services</CardTitle>
-              <CardSubtitle>TAILORED SOLUTIONS</CardSubtitle>
-              <CardDescription>
-                We offer bespoke development services tailored to your specific business needs. From custom integrations to specialized workflows, we build exactly what you envision.
-              </CardDescription>
-              <CardTags>
-                <Tag>CUSTOM</Tag>
-                <Tag>INTEGRATION</Tag>
-                <Tag>API</Tag>
-                <Tag>WORKFLOW</Tag>
-              </CardTags>
-            </ServiceCard>
+            ))}
           </ServicesGrid>
           
           <ToolStackSection>
-            <ToolStackTitle>Our Tool Stack</ToolStackTitle>
+            <ToolStackTitle>{t.services.toolStack}</ToolStackTitle>
             <ToolsGrid>
               <ToolIcon bgColor="#61dafb">
                 <SiReact />

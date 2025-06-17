@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const FooterWrapper = styled.footer`
  
@@ -225,6 +227,8 @@ const DesignLogo = styled.span`
 `;
 
 const Footer = () => {
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
   return (
     <FooterWrapper>
       <FooterContainer>
@@ -234,7 +238,7 @@ const Footer = () => {
               {/* <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" /> */}
               <LogoText>easy Coding</LogoText>
             </LogoRow>
-            <Tagline>Your reliable development partner</Tagline>
+            <Tagline>{t.footer.tagline}</Tagline>
           </TopLeft>
           
           <TopRight>
@@ -251,11 +255,11 @@ const Footer = () => {
         <HorizontalLine />
 
         <BottomRow>
-          <Copyright>© 2025 Easy Coding. All rights reserved</Copyright>
+          <Copyright>{t.footer.copyright}</Copyright>
           
           <DesignCredit>
-            <span>Design by</span>
-            <DesignLogo>easy Coding</DesignLogo>
+            <span>{t.footer.designBy}</span>
+            <DesignLogo>{t.footer.designLogo}</DesignLogo>
           </DesignCredit>
         </BottomRow>
       </FooterContainer>
