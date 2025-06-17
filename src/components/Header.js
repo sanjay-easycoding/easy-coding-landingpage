@@ -164,7 +164,7 @@ const LinksContainer = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: #64748b;
+  color: rgb(37, 97, 152);
   text-decoration: none;
   font-size: 1.2rem; /* 12px */
   font-weight: 600;
@@ -232,95 +232,63 @@ const ButtonContainer = styled.div`
 `;
 
 const DesktopCtaButton = styled.button`
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: white;
+  background: linear-gradient(135deg, #00a5ff 0%, #0077cc 100%);
+  color: #fff;
   border: none;
-  padding: 1.2rem 2.8rem; /* 12px 28px */
-  border-radius: 3rem; /* 30px */
-  font-size: 1.2rem; /* 12px */
-  font-weight: 600;
+  padding: 1.2rem 2.8rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.05em; /* 0.5px equivalent */
-  box-shadow: 0 0.4rem 1.6rem rgba(26, 26, 26, 0.2);
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap; /* Prevent button text wrapping */
-  flex-shrink: 0; /* Prevent button from shrinking */
-  min-width: fit-content; /* Ensure button maintains its size */
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
+  box-shadow: 0 8px 24px 0 rgba(0, 165, 255, 0.25), 0 1.5px 0 #0077cc;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  text-align: center;
+  min-width: fit-content;
+  white-space: nowrap;
+  flex-shrink: 0;
   
   &:hover {
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.8rem 2.4rem rgba(26, 26, 26, 0.3);
-    
-    &::before {
-      left: 100%;
-    }
+    background: linear-gradient(135deg, #0094e6 0%, #005fa3 100%);
+    box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
+    transform: translateY(-2px);
   }
-  
   &:active {
-    transform: translateY(0);
+    background: linear-gradient(135deg, #0080cc 0%, #004c80 100%);
+    box-shadow: 0 4px 12px 0 rgba(0, 165, 255, 0.18), 0 1px 0 #004c80;
+    transform: translateY(1px);
   }
 `;
 
 const MobileCtaButton = styled.button`
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: white;
+  background: linear-gradient(135deg, #00a5ff 0%, #0077cc 100%);
+  color: #fff;
   border: none;
-  padding: 1.4rem 2.4rem; /* 14px 24px */
-  border-radius: 3rem; /* 30px */
-  font-size: 1.4rem; /* 14px */
-  font-weight: 600;
+  padding: 1.4rem 2.4rem;
+  border-radius: 999px;
+  font-size: 1.4rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.05em; /* 0.5px equivalent */
-  box-shadow: 0 0.4rem 1.6rem rgba(26, 26, 26, 0.2);
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
+  box-shadow: 0 8px 24px 0 rgba(0, 165, 255, 0.25), 0 1.5px 0 #0077cc;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
+  text-align: center;
   width: 100%;
-  margin-top: 0.8rem; /* 8px */
-  display: none; /* Hide by default */
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
+  margin-top: 0.8rem;
+  white-space: nowrap;
   
   &:hover {
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.8rem 2.4rem rgba(26, 26, 26, 0.3);
-    
-    &::before {
-      left: 100%;
-    }
+    background: linear-gradient(135deg, #0094e6 0%, #005fa3 100%);
+    box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
+    transform: translateY(-2px);
   }
-  
   &:active {
-    transform: translateY(0);
+    background: linear-gradient(135deg, #0080cc 0%, #004c80 100%);
+    box-shadow: 0 4px 12px 0 rgba(0, 165, 255, 0.18), 0 1px 0 #004c80;
+    transform: translateY(1px);
   }
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    display: block; /* Show only on mobile */
+  @media (max-width: 76.8rem) {
+    display: block;
   }
 `;
 
@@ -451,7 +419,7 @@ const LanguageOption = styled.button`
   background: none;
   border: none;
   font-size: 1.4rem;
-  color: ${props => props.isActive ? '#E11D48' : '#64748b'};
+  color: ${props => props.isActive ? '#ff2086' : '#64748b'};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -528,7 +496,7 @@ const MobileLanguageOption = styled.button`
   background: none;
   border: none;
   font-size: 1.4rem;
-  color: ${props => props.isActive ? '#E11D48' : '#64748b'};
+  color: ${props => props.isActive ? '#ff2086' : '#64748b'};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -669,7 +637,7 @@ const HeaderComponent = () => {
         <LogoContainer>
           <Logo onClick={closeMenu}>
             {/* <LogoImage src="/easy-coding-logo.png" alt="Easy Coding Logo" /> */}
-            <LogoText>easy Coding</LogoText>
+            <LogoText>easyCoding</LogoText>
           </Logo>
         </LogoContainer>
         

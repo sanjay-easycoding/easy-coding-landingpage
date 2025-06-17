@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const AboutWrapper = styled.section`
   padding: 10rem 2rem; /* 100px 20px */
@@ -361,50 +363,32 @@ const BookCallButton = styled.button`
 `;
 
 const AboutSection = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Aleksa Tachev",
-      role: "CO-FOUNDER & CEO",
-      description: "Experienced Associate Software Engineer with a demonstrated history of working in the oil & energy industry. Skilled in Front-end Development, User Experience, User Interface Design, and Management. Strong engineering research professional with a Bachelor's Degree focused in Computer and Software Engineering from Technical University Sofia.",
-      initials: "AT",
-      linkedIn: "#"
-    },
-    {
-      id: 2,
-      name: "Kristiyan Valchev",
-      role: "CO-FOUNDER & CTO",
-      description: "Experienced Associate Software Engineer with a demonstrated history of working in the oil & energy industry. Skilled in Front-end Development, User Experience, User Interface Design, and Management. Strong engineering research professional with a Bachelor's Degree focused in Computer and Software Engineering from Technical University Sofia.",
-      initials: "KV",
-      linkedIn: "#"
-    }
-  ];
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
+  const teamMembers = t.about.team;
 
   return (
     <AboutWrapper id="about">
       <AboutContainer>
         <Container>
           <Header>
-            <Eyebrow>ABOUT US</Eyebrow>
-            <MainHeading>Who's behind Easy Coding</MainHeading>
-            <Description>
-              A team of experienced professionals dedicated to building smart, flexible, 
-              and reliable software solutions - tailored to your business needs.
-            </Description>
+            <Eyebrow>{t.about.eyebrow}</Eyebrow>
+            <MainHeading>{t.about.title}</MainHeading>
+            <Description>{t.about.description}</Description>
           </Header>
           
           <TeamGrid>
-            {teamMembers.map((member) => (
-              <TeamCard key={member.id}>
+            {teamMembers.map((member, idx) => (
+              <TeamCard key={idx}>
                 <ProfileSection>
                   <ProfileImage>
                     <ProfilePlaceholder>
-                      {member.initials}
+                      {member.name.split(' ').map(n => n[0]).join('')}
                     </ProfilePlaceholder>
                   </ProfileImage>
                   
-                  <LinkedInButton href={member.linkedIn}>
-                    LINKEDIN
+                  <LinkedInButton href="#">
+                    {t.about.linkedin}
                   </LinkedInButton>
                 </ProfileSection>
                 
@@ -423,9 +407,7 @@ const AboutSection = () => {
           <TestimonialDivider />
           
           <InnerTestimonial>
-            <TestimonialQuote>
-              Working with this team was an absolute <span className="highlight">game-changer for our business</span>. Their flexible approach and attention to detail helped us streamline our processes and <span className="highlight">deliver results faster</span> than we anticipated.
-            </TestimonialQuote>
+            <TestimonialQuote dangerouslySetInnerHTML={{ __html: t.about.testimonial.quote }} />
             
             <TestimonialClient>
               <TestimonialProfileImage>
@@ -434,12 +416,12 @@ const AboutSection = () => {
                 </TestimonialProfilePlaceholder>
               </TestimonialProfileImage>
               
-              <TestimonialClientName>Emily Johnson</TestimonialClientName>
-              <TestimonialClientTitle>Lead Product Manager at NextGen Innovators</TestimonialClientTitle>
+              <TestimonialClientName>{t.about.testimonial.clientName}</TestimonialClientName>
+              <TestimonialClientTitle>{t.about.testimonial.clientTitle}</TestimonialClientTitle>
             </TestimonialClient>
             
             <BookCallButton>
-              Book a call
+              {t.about.testimonial.bookCall}
             </BookCallButton>
           </InnerTestimonial>
         </Container>

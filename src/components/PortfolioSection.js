@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
+
 
 const PortfolioWrapper = styled.section`
   padding: 10rem 2rem; /* 100px 20px */
@@ -315,60 +318,30 @@ const ProjectScreenshot = styled.div`
 `;
 
 const PortfolioSection = () => {
-  const projects = [
-    {
-      id: 1,
-      client: "Nice Guides",
-      title: "Nice Guides",
-      description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-      tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
-      reverse: false
-    },
-    // {
-    //   id: 2,
-    //   client: "Nova Memorial", 
-    //   title: "Where Memories Blossom into Timeless Legacies",
-    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
-    //   reverse: true
-    // },
-    // {
-    //   id: 3,
-    //   client: "Nova Memorial",
-    //   title: "Nova Memorial",
-    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO", 
-    //   reverse: false
-    // },
-    // {
-    //   id: 4,
-    //   client: "Nova Memorial",
-    //   title: "Nova Memorial",
-    //   description: "From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.",
-    //   tags: "UI/UX DESIGN • WEB DEVELOPMENT • SEO",
-    //   reverse: true
-    // }
-  ];
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
+  const projects = t.portfolio.projects;
 
   return (
     <PortfolioWrapper id="portfolio">
       <Container>
         <Header>
-          <Eyebrow>CASE STUDIES</Eyebrow>
-          <MainHeading>What We Deliver</MainHeading>
-          <Description>
-          From focused digital solutions to ongoing support and optimization, we work with
-          companies of all sizes to achieve eQicient, lasting impact.
-          </Description>
+          <Eyebrow>{t.portfolio.eyebrow}</Eyebrow>
+          <MainHeading>{t.portfolio.title}</MainHeading>
+          <Description>{t.portfolio.description}</Description>
         </Header>
         
         <ProjectsGrid>
-          {projects.map((project) => (
-            <ProjectCard key={project.id} reverse={project.reverse}>
+          {projects.map((project, idx) => (
+            <ProjectCard key={idx} reverse={project.reverse}>
               <ProjectImage reverse={project.reverse}>
-                <ProjectScreenshot>
-                  <div>Nova Memorial Website</div>
-                </ProjectScreenshot>
+                {project.image ? (
+                  <img src={project?.image} alt={project.title} style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1.2rem'}} />
+                ) : (
+                  <ProjectScreenshot>
+                    <div>{project.title} Website</div>
+                  </ProjectScreenshot>
+                )}
               </ProjectImage>
               
               <ProjectContent reverse={project.reverse}>
@@ -378,15 +351,13 @@ const PortfolioSection = () => {
                     <ProjectClient>{project.client}</ProjectClient>
                   </ProjectBadge>
                   <ViewProjectButton>
-                    VIEW PROJECT
+                    {t.portfolio.viewProject}
                   </ViewProjectButton>
                 </ContentHeader>
                 
                 <ContentMain>
                   <ProjectTitle>{project.title}</ProjectTitle>
-                  <ProjectDescription>
-                    {project.description}
-                  </ProjectDescription>
+                  <ProjectDescription>{project.description}</ProjectDescription>
                 </ContentMain>
                 
                 <ContentFooter>

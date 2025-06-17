@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiMessageCircle, FiPenTool, FiCode, FiSettings } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const ApproachWrapper = styled.section`
   padding: 10rem 2rem;
@@ -160,45 +162,24 @@ const StepDescription = styled.p`
 `;
 
 const ApproachSection = () => {
-  const steps = [
-    {
-      icon: <FiMessageCircle />,
-      title: "Consulting",
-      description: "We analyze your needs and provide expert guidance on the best approach"
-    },
-    {
-      icon: <FiPenTool />,
-      title: "Design",
-      description: "Creating intuitive interfaces and experiences that users love"
-    },
-    {
-      icon: <FiCode />,
-      title: "Development",
-      description: "Building robust solutions with clean, efficient code"
-    },
-    {
-      icon: <FiSettings />,
-      title: "Maintenance & Support",
-      description: "Ensuring your solution stays optimized and up-to-date"
-    }
-  ];
+  const { currentLanguage } = useLanguage();
+  const t = translations[currentLanguage];
+  const icons = [<FiMessageCircle />, <FiPenTool />, <FiCode />, <FiSettings />];
+  const steps = t.approach.steps;
 
   return (
     <ApproachWrapper id="approach">
       <Container>
         <InnerContainer>
           <Header>
-            <Eyebrow>OUR APPROACH</Eyebrow>
-            <MainHeading>Flexible by Design</MainHeading>
-            <Description>
-              4 Steps, Tailored to Your Needs and Project Size. Whether you're launching something new or improving what's already there — we adapt to your goals. Choose only the steps you need.
-            </Description>
+            <Eyebrow>{t.approach.eyebrow}</Eyebrow>
+            <MainHeading>{t.approach.title}</MainHeading>
+            <Description>{t.approach.description}</Description>
           </Header>
-          
           <StepsGrid>
             {steps.map((step, index) => (
               <StepCard key={index}>
-                <StepIcon>{step.icon}</StepIcon>
+                <StepIcon>{icons[index]}</StepIcon>
                 <StepTitle>{step.title}</StepTitle>
                 <StepDescription>{step.description}</StepDescription>
               </StepCard>
