@@ -1,4 +1,5 @@
 import case_study_NG from '../assets/images/case_study_NG.png';
+import case_study_G24 from '../assets/images/case_study_G24.png'
 
 
 export const translations = {
@@ -16,8 +17,7 @@ export const translations = {
         part1: 'Software solutions for',
         part2: 'your projects'
       },
-      description: `From product creation to process optimization and support, we partner with
-businesses to deliver impactful results.`
+      description: `From product creation to process optimization and support, we partner with businesses to deliver impactful results.`
     },
     services: {
       eyebrow: 'OUR SERVICES',
@@ -25,9 +25,9 @@ businesses to deliver impactful results.`
       description: 'From one-off digital initiatives to long-term partnerships, we support businesses with everything from process optimization to full-scale product development - delivering results that last.',
       cards: {
         webApps: {
-          title: 'Web Apps',
+          title: 'Web Applications',
           subtitle: 'DEV & SUPPORT',
-          description: 'From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.',
+          description: 'We build modern, responsive web platforms — from customer portals to SaaS dashboards — tailored to your business needs.',
           tags: ['REACT', 'NEXT.JS', 'VUE.JS', 'TYPESCRIPT']
         },
         mobileApps: {
@@ -110,6 +110,13 @@ businesses to deliver impactful results.`
           description: 'From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.',
           tags: 'UI/UX DESIGN • WEB DEVELOPMENT • SEO',
           image: case_study_NG
+        },
+        {
+          client: 'G24',
+          title: 'G24',
+          description: 'From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.',
+          tags: 'UI/UX DESIGN • WEB DEVELOPMENT • SEO',
+          image: case_study_G24
         }
       ],
       viewProject: 'VIEW PROJECT'
@@ -274,6 +281,13 @@ businesses to deliver impactful results.`
           description: 'Von komplexen Anwendungen bis hin zu maßgeschneiderten Plattformen liefern wir leistungsstarke Systeme, die Ihre Ziele unterstützen und das Geschäftswachstum fördern.',
           tags: 'UI/UX DESIGN • WEBENTWICKLUNG • SEO',
           image: case_study_NG
+        },
+        {
+          client: 'G24',
+          title: 'G24',
+          description: 'Von komplexen Anwendungen bis hin zu maßgeschneiderten Plattformen liefern wir leistungsstarke Systeme, die Ihre Ziele unterstützen und das Geschäftswachstum fördern.',
+          tags: 'UI/UX DESIGN • WEBENTWICKLUNG • SEO',
+          image: case_study_G24
         }
       ],
       viewProject: 'Zum Projekt'

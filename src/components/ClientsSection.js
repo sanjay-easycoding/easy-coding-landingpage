@@ -251,37 +251,10 @@ const ClientsSection = () => {
             </Logo>
           </LogoItem>
           
+         
           <LogoItem>
             <Logo>
-              <DeliveryIcon>D</DeliveryIcon>
-              {t.clients.companies.delivery}
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <LogoipsumIcon>L</LogoipsumIcon>
-              {t.clients.companies.logoipsum}
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <BrandIcon>B</BrandIcon>
-              {t.clients.companies.brand}
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <TechIcon>T</TechIcon>
-              {t.clients.companies.tech}
-            </Logo>
-          </LogoItem>
-          
-          <LogoItem>
-            <Logo>
-              <StudioIcon>S</StudioIcon>
+              <StudioIcon>O</StudioIcon>
               {t.clients.companies.studio}
             </Logo>
           </LogoItem>

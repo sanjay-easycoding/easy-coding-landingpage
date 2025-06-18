@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
@@ -6,6 +6,7 @@ import Lottie from 'lottie-react';
 import animationData from '../assets/animations/coding-animation.json';
 import animationData2 from '../assets/animations/coding-animation2.json';
 import animationData3 from '../assets/animations/coding-animation3.json';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 const HeroWrapper = styled.section`
   width: 100%;
@@ -97,7 +98,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #ff2086;
+  color:#1a6ebc;
   margin-bottom: 1rem;
   
   @media (max-width: 76.8rem) {
@@ -112,7 +113,7 @@ const MainHeading = styled.h1`
   margin-bottom: 2rem;
   
   .red-text {
-    color: #ff2086;
+    color:#f93177;
   }
   
   .dark-text {
@@ -139,7 +140,7 @@ const MainHeading = styled.h1`
 const Description = styled.p`
   font-size: 1.8rem;
   line-height: 1.6;
-  color: rgb(37, 97, 152);
+  color: rgb(112,112,112);
   max-width: 50rem;
   margin-bottom: 1rem;
   
@@ -178,10 +179,11 @@ const PrimaryButton = styled.button`
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
   text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   
   &:hover {
     background: linear-gradient(135deg, #0094e6 0%, #005fa3 100%);
-    box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
+    // box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
     transform: translateY(-2px);
   }
   &:active {
@@ -192,8 +194,8 @@ const PrimaryButton = styled.button`
 `;
 
 const SecondaryButton = styled.button`
-  background: #fff;
-  color: #00a5ff;
+  background: rgba(255, 255, 255, 0.18);
+  color: #1a6ebc;
   border: none;
   padding: 1.4rem 3rem;
   border-radius: 999px;
@@ -204,11 +206,12 @@ const SecondaryButton = styled.button`
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
   text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   
   &:hover {
-    background: #f0faff;
-    color: #0077cc;
-    box-shadow: 0 8px 24px 0 rgba(0, 165, 255, 0.18);
+    background: rgb(226, 226, 226);
+    color: rgb(0, 87, 150);
+    // box-shadow: 0 8px 24px 0 rgba(0, 165, 255, 0.18);
     transform: translateY(-2px);
   }
   &:active {
@@ -222,6 +225,52 @@ const SecondaryButton = styled.button`
 const HeroSection = () => {
   const { currentLanguage } = useLanguage();
   const t = translations[currentLanguage].hero;
+
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { amount: 0.4, once: false });
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
+  const lastScrollY = useRef(window.scrollY);
+  const scrollDirection = useRef('down');
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY.current) {
+        scrollDirection.current = 'down';
+      } else if (window.scrollY < lastScrollY.current) {
+        scrollDirection.current = 'up';
+      }
+      lastScrollY.current = window.scrollY;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    if (inView) {
+      leftControls.start('visible');
+      rightControls.start('visible');
+    } else {
+      if (scrollDirection.current === 'up') {
+        leftControls.start('exitUp');
+        rightControls.start('exitUp');
+      } else {
+        leftControls.start('hidden');
+        rightControls.start('hidden');
+      }
+    }
+  }, [inView, leftControls, rightControls]);
+
+  const leftVariants = {
+    hidden: { x: -100, opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+    exitUp: { x: -100, opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } }
+  };
+  const rightVariants = {
+    hidden: { x: 100, opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+    exitUp: { x: 100, opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } }
+  };
 
   const defaultOptions = {
     loop: true,
@@ -253,42 +302,49 @@ const HeroSection = () => {
     }
   };
 
-  const scrollToContact = (e) => {
-    e.preventDefault();
+  const scrollToContact = () => {
     const contactSection = document.getElementById('letsTalk');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <HeroWrapper>
+    <HeroWrapper ref={sectionRef}>
       <HeroContainer>
-        <ContentSection>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <MainHeading>
-            <span className="red-text">{t.title.part1}</span><br />
-            <span className="dark-text">{t.title.part2}</span>
-          </MainHeading>
-          <Description>
-            {t.description}
-          </Description>
-          <ButtonGroup>
-            <PrimaryButton onClick={scrollToContact}>
-              {translations[currentLanguage].nav.letsTalk}
-            </PrimaryButton>
-            <SecondaryButton>
-              {translations[currentLanguage].services.viewMore}
-            </SecondaryButton>
-          </ButtonGroup>
-        </ContentSection>
-        <VisualSection>
-          <LottieContainer>
-            {/* <StyledLottie {...defaultOptions} /> */}
-            {/* <StyledLottie {...defaultOptions2} /> */}
-            <StyledLottie {...defaultOptions3} />
-          </LottieContainer>
-        </VisualSection>
+        <motion.div
+          variants={leftVariants}
+          initial="hidden"
+          animate={leftControls}
+        >
+          <ContentSection>
+            <Eyebrow>{t.eyebrow}</Eyebrow>
+            <MainHeading>
+              <span className="red-text">{t.title.part1}</span><br/>
+              <span className="dark-text">{t.title.part2}</span>
+            </MainHeading>
+            <Description>
+              {t.description}
+            </Description>
+            <ButtonGroup>
+              <PrimaryButton onClick={scrollToContact}>
+                {translations[currentLanguage].nav.letsTalk}
+              </PrimaryButton>
+              <SecondaryButton>
+                {translations[currentLanguage].services.viewMore}
+              </SecondaryButton>
+            </ButtonGroup>
+          </ContentSection>
+        </motion.div>
+        <motion.div
+          variants={rightVariants}
+          initial="hidden"
+          animate={rightControls}
+        >
+          <VisualSection>
+            <LottieContainer>
+              <StyledLottie {...defaultOptions3} />
+            </LottieContainer>
+          </VisualSection>
+        </motion.div>
       </HeroContainer>
     </HeroWrapper>
   );

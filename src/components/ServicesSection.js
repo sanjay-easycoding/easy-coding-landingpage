@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
@@ -25,6 +25,7 @@ import {
   SiWordpress,
   SiDiscord
 } from 'react-icons/si';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 const ServicesWrapper = styled.section`
   padding: 8rem 2rem; /* 80px 20px */
@@ -41,10 +42,16 @@ const OuterContainer = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  background: white;
+ background: rgba(255, 255, 255, 0.18); /* More transparent for glass effect */
+  backdrop-filter: blur(1.6rem) saturate(180%); /* Stronger blur and saturation */
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
+    box-shadow: 
+    0 0.8rem 3.2rem rgba(0, 0, 0, 0.06),
+    0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
+    
   border-radius: 4rem; /* 40px - curved edges */
   padding: 8rem 6rem; /* 80px 60px */
-  box-shadow: 0 0.4rem 6rem rgba(0, 0, 0, 0.03);
+
   
   @media (max-width: 96rem) { /* 960px */
     padding: 6rem 4rem; /* 60px 40px */
@@ -76,7 +83,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em; /* 2px equivalent */
-  color: #e11d48; /* Red color */
+  color: #ff4d87; /* Red color */
   margin-bottom: 1.6rem; /* 16px */
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -117,129 +124,152 @@ const Description = styled.p`
   }
 `;
 
-const ServicesGrid = styled.div`
+const BentoGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem; /* 20px */
-  margin-bottom: 6rem; /* 60px */
-  
-  @media (max-width: 96rem) { /* 960px */
-    gap: 1.6rem; /* 16px */
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem; /* 16px */
-    margin-bottom: 4rem; /* 40px */
-  }
-  
-  @media (max-width: 48rem) { /* 480px */
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 2.4rem;
+  margin-bottom: 6rem;
+  grid-template-areas:
+    "area1 area1 area2 area2 area3 area3"
+    "area4 area4 area2 area2 area6 area6"
+    "area4 area4 area5 area5 area5 area5";
+
+  @media (max-width: 76.8rem) {
     grid-template-columns: 1fr;
-    gap: 1.6rem; /* 16px */
+    grid-template-rows: auto;
+    grid-template-areas:
+      "area1"
+      "area2"
+      "area3"
+      "area4"
+      "area5"
+      "area6";
+    gap: 1.6rem;
+    margin-bottom: 4rem;
   }
 `;
 
-const ServiceCard = styled.div`
-  background: #eae0f3;
-  border-radius: 1.2rem; /* 12px */
-  padding: 2rem; /* 20px */
+const BentoCard = styled(motion.div)`
+  background: white;
+  border-radius: 2.4rem;
+  padding: 3.2rem;
+  box-shadow: 0 0.4rem 2.4rem rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border: 0.1rem solid #e2e8f0; /* 1px */
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  position: relative;
+  overflow: hidden;
   
   &:hover {
-    transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
-    border-color: #7f2eb4;
+    transform: translateY(-0.4rem);
+    box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.1);
   }
   
-  @media (max-width: 76.8rem) { /* 768px */
-    padding: 1.8rem; /* 18px */
+  &.medium {
+    grid-column: span 2;
+  }
+  
+  &.large {
+    grid-column: span 3;
+  }
+  
+  @media (max-width: 76.8rem) {
+    padding: 2.4rem;
   }
 `;
 
-const CardIcon = styled.div`
-  width: 4rem; /* 40px */
-  height: 4rem; /* 40px */
-  background: transparent;
-  border: 0.2rem solid #7f2eb4; /* 2px red border */
-  border-radius: 0.8rem; /* 8px */
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 2.4rem;
+  left: 2.4rem;
+  font-size: 2.8rem;
+  color: #1a6ebc;
+  background: rgba(26,110,188,0.08);
+  border-radius: 1.2rem;
+  padding: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.6rem; /* 16px */
-  color: #7f2eb4;
-  
-  svg {
-    width: 2rem; /* 20px */
-    height: 2rem; /* 20px */
-    stroke-width: 2;
-  }
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    width: 3.6rem; /* 36px */
-    height: 3.6rem; /* 36px */
-    
-    svg {
-      width: 1.8rem; /* 18px */
-      height: 1.8rem; /* 18px */
-    }
+  transition: background 0.3s;
+  z-index: 2;
+  ${BentoCard}:hover & {
+    background: linear-gradient(135deg, #00a5ff 0%, #0077cc 100%);
+    color: #fff;
   }
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.6rem; /* 16px */
+const CardHeader = styled.h3`
+  font-size: 2rem;
   font-weight: 700;
-  color: #7f2eb4;
-  margin-bottom: 0.4rem; /* 4px */
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    font-size: 1.5rem; /* 15px */
-  }
+  margin: 0 0 1.2rem 0;
+  color: #1e293b;
+  padding-left: 4.8rem;
 `;
 
-const CardSubtitle = styled.p`
-  font-size: 1rem; /* 10px */
-  font-weight: 600;
+const CardDesc = styled.p`
+  font-size: 1.3rem;
   color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.2rem; /* 12px */
+  margin-bottom: 1.2rem;
+  padding-left: 4.8rem;
 `;
 
-const CardDescription = styled.p`
-  font-size: 1.3rem; /* 13px */
-  line-height: 1.4;
+const CardList = styled.ul`
+  font-size: 1.1rem;
+  color: #1a6ebc;
+  margin: 0 0 1.2rem 0;
+  padding-left: 5.2rem;
+  list-style: disc inside;
+`;
+
+const CardNote = styled.div`
+  font-size: 1.1rem;
   color: #64748b;
-  margin-bottom: 1.6rem; /* 16px */
-  
-  @media (max-width: 76.8rem) { /* 768px */
-    font-size: 1.2rem; /* 12px */
-  }
+  font-style: italic;
+  margin-bottom: 0.8rem;
+  padding-left: 4.8rem;
 `;
 
-const CardTags = styled.div`
+const CardTech = styled.div`
+  font-size: 1.1rem;
+  color: #1a6ebc;
+  margin-bottom: 0.8rem;
+  padding-left: 4.8rem;
+`;
+
+const CTASection = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem; /* 8px */
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
 `;
 
-const Tag = styled.span`
-  font-size: 1rem; /* 10px */
-  font-weight: 500;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  
-  &:not(:last-child)::after {
-    content: '•';
-    margin-left: 0.8rem; /* 8px */
-    color: #cbd5e1;
+const BlueGradientButton = styled.button`
+  background: linear-gradient(135deg, #00a5ff 0%, #0077cc 100%);
+  color: #fff;
+  border: none;
+  padding: 1.6rem 3.2rem;
+  border-radius: 999px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px 0 rgba(0, 165, 255, 0.25), 0 1.5px 0 #0077cc;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  text-align: center;
+  min-width: fit-content;
+  white-space: nowrap;
+  &:hover {
+    background: linear-gradient(135deg, #0094e6 0%, #005fa3 100%);
+    box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
+    transform: translateY(-2px);
   }
 `;
 
 const ToolStackSection = styled.div`
   text-align: center;
-  // background: rgb(245, 247, 251); /* Same as outer background */
+
   padding: 3rem 2rem; /* 30px 20px */
   border-radius: 1.2rem; /* 12px - same as cards */
   margin-top: 3rem; /* 30px */
@@ -317,6 +347,92 @@ const ToolIcon = styled.div`
 const ServicesSection = () => {
   const { currentLanguage } = useLanguage();
   const t = translations[currentLanguage];
+  const lastScrollY = useRef(window.scrollY);
+  const scrollDirection = useRef('down');
+  const controls = useAnimation();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.2 });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll > lastScrollY.current) {
+        scrollDirection.current = 'down';
+      } else if (currentScroll < lastScrollY.current) {
+        scrollDirection.current = 'up';
+      }
+      lastScrollY.current = currentScroll;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isInView) {
+      // Custom sequence: 3rd -> 4th -> 1st -> 2nd -> 5th -> 6th
+      const sequence = async () => {
+        await controls.start('visible', { delay: 0.2 }); // 3rd box
+        await controls.start('visible', { delay: 0.2 }); // 4th box
+        await controls.start('visible', { delay: 0.2 }); // 1st box
+        await controls.start('visible', { delay: 0.2 }); // 2nd box
+        await controls.start('visible', { delay: 0.2 }); // 5th box
+        await controls.start('visible', { delay: 0.2 }); // 6th box
+      };
+      sequence();
+    } else if (scrollDirection.current === 'up') {
+      controls.start('exit');
+    } else {
+      controls.start('hidden');
+    }
+  }, [isInView, controls, scrollDirection.current]);
+
+  const cardVariants = {
+    hidden: (direction) => ({
+      opacity: 0,
+      x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
+      y: direction === 'up' ? -100 : direction === 'down' ? 100 : 0,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut'
+      }
+    },
+    exit: (direction) => {
+      const scatterDirections = {
+        'area1': { x: -300, y: -200 },
+        'area2': { x: 0, y: -300 },
+        'area3': { x: 300, y: -200 },
+        'area4': { x: -300, y: 200 },
+        'area5': { x: 0, y: 300 },
+        'area6': { x: 300, y: 200 }
+      };
+      
+      return {
+        opacity: 0,
+        ...scatterDirections[direction],
+        transition: {
+          duration: 0.6,
+          ease: 'easeIn'
+        }
+      };
+    }
+  };
+
+  const getCardDirection = (area) => {
+    switch(area) {
+      case 'area1': return 'left';
+      case 'area2': return 'up';
+      case 'area3': return 'right';
+      case 'area4': return 'left';
+      case 'area5': return 'down';
+      case 'area6': return 'right';
+      default: return 'up';
+    }
+  };
 
   const services = [
     {
@@ -346,7 +462,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <ServicesWrapper id="services">
+    <ServicesWrapper id="services" ref={sectionRef}>
       <OuterContainer>
         <InnerContainer>
           <Header>
@@ -355,21 +471,128 @@ const ServicesSection = () => {
             <Description>{t.services.description}</Description>
           </Header>
           
-          <ServicesGrid>
-            {services.map((service, index) => (
-              <ServiceCard key={index} className="service-card">
-                <CardIcon>{service.icon}</CardIcon>
-                <CardTitle>{service.title}</CardTitle>
-                <CardSubtitle>{service.subtitle}</CardSubtitle>
-                <CardDescription>{service.description}</CardDescription>
-              <CardTags>
-                  {service.tags.map((tag, tagIndex) => (
-                    <Tag key={tagIndex}>{tag}</Tag>
-                  ))}
-              </CardTags>
-            </ServiceCard>
-            ))}
-          </ServicesGrid>
+          <BentoGrid>
+            {/* 1. Web Applications */}
+            <BentoCard 
+              className="medium" 
+              style={{gridArea: 'area1'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area1"
+            >
+              <IconWrapper><FiMonitor /></IconWrapper>
+              <CardHeader>Web Applications</CardHeader>
+              <CardDesc>We build modern, responsive web platforms — from customer portals to SaaS dashboards — tailored to your business needs.</CardDesc>
+              <CardList>
+                <li>Admin dashboards</li>
+                <li>Booking systems</li>
+                <li>CMS & content portals</li>
+                <li>Real-time web apps</li>
+              </CardList>
+              <CardNote>🔧 Built with React, Next.js, Vue.js — always tailored to your users.</CardNote>
+            </BentoCard>
+            {/* 2. Mobile Applications */}
+            <BentoCard 
+              className="medium" 
+              style={{gridArea: 'area2'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area2"
+            >
+              <IconWrapper><FiSmartphone /></IconWrapper>
+              <CardHeader>Mobile Applications</CardHeader>
+              <CardDesc>We craft native and hybrid mobile apps that feel fast, stable, and intuitive — designed for Android, iOS, or both.</CardDesc>
+              <CardList>
+                <li>Consumer-facing apps</li>
+                <li>Delivery or logistics apps</li>
+                <li>Internal team apps</li>
+                <li>Event & booking apps</li>
+              </CardList>
+              <CardNote>🔧 Powered by Swift, Kotlin, Flutter, React Native.</CardNote>
+            </BentoCard>
+            {/* 3. Landing Pages & Microsites */}
+            <BentoCard 
+              className="medium" 
+              style={{gridArea: 'area3'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area3"
+            >
+              <IconWrapper><FiGlobe /></IconWrapper>
+              <CardHeader>Landing Pages & Microsites</CardHeader>
+              <CardDesc>We design and develop high-converting landing pages and microsites that drive engagement and conversions.</CardDesc>
+              <CardList>
+                <li>Product launches</li>
+                <li>Marketing campaigns</li>
+                <li>Event pages</li>
+                <li>Portfolio sites</li>
+              </CardList>
+              <CardNote>🎯 Optimized for conversions and user experience.</CardNote>
+            </BentoCard>
+            {/* 4. Email Marketing */}
+            <BentoCard 
+              className="medium" 
+              style={{gridArea: 'area4'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area4"
+            >
+              <IconWrapper><FiMail /></IconWrapper>
+              <CardHeader>Email Marketing</CardHeader>
+              <CardDesc>We create engaging email campaigns that nurture leads and drive customer engagement.</CardDesc>
+              <CardList>
+                <li>Newsletter templates</li>
+                <li>Automated sequences</li>
+                <li>Transactional emails</li>
+                <li>Campaign management</li>
+              </CardList>
+              <CardNote>📧 Designed for maximum deliverability and engagement.</CardNote>
+            </BentoCard>
+            {/* 5. Technical Team */}
+            <BentoCard 
+              className="large" 
+              style={{gridArea: 'area5'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area5"
+            >
+              <IconWrapper><FiSettings /></IconWrapper>
+              <CardHeader>Technical Team</CardHeader>
+              <CardDesc>We provide dedicated technical teams to help you build and maintain your digital products.</CardDesc>
+              <CardList>
+                <li>Frontend developers</li>
+                <li>Backend engineers</li>
+                <li>DevOps specialists</li>
+                <li>QA engineers</li>
+              </CardList>
+              <CardNote>👥 Flexible team sizes and engagement models.</CardNote>
+            </BentoCard>
+            {/* 6. Custom Services */}
+            <BentoCard 
+              className="medium" 
+              style={{gridArea: 'area6'}}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
+              custom="area6"
+            >
+              <IconWrapper><FiTool /></IconWrapper>
+              <CardHeader>Custom Services</CardHeader>
+              <CardDesc>We offer tailored solutions to meet your specific business needs and requirements.</CardDesc>
+              <CardList>
+                <li>API development</li>
+                <li>Database design</li>
+                <li>Cloud solutions</li>
+                <li>Legacy system updates</li>
+              </CardList>
+              <CardNote>🛠️ Customized to your exact specifications.</CardNote>
+            </BentoCard>
+          </BentoGrid>
           
           <ToolStackSection>
             <ToolStackTitle>{t.services.toolStack}</ToolStackTitle>
@@ -407,6 +630,14 @@ const ServicesSection = () => {
               </ToolIcon>
             </ToolsGrid>
           </ToolStackSection>
+          {/* <CTASection>
+            <BlueGradientButton onClick={() => {
+              const contactSection = document.getElementById('letsTalk');
+              if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              Have a vision? Let&apos;s turn it into real software.
+            </BlueGradientButton>
+          </CTASection> */}
         </InnerContainer>
       </OuterContainer>
     </ServicesWrapper>

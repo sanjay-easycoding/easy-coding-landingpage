@@ -19,10 +19,15 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  background: white;
+   background: rgba(255, 255, 255, 0.18); /* More transparent for glass effect */
+  backdrop-filter: blur(1.6rem) saturate(180%); /* Stronger blur and saturation */
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
+    box-shadow: 
+    0 0.8rem 3.2rem rgba(0, 0, 0, 0.06),
+    0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
   border-radius: 4rem;
   padding: 8rem 6rem;
-  box-shadow: 0 0.4rem 6rem rgba(0, 0, 0, 0.03);
+  
   
   @media (max-width: 96rem) {
     padding: 6rem 4rem;
@@ -54,7 +59,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #e11d48;
+  color: #f93177;
   margin-bottom: 1.6rem;
   
   @media (max-width: 76.8rem) {
@@ -118,14 +123,15 @@ const StepCard = styled.div`
   text-align: center;
   padding: 3rem 2rem;
   border-radius: 1.2rem;
-  background: #f8fafc;
+  background:rgb(239,239,239,1);
   border: 0.1rem solid #e2e8f0;
   transition: all 0.3s ease;
+   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
   
   &:hover {
     transform: translateY(-0.2rem);
     box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
-    border-color: #e11d48;
+    // border-color: #f93177;
   }
 `;
 
@@ -133,13 +139,13 @@ const StepIcon = styled.div`
   width: 5rem;
   height: 5rem;
   margin: 0 auto 2rem;
-  background: white;
-  border: 0.2rem solid #e11d48;
+  background: rgb(239,239,239,1);
+  border: 0.2rem solid #1a6ebc;
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e11d48;
+  color: #1a6ebc;
   
   svg {
     width: 2.4rem;
