@@ -18,8 +18,9 @@ const HeaderWrapper = styled.div`
 `;
 
 const NavContainer = styled.nav`
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(2rem); /* 20px */
+  background: rgba(255, 255, 255, 0.18); /* More transparent for glass effect */
+  backdrop-filter: blur(1.6rem) saturate(180%); /* Stronger blur and saturation */
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
   border-radius: 6rem; /* 60px */
   padding: 1.6rem 4rem; /* 16px 40px */
   display: grid;
@@ -31,7 +32,7 @@ const NavContainer = styled.nav`
   box-shadow: 
     0 0.8rem 3.2rem rgba(0, 0, 0, 0.06),
     0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
-  border: 0.1rem solid rgba(255, 255, 255, 0.8); /* 1px */
+  border: 0.1rem solid #dcdcdc; /* More glassy border */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap; /* Prevent text wrapping */
   
@@ -40,7 +41,8 @@ const NavContainer = styled.nav`
       0 1.2rem 4.8rem rgba(0, 0, 0, 0.12),
       0 0.4rem 1.6rem rgba(0, 0, 0, 0.04);
     transform: translateY(-0.2rem); /* -2px */
-    backdrop-filter: blur(2.4rem); /* 24px */
+    backdrop-filter: blur(2.4rem) saturate(200%); /* Even stronger on hover */
+    -webkit-backdrop-filter: blur(2.4rem) saturate(200%);
   }
   
   @media (max-width: 96rem) { /* 960px */
@@ -108,12 +110,12 @@ const LogoImage = styled.img`
 const LogoText = styled.span`
   font-size: 1.8rem; /* 18px */
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1a6ebc;
   letter-spacing: -0.04em;
-  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  // background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  // background-clip: text;
   white-space: nowrap;
 
   @media (max-width: 48rem) {
@@ -247,11 +249,12 @@ const DesktopCtaButton = styled.button`
   min-width: fit-content;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   
   &:hover {
     background: linear-gradient(135deg, #0094e6 0%, #005fa3 100%);
-    box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
-    transform: translateY(-2px);
+    // box-shadow: 0 12px 32px 0 rgba(0, 165, 255, 0.35), 0 2px 0 #005fa3;
+    // transform: translateY(-2px);
   }
   &:active {
     background: linear-gradient(135deg, #0080cc 0%, #004c80 100%);
@@ -339,8 +342,7 @@ const HamburgerLine = styled.span`
   `}
 `;
 
-const LanguageButton = styled.button`
-  background: transparent;
+const LanguageButton = styled.button`  background: transparent;
   border: none;
   color: #64748b;
   font-size: 1.2rem;
@@ -496,7 +498,8 @@ const MobileLanguageOption = styled.button`
   background: none;
   border: none;
   font-size: 1.4rem;
-  color: ${props => props.isActive ? '#ff2086' : '#64748b'};
+  color: ${props => props.isActive ? '#ff2086' : '#256198'};
+  
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -52,7 +52,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em; /* 2px equivalent */
-  color: #e11d48; /* Red color */
+  color: #1a6ebc; /* Red color */
   margin-bottom: 1.6rem; /* 16px */
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -188,7 +188,7 @@ const TeamName = styled.h3`
 
 const TeamRole = styled.p`
   font-size: 1.3rem; /* 13px */
-  color: #e11d48;
+  color: #1a6ebc;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -262,7 +262,7 @@ const TestimonialQuote = styled.blockquote`
   margin-right: auto;
   
   .highlight {
-    color: #e11d48;
+    color: #1a6ebc;
     font-weight: 600;
   }
   
@@ -335,7 +335,7 @@ const TestimonialClientTitle = styled.p`
 `;
 
 const BookCallButton = styled.button`
-  background: #e11d48;
+  background: #1a6ebc;
   color: white;
   border: none;
   padding: 1.6rem 3.2rem; /* 16px 32px */
@@ -344,12 +344,12 @@ const BookCallButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0.4rem 1.6rem rgba(225, 29, 72, 0.3);
+  // box-shadow: 0 0.4rem 1.6rem rgba(225, 29, 72, 0.3);
   
   &:hover {
-    background: #be185d;
+    // background: #be185d;
     transform: translateY(-0.2rem); /* -2px */
-    box-shadow: 0 0.8rem 2.4rem rgba(225, 29, 72, 0.4);
+    // box-shadow: 0 0.8rem 2.4rem rgba(225, 29, 72, 0.4);
   }
   
   &:active {

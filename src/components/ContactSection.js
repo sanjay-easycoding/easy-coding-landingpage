@@ -51,7 +51,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #e11d48;
+  color: #1a6ebc;
   margin-bottom: 1.6rem; /* 16px */
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -337,7 +337,7 @@ const ContactItem = styled.a`
   display: flex;
   align-items: center;
   gap: 1rem; /* 10px */
-  color: #e11d48;
+  color:#1a6ebc;
   text-decoration: none;
      font-size: 1.2rem;
 letter-spacing: 0.3em;
@@ -494,7 +494,7 @@ const Input = styled.input`
   
   &:focus {
     outline: none;
-    border-color: #e11d48;
+    border-color: #1a6ebc;
     box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.2);
   }
   
@@ -522,7 +522,7 @@ const TextArea = styled.textarea`
   
   &:focus {
     outline: none;
-    border-color: #e11d48;
+    border-color:#1a6ebc;
     box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.2);
   }
   
