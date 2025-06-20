@@ -107,14 +107,14 @@ export const translations = {
         {
           client: 'Nice Guides',
           title: 'Nice Guides',
-          description: 'From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.',
+          description: 'G24 makes preventive health screening quick and accessible by offering walk-in blood tests at local pharmacies with results available in just 15 minutes. Users can book a range of tests online and securely receive results via mobile apps or email. We built a smooth, scalable system with web and mobile apps, plus pharmacy and admin dashboards. The platform is highly dynamic—admins have full control over test availability, pharmacy onboarding, result delivery, and more. Our focus on performance, security, and ease of maintenance ensures a reliable experience even as the platform grows.',
           tags: 'UI/UX DESIGN • WEB DEVELOPMENT • SEO',
           image: case_study_NG
         },
         {
           client: 'G24',
           title: 'G24',
-          description: 'From complex applications to bespoke platforms, we deliver high-performance systems that align with your goals and fuel business growth.',
+          description: 'NiceGuides connects travelers with verified local guides for personalized tours, from pub crawls to nature walks—starting in Heidelberg with global expansion underway. Both visitors and guides enjoy a seamless experience through dedicated web and mobile apps. The system is designed to be highly dynamic, giving admins full control over tour approvals, pricing rules, commissions, reviews, and user management. We ensured smooth performance, real-time messaging, and a scalable architecture that supports future growth while keeping operations flexible and manageable from a central dashboard.',
           tags: 'UI/UX DESIGN • WEB DEVELOPMENT • SEO',
           image: case_study_G24
         }
@@ -123,8 +123,8 @@ export const translations = {
     },
     about: {
       eyebrow: 'ABOUT US',
-      title: "Who's behind Easy Coding",
-      description: 'A team of experienced professionals dedicated to building smart, flexible, and reliable software solutions - tailored to your business needs.',
+      title: "Meet the People Behind Easy Coding",
+      description: 'We’re a lean, global team of engineers, designers, and digital strategists based in Germany and India — building beautiful, scalable software for modern businesses.',
       team: [
         {
           name: 'Aleksa Tachev',

@@ -151,10 +151,13 @@ const BentoGrid = styled.div`
 `;
 
 const BentoCard = styled(motion.div)`
-  background: white;
+  background:rgb(239,239,239,1);
+  border: 0.1rem solid #e2e8f0;
+
+   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
   border-radius: 2.4rem;
   padding: 3.2rem;
-  box-shadow: 0 0.4rem 2.4rem rgba(0, 0, 0, 0.06);
+  
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -323,6 +326,10 @@ const ToolIcon = styled.div`
   justify-content: center;
   color: white;
   transition: all 0.3s ease;
+    // background:rgb(239,239,239,1);
+  border: 0.1rem solid #e2e8f0;
+
+   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
   
   svg {
     width: 2rem; /* 20px */

@@ -67,6 +67,11 @@ const Description = styled.p`
 const CarouselContainer = styled.div`
   overflow: hidden;
   position: relative;
+  border-radius: 2.4rem;
+   background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(1.6rem) saturate(180%);
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
+  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
 `;
 
 const CarouselTrack = styled.div`
@@ -80,13 +85,14 @@ const ProjectSlide = styled.div`
   display: flex;
   justify-content: center;
   align-items: stretch;
+  border-radius: 2.4rem;
 `;
 
 const ProjectCard = styled.div`
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(1.6rem) saturate(180%);
   -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
-  // box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
+  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
   display: grid;
   grid-template-columns: ${props => props.reverse ? '1fr 1.5fr' : '1.5fr 1fr'};
   gap: 5rem;
@@ -95,6 +101,7 @@ const ProjectCard = styled.div`
   padding: 4rem;
   min-height: 45rem;
   transition: all 0.3s ease;
+ 
   &:hover {
     transform: translateY(-0.4rem);
     scale: 1.01;
@@ -254,7 +261,10 @@ const TagText = styled.span`
 const ProjectScreenshot = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(1.6rem) saturate(180%);
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
+  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
   border-radius: 1.2rem;
   position: relative;
   overflow: hidden;
@@ -420,9 +430,11 @@ const PortfolioSection = () => {
           </CarouselTrack>
         </CarouselContainer>
         <Navigation>
-          <NavArrow onClick={prevProject}>
+
+          {/* <NavArrow onClick={prevProject}>
             ←
-          </NavArrow>
+          </NavArrow> */}
+
           {projects.map((_, index) => (
             <NavDot
               key={index}
@@ -430,9 +442,13 @@ const PortfolioSection = () => {
               onClick={() => goToProject(index)}
             />
           ))}
-          <NavArrow onClick={nextProject}>
+
+
+          {/* <NavArrow onClick={nextProject}>
             →
-          </NavArrow>
+          </NavArrow> */}
+
+
         </Navigation>
       </Container>
     </PortfolioWrapper>
