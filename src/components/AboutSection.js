@@ -13,7 +13,12 @@ const AboutWrapper = styled.section`
 `;
 
 const AboutContainer = styled.div`
-  background: #1e293b; /* Dark background */
+    background: rgba(255, 255, 255, 0.18); /* More transparent for glass effect */
+  backdrop-filter: blur(1.6rem) saturate(180%); /* Stronger blur and saturation */
+  -webkit-backdrop-filter: blur(1.6rem) saturate(180%);
+    box-shadow: 
+    0 0.8rem 3.2rem rgba(0, 0, 0, 0.06),
+    0 0.2rem 0.8rem rgba(0, 0, 0, 0.02);
   padding: 8rem 4rem; /* 80px 40px */
   border-radius: 2.4rem; /* 24px */
   max-width: 140rem; /* 1400px - same as other sections */
@@ -52,7 +57,7 @@ const Eyebrow = styled.p`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em; /* 2px equivalent */
-  color: #1a6ebc; /* Red color */
+   color: #f93177;
   margin-bottom: 1.6rem; /* 16px */
   
   @media (max-width: 76.8rem) { /* 768px */
@@ -64,7 +69,7 @@ const MainHeading = styled.h2`
   font-size: 4.8rem; /* 48px */
   font-weight: 700;
   line-height: 1.1;
-  color: white;
+    color: #1e293b;
   margin-bottom: 2rem; /* 20px */
   
   @media (max-width: 96rem) { /* 960px */
@@ -83,7 +88,7 @@ const MainHeading = styled.h2`
 const Description = styled.p`
   font-size: 1.6rem; /* 16px */
   line-height: 1.6;
-  color: #cbd5e1; /* Light gray for dark background */
+ color: #64748b; /* Light gray for dark background */
   max-width: 60rem; /* 600px */
   margin: 0 auto;
   
@@ -104,10 +109,98 @@ const TeamGrid = styled.div`
   }
 `;
 
+const ServicesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin: 8rem 0;
+  
+  @media (max-width: 96rem) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  
+  @media (max-width: 76.8rem) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 6rem 0;
+  }
+`;
+
+const ServiceCard = styled.div`
+      text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 1.2rem;
+  background:rgb(239,239,239,1);
+  border: 0.1rem solid #e2e8f0;
+  transition: all 0.3s ease;
+   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
+
+
+
+  
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-0.4rem);
+    box-shadow: 0 1.6rem 4.8rem rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 76.8rem) {
+    padding: 2.4rem 2rem;
+  }
+`;
+
+const ServiceIcon = styled.div`
+  width: 6rem;
+  height: 6rem;
+  background: linear-gradient(135deg, #1a6ebc 0%, #3b82f6 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  font-size: 2.4rem;
+  color: white;
+  box-shadow: 0 0.8rem 2.4rem rgba(26, 110, 188, 0.3);
+  
+  @media (max-width: 76.8rem) {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2rem;
+    margin-bottom: 1.6rem;
+  }
+`;
+
+const ServiceTitle = styled.h3`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.6rem;
+  line-height: 1.2;
+  
+  @media (max-width: 76.8rem) {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+`;
+
+const ServiceDescription = styled.p`
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #64748b;
+  
+  @media (max-width: 76.8rem) {
+    font-size: 1.3rem;
+  }
+`;
+
 const TeamCard = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  border: 0.1rem solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.6rem; /* 16px */
+   background:rgb(239,239,239,1);
+  border: 0.1rem solid #e2e8f0;
+  transition: all 0.3s ease;
+   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.06);
   padding: 2.4rem; /* 24px */
   transition: all 0.3s ease;
   display: flex;
@@ -254,7 +347,7 @@ const TestimonialQuote = styled.blockquote`
   font-size: 2.8rem; /* 28px */
   font-weight: 400;
   line-height: 1.4;
-  color: white;
+  color:#64748b;
   margin-bottom: 4rem; /* 40px */
   font-style: italic;
   max-width: 80rem; /* 800px */
@@ -316,7 +409,7 @@ const TestimonialProfilePlaceholder = styled.div`
 const TestimonialClientName = styled.h4`
   font-size: 1.6rem; /* 16px */
   font-weight: 600;
-  color: white;
+  color:#494949;
   margin-bottom: 0.4rem; /* 4px */
   
   @media (max-width: 48rem) { /* 480px */
@@ -326,7 +419,7 @@ const TestimonialClientName = styled.h4`
 
 const TestimonialClientTitle = styled.p`
   font-size: 1.2rem; /* 12px */
-  color: #cbd5e1;
+  color:#818181;
   font-weight: 500;
   
   @media (max-width: 48rem) { /* 480px */
@@ -377,7 +470,7 @@ const AboutSection = () => {
             <Description>{t.about.description}</Description>
           </Header>
           
-          <TeamGrid>
+          {/* <TeamGrid>
             {teamMembers.map((member, idx) => (
               <TeamCard key={idx}>
                 <ProfileSection>
@@ -402,7 +495,57 @@ const AboutSection = () => {
                 </TeamContent>
               </TeamCard>
             ))}
-          </TeamGrid>
+          </TeamGrid> */}
+          
+          <ServicesGrid>
+            <ServiceCard>
+              <ServiceIcon>🎨</ServiceIcon>
+              <ServiceTitle>Design & UX</ServiceTitle>
+              <ServiceDescription>
+                Crafting user-first UI/UX experiences using design systems and prototyping tools.
+              </ServiceDescription>
+            </ServiceCard>
+            
+            <ServiceCard>
+              <ServiceIcon>⚛️</ServiceIcon>
+              <ServiceTitle>Frontend Development</ServiceTitle>
+              <ServiceDescription>
+                Building high-performance, responsive interfaces using React, Vue & more.
+              </ServiceDescription>
+            </ServiceCard>
+            
+            <ServiceCard>
+              <ServiceIcon>🔧</ServiceIcon>
+              <ServiceTitle>Backend Engineering</ServiceTitle>
+              <ServiceDescription>
+                Robust, scalable APIs and infrastructure using Node.js, Python, Go, and more.
+              </ServiceDescription>
+            </ServiceCard>
+            
+            <ServiceCard>
+              <ServiceIcon>📱</ServiceIcon>
+              <ServiceTitle>Mobile App Dev</ServiceTitle>
+              <ServiceDescription>
+                Native & hybrid mobile experiences across Android & iOS platforms.
+              </ServiceDescription>
+            </ServiceCard>
+            
+            <ServiceCard>
+              <ServiceIcon>🧪</ServiceIcon>
+              <ServiceTitle>QA & Testing</ServiceTitle>
+              <ServiceDescription>
+                Automated & manual testing to ensure reliability across devices.
+              </ServiceDescription>
+            </ServiceCard>
+            
+            <ServiceCard>
+              <ServiceIcon>📋</ServiceIcon>
+              <ServiceTitle>Project Management</ServiceTitle>
+              <ServiceDescription>
+                Agile project coordination and smooth communication from kickoff to delivery.
+              </ServiceDescription>
+            </ServiceCard>
+          </ServicesGrid>
           
           <TestimonialDivider />
           
@@ -410,11 +553,11 @@ const AboutSection = () => {
             <TestimonialQuote dangerouslySetInnerHTML={{ __html: t.about.testimonial.quote }} />
             
             <TestimonialClient>
-              <TestimonialProfileImage>
+              {/* <TestimonialProfileImage>
                 <TestimonialProfilePlaceholder>
                   EJ
                 </TestimonialProfilePlaceholder>
-              </TestimonialProfileImage>
+              </TestimonialProfileImage> */}
               
               <TestimonialClientName>{t.about.testimonial.clientName}</TestimonialClientName>
               <TestimonialClientTitle>{t.about.testimonial.clientTitle}</TestimonialClientTitle>
