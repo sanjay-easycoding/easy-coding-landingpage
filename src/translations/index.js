@@ -124,7 +124,7 @@ export const translations = {
     about: {
       eyebrow: 'ABOUT US',
       title: "Meet the People Behind Easy Coding",
-      description: 'We’re a lean, global team of engineers, designers, and digital strategists based in Germany and India — building beautiful, scalable software for modern businesses.',
+      description: 'We\'re a lean, global team of engineers, designers, and digital strategists based in Germany and India — building beautiful, scalable software for modern businesses.',
       team: [
         {
           name: 'Aleksa Tachev',
@@ -139,7 +139,7 @@ export const translations = {
       ],
       linkedin: 'LINKEDIN',
       testimonial: {
-        quote: 'Working with this team was an absolute <span class="highlight">game-changer for our business</span>. Their flexible approach and attention to detail helped us streamline our processes and <span class="highlight">deliver results faster</span> than we anticipated.',
+        quote: 'Working with the Easy Coding team was a <span class="highlight">game-changer</span>. Their attention to detail and cross-functional collaboration helped us <span class="highlight">scale faster</span> than we anticipated.',
         clientName: 'Emily Johnson',
         clientTitle: 'Lead Product Manager at NextGen Innovators',
         bookCall: 'Book a call'

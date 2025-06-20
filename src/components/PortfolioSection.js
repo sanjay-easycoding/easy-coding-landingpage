@@ -317,16 +317,36 @@ const Navigation = styled.div`
 `;
 
 const NavDot = styled.button`
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
-  border: none;
-  background: ${props => props.isActive ? '#e11d48' : '#cbd5e1'};
+  border: 0.2rem solid ${props => props.isActive ? '#767676' : '#e2e8f0'};
+  // border: 0.2rem solid black;
+  background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &::before {
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: ${props => props.isActive ? '#767676' : '#cbd5e1'};
+    transition: all 0.3s ease;
+  }
+  
   &:hover {
-    background: ${props => props.isActive ? '#be185d' : '#94a3b8'};
+    border-color: ${props => props.isActive ? '#be185d' : '#e11d48'};
     transform: scale(1.1);
+    
+    &::before {
+      background: ${props => props.isActive ? '#be185d' : '#e11d48'};
+      transform: scale(1.2);
+    }
   }
 `;
 
@@ -430,7 +450,6 @@ const PortfolioSection = () => {
           </CarouselTrack>
         </CarouselContainer>
         <Navigation>
-
           {/* <NavArrow onClick={prevProject}>
             ←
           </NavArrow> */}
@@ -443,16 +462,13 @@ const PortfolioSection = () => {
             />
           ))}
 
-
           {/* <NavArrow onClick={nextProject}>
             →
           </NavArrow> */}
-
-
         </Navigation>
       </Container>
     </PortfolioWrapper>
   );
 };
 
-export default PortfolioSection; 
+export default PortfolioSection;
