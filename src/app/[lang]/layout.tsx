@@ -41,7 +41,7 @@ export default async function Layout({ children, params }: LayoutProps) {
     <>
       <LangAttribute lang={lang} />
       <Navbar />
-      <main className="pt-16">
+      <main >
         {children}
       </main>
       <Footer />
