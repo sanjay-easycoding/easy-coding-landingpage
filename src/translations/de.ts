@@ -211,15 +211,38 @@ export const de = {
 
   // About Section
   about: {
-    badge: 'Über uns',
-    title: 'Wir sind ein Team leidenschaftlicher Entwickler',
-    subtitle: 'Dediziert zur Schaffung innovativer Softwarelösungen, die Geschäftswachstum und Benutzerzufriedenheit fördern.',
-    description: 'Mit jahrelanger Erfahrung in der Softwareentwicklung sind wir spezialisiert auf die Entwicklung skalierbarer, leistungsstarker Anwendungen, die die einzigartigen Bedürfnisse unserer Kunden erfüllen. Unser Team kombiniert technische Expertise mit kreativer Problemlösung, um außergewöhnliche Ergebnisse zu liefern.',
-    stats: {
-      experience: 'Jahre Erfahrung',
-      projects: 'Abgeschlossene Projekte',
-      clients: 'Zufriedene Kunden',
-      team: 'Teammitglieder',
+    title: 'Über uns',
+    subtitle: 'Wir sind ein leidenschaftliches Team aus Entwicklern, Ingenieuren und Problemlösern, die sich darauf konzentrieren, Ihre Ideen in mächtige digitale Lösungen zu verwandeln.',
+    story: {
+      title: 'Unsere Geschichte',
+      paragraph1: 'Gegründet Anfang 2025, ist easyCoding von einem kleinen Startup zu einem vertrauensvollen Partner für Unternehmen weltweit gewachsen. Wir glauben, dass großartige Software die Kraft hat, Unternehmen zu transformieren und Leben zu verbessern.',
+      paragraph2: 'Unsere Mission ist es, innovative, skalierbare und benutzerfreundliche Lösungen zu liefern, die unseren Kunden helfen, ihre Ziele zu erreichen und in der digitalen Landschaft vorne zu bleiben.',
+    },
+    team: {
+      title: 'Unser Team',
+      subtitle: 'Die talentierten Personen hinter unserem Erfolg. Jedes Teammitglied bringt einzigartige Expertise und Leidenschaft in jedes Projekt ein.',
+      members: {
+        alex: {
+          name: 'Alex Johnson',
+          role: 'Gründer & CEO',
+          description: 'Visionärer Führer mit über 10 Jahren Erfahrung in Softwareentwicklung und Geschäftsstrategie.',
+        },
+        sarah: {
+          name: 'Sarah Chen',
+          role: 'Lead Designerin',
+          description: 'Kreative Designerin, die sich für die Schaffung intuitiver und schöner Benutzererfahrungen begeistert.',
+        },
+        mike: {
+          name: 'Mike Rodriguez',
+          role: 'Senior Entwickler',
+          description: 'Full-Stack-Entwickler mit Expertise in modernen Web-Technologien und Cloud-Lösungen.',
+        },
+        emily: {
+          name: 'Emily Watson',
+          role: 'Produktmanagerin',
+          description: 'Strategische Produktmanagerin, die sich auf die Bereitstellung von Wert durch benutzerzentrierte Lösungen konzentriert.',
+        },
+      },
     },
   },
 
@@ -246,14 +269,25 @@ export const de = {
 
   // Footer
   footer: {
+    tagline: 'Wir bauen die Zukunft mit innovativen Technologielösungen.',
     description: 'Wir entwickeln innovative Softwarelösungen für die digitale Zukunft.',
     quickLinks: 'Schnelllinks',
     services: 'Dienstleistungen',
     about: 'Über uns',
+    caseStudies: 'Fallstudien',
+    careers: 'Karriere',
     contact: 'Kontakt',
-    legal: 'Rechtliches',
-    privacy: 'Datenschutzrichtlinie',
-    terms: 'Nutzungsbedingungen',
-    rights: 'Alle Rechte vorbehalten',
+    location: 'Bangalore, Indien',
+    copyright: '© 2025 easyCoding. Alle Rechte vorbehalten.',
+    legal: {
+      privacy: 'Datenschutzrichtlinie',
+      terms: 'Nutzungsbedingungen',
+      cookies: 'Cookie-Richtlinie',
+    },
+    social: {
+      facebook: 'Folgen Sie uns auf Facebook',
+      twitter: 'Folgen Sie uns auf Twitter',
+      linkedin: 'Folgen Sie uns auf LinkedIn',
+    },
   },
 }; 

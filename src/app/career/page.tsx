@@ -9,7 +9,7 @@ export default function CareerPage() {
       <main className="pt-16">
         <CareerHero lang="de" />
       </main>
-      <Footer lang="de" />
+      <Footer />
     </>
   );
 } 

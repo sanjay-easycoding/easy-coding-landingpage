@@ -44,7 +44,7 @@ export default async function Layout({ children, params }: LayoutProps) {
       <main className="pt-16">
         {children}
       </main>
-      <Footer lang={lang} />
+      <Footer />
     </>
   );
 } 

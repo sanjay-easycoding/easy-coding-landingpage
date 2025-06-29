@@ -211,15 +211,38 @@ export const en = {
 
   // About Section
   about: {
-    badge: 'About Us',
-    title: 'We are a team of passionate developers',
-    subtitle: 'Dedicated to creating innovative software solutions that drive business growth and user satisfaction.',
-    description: 'With years of experience in software development, we specialize in building scalable, high-performance applications that meet the unique needs of our clients. Our team combines technical expertise with creative problem-solving to deliver exceptional results.',
-    stats: {
-      experience: 'Years of Experience',
-      projects: 'Projects Completed',
-      clients: 'Happy Clients',
-      team: 'Team Members',
+    title: 'About Us',
+    subtitle: 'We\'re a passionate team of creators, engineers, and problem-solvers dedicated to turning your ideas into powerful digital solutions.',
+    story: {
+      title: 'Our Story',
+      paragraph1: 'Founded in early 2025, easyCoding has grown from a small startup to a trusted partner for businesses worldwide. We believe that great software has the power to transform businesses and improve lives.',
+      paragraph2: 'Our mission is to deliver innovative, scalable, and user-friendly solutions that help our clients achieve their goals and stay ahead in the digital landscape.',
+    },
+    team: {
+      title: 'Meet Our Team',
+      subtitle: 'The talented individuals behind our success. Each team member brings unique expertise and passion to every project.',
+      members: {
+        alex: {
+          name: 'Alex Johnson',
+          role: 'Founder & CEO',
+          description: 'Visionary leader with 10+ years in software development and business strategy.',
+        },
+        sarah: {
+          name: 'Sarah Chen',
+          role: 'Lead Designer',
+          description: 'Creative designer passionate about creating intuitive and beautiful user experiences.',
+        },
+        mike: {
+          name: 'Mike Rodriguez',
+          role: 'Senior Developer',
+          description: 'Full-stack developer with expertise in modern web technologies and cloud solutions.',
+        },
+        emily: {
+          name: 'Emily Watson',
+          role: 'Product Manager',
+          description: 'Strategic product manager focused on delivering value through user-centered solutions.',
+        },
+      },
     },
   },
 
@@ -246,14 +269,25 @@ export const en = {
 
   // Footer
   footer: {
+    tagline: 'Building the future with innovative technology solutions.',
     description: 'We develop innovative software solutions for the digital future.',
     quickLinks: 'Quick Links',
     services: 'Services',
-    about: 'About',
+    about: 'About Us',
+    caseStudies: 'Case Studies',
+    careers: 'Careers',
     contact: 'Contact',
-    legal: 'Legal',
-    privacy: 'Privacy Policy',
-    terms: 'Terms of Service',
-    rights: 'All rights reserved',
+    location: 'Bangalore, India',
+    copyright: '© 2025 easyCoding. All rights reserved.',
+    legal: {
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Service',
+      cookies: 'Cookie Policy',
+    },
+    social: {
+      facebook: 'Follow us on Facebook',
+      twitter: 'Follow us on Twitter',
+      linkedin: 'Follow us on LinkedIn',
+    },
   },
 }; 
