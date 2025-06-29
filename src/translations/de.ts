@@ -248,22 +248,245 @@ export const de = {
 
   // Contact Section
   contact: {
-    badge: 'Kontakt aufnehmen',
-    title: 'Bereit, Ihr Projekt zu starten?',
-    subtitle: 'Lassen Sie uns besprechen, wie wir Ihnen helfen können, Ihre Ideen zum Leben zu erwecken.',
+    badge: 'Kontakt',
+    title: 'Kontakt aufnehmen',
+    subtitle: 'Bereit, Ihr Projekt zu starten? Wir würden gerne von Ihnen hören. Lassen Sie uns besprechen, wie wir Ihnen helfen können, Ihre Ideen zum Leben zu erwecken.',
+    toggleShow: 'Klicken Sie hier, um uns zu kontaktieren',
+    toggleHide: 'Formular ausblenden',
     form: {
-      name: 'Vollständiger Name',
-      email: 'E-Mail-Adresse',
-      company: 'Unternehmen',
-      message: 'Erzählen Sie uns von Ihrem Projekt',
+      title: 'Senden Sie uns eine Nachricht',
+      fields: {
+        name: 'Vollständiger Name',
+        email: 'E-Mail-Adresse',
+        company: 'Unternehmen (Optional)',
+        message: 'Erzählen Sie uns von Ihrem Projekt, Zeitplan und spezifischen Anforderungen...',
+      },
       submit: 'Nachricht senden',
-      success: 'Nachricht erfolgreich gesendet!',
-      error: 'Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.',
+      success: 'Vielen Dank für Ihre Nachricht! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.',
+      successTitle: 'Nachricht erfolgreich gesendet!',
+      sending: 'Wird gesendet...',
+      errors: {
+        failed: 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+        network: 'Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
+      },
     },
     info: {
       email: 'info@easycoding.com',
       phone: '+49 123 456 789',
       address: 'Berlin, Deutschland',
+    },
+  },
+
+  // Career Page
+  career: {
+    hero: {
+      title: 'Werden Sie Teil unseres',
+      titleHighlight: ' Teams',
+      subtitle: 'Gestalten Sie die Zukunft mit uns. Wir suchen leidenschaftliche Menschen, die einen Unterschied in der Welt der Technologie und Innovation machen möchten.',
+      viewPositions: 'Offene Positionen anzeigen',
+      learnCulture: 'Unsere Kultur kennenlernen',
+    },
+    values: {
+      title: 'Unsere Werte',
+      subtitle: 'Diese Kernwerte leiten alles, was wir tun, und prägen unsere Unternehmenskultur.',
+      innovation: {
+        title: 'Innovation',
+        description: 'Wir erweitern ständig Grenzen und nutzen neue Technologien, um wegweisende Lösungen zu schaffen.',
+      },
+      collaboration: {
+        title: 'Zusammenarbeit',
+        description: 'Wir glauben an die Kraft des Teamworks und fördern eine Umgebung, in der jede Stimme zählt.',
+      },
+      excellence: {
+        title: 'Exzellenz',
+        description: 'Wir streben nach Exzellenz in allem, was wir tun, von Code-Qualität bis zur Benutzererfahrung.',
+      },
+      growth: {
+        title: 'Wachstum',
+        description: 'Wir unterstützen kontinuierliches Lernen und persönliche Entwicklung für alle Teammitglieder.',
+      },
+    },
+    perks: {
+      title: 'Warum zu uns?',
+      subtitle: 'Wir glauben daran, uns um unsere Teammitglieder zu kümmern und eine Umgebung zu schaffen, in der sie sich entfalten können.',
+      creativeFreedom: {
+        title: 'Kreative Freiheit',
+        description: 'Ihre Ideen zählen. Gestalten Sie die UI/UX von Live-Webprodukten, die von echten Nutzern verwendet werden.',
+      },
+      challengingWork: {
+        title: 'Herausfordernde Arbeit',
+        description: 'Entwickeln und optimieren Sie moderne, skalierbare Web-Apps — nicht nur Landing Pages.',
+      },
+      remoteCulture: {
+        title: 'Remote-First-Kultur',
+        description: 'Genießen Sie vollständige Flexibilität beim Arbeiten von überall in Indien.',
+      },
+      modernStack: {
+        title: 'Moderner Tech-Stack',
+        description: 'Nutzen Sie die neuesten Frontend-Frameworks, Tools und Workflows.',
+      },
+      collaborativeTeam: {
+        title: 'Kollaboratives Team',
+        description: 'Werden Sie Teil eines unterstützenden, qualifizierten Teams mit offener Kommunikation und geteilter Verantwortung.',
+      },
+      indiaOffice: {
+        title: 'Indisches Büro',
+        description: 'Werden Sie offiziell Teil unserer indischen Einheit mit einem Bangalore-basierten Hauptsitz.',
+      },
+    },
+    jobs: {
+      title: 'Offene Positionen',
+      subtitle: 'Bereit, unserem Team beizutreten? Schauen Sie sich unsere aktuellen Stellenangebote an und finden Sie die perfekte Rolle für Sie.',
+      applyNow: 'Jetzt bewerben',
+      responsibilities: 'Verantwortlichkeiten',
+      requirements: 'Anforderungen',
+      frontendDeveloper: {
+        title: 'Frontend-Entwickler – Web',
+        department: 'Entwicklung',
+        location: 'Remote (Homeoffice – Indien)',
+        office: 'Bangalore, Indien',
+        type: 'Vollzeit',
+        description: 'Wir suchen einen talentierten Frontend-Webentwickler für unser indisches Team. In dieser vollständig remote Rolle arbeiten Sie an der Entwicklung responsiver, leistungsstarker Webanwendungen, die nahtlose Benutzererfahrungen bieten. Obwohl Sie von zu Hause aus arbeiten, sind Sie offiziell Teil unseres indischen Büros in Bangalore.',
+        responsibilities: [
+          'Entwicklung skalierbarer, responsiver Webanwendungen mit modernen JavaScript-Frameworks (React, Angular oder Vue)',
+          'Übersetzung von UI/UX-Designs in pixelgenaue Web-Oberflächen',
+          'Optimierung von Anwendungen für Geschwindigkeit, Leistung und Cross-Browser-Kompatibilität',
+          'Enge Zusammenarbeit mit Designern, Backend-Entwicklern und Produktmanagern',
+          'Schreiben von sauberem, wartbarem und testbarem Code',
+          'Code-Reviews durchführen und bei Bedarf Junior-Entwickler betreuen'
+        ],
+        requirements: [
+          '2–5 Jahre praktische Erfahrung in der Frontend-Webentwicklung',
+          'Starke Kenntnisse in HTML5, CSS3, JavaScript und mindestens einem Frontend-Framework',
+          'Vertrautheit mit RESTful APIs und Backend-Integration',
+          'Erfahrung mit responsivem Design und modernen UI-Patterns',
+          'Beherrschung von Git und Versionskontroll-Workflows',
+          'Starke Problemlösungsfähigkeiten und Aufmerksamkeit für Details'
+        ],
+      },
+      flutterDeveloper: {
+        title: 'Flutter-Entwickler – Mobile Apps',
+        department: 'Entwicklung',
+        location: 'Remote (Homeoffice – Indien)',
+        office: 'Bangalore, Indien',
+        type: 'Vollzeit',
+        description: 'Wir suchen einen Flutter-Entwickler, der uns dabei hilft, schöne, leistungsstarke mobile Apps für Android und iOS zu entwickeln. Dies ist eine vollständig remote Position, aber Sie werden ein wichtiger Teil unseres indischen Teams sein und an unser Bangalore-Büro berichten.',
+        responsibilities: [
+          'Entwicklung plattformübergreifender mobiler Apps mit Flutter und Dart',
+          'Zusammenarbeit mit Produkt-, Design- und Backend-Teams für End-to-End-Features',
+          'Optimierung der mobilen App-Leistung, Zuverlässigkeit und Reaktionsfähigkeit',
+          'Implementierung flüssiger Animationen und moderner UI/UX-Flows',
+          'Aufrechterhaltung hoher Code-Qualität und Teilnahme an Code-Reviews',
+          'Diagnose und Behebung von Bugs und Leistungsengpässen'
+        ],
+        requirements: [
+          '2-5 Jahre Erfahrung in der mobilen App-Entwicklung mit mindestens 1-2 Jahren Flutter',
+          'Starke Kenntnisse in Dart und dem Flutter SDK',
+          'Vertrautheit mit mobilen Architektur-Patterns und State Management (z.B. Bloc, Provider, Riverpod)',
+          'Erfahrung mit der Integration von REST APIs und Drittanbieter-Bibliotheken',
+          'Starke Debugging-, Optimierungs- und Problemlösungsfähigkeiten',
+          'Erfahrung mit der Veröffentlichung von Apps im App Store oder Google Play ist ein Plus'
+        ],
+      },
+    },
+    cta: {
+      title: 'Nicht die richtige Rolle gefunden?',
+      subtitle: 'Wir suchen immer talentierte Menschen für unser Team. Senden Sie uns Ihren Lebenslauf und lassen Sie uns ein Gespräch beginnen!',
+      sendResume: 'Lebenslauf senden',
+      contactUs: 'Kontakt aufnehmen',
+    },
+    modals: {
+      apply: {
+        title: 'Für diese Position bewerben',
+        submit: 'Bewerbung einreichen',
+        error: 'Bewerbung konnte nicht eingereicht werden. Bitte versuchen Sie es erneut.',
+        success: {
+          title: 'Bewerbung eingereicht!',
+          message: 'Vielen Dank für Ihre Bewerbung. Wir werden Ihre Bewerbung prüfen und uns bald bei Ihnen melden.'
+        },
+        fields: {
+          name: 'Vollständiger Name *',
+          email: 'E-Mail-Adresse *',
+          phone: 'Telefonnummer',
+          linkedin: 'LinkedIn-Profil',
+          github: 'GitHub-Profil',
+          coverLetter: 'Anschreiben',
+          coverLetterPlaceholder: 'Erzählen Sie uns, warum Sie perfekt für diese Rolle sind (optional)',
+          experience: 'Jahre Erfahrung',
+          experiencePlaceholder: 'Wählen Sie Ihr Erfahrungsniveau',
+          experienceOptions: {
+            '0-1': '0-1 Jahre',
+            '1-3': '1-3 Jahre',
+            '3-5': '3-5 Jahre',
+            '5-10': '5-10 Jahre',
+            '10+': '10+ Jahre',
+          },
+          position: 'Bevorzugte Position',
+          positionPlaceholder: 'Wählen Sie Ihre bevorzugte Rolle',
+          positionOptions: {
+            frontend: 'Frontend-Entwickler',
+            backend: 'Backend-Entwickler',
+            fullstack: 'Full Stack-Entwickler',
+            mobile: 'Mobile-Entwickler',
+            devops: 'DevOps-Ingenieur',
+            'ui-ux': 'UI/UX-Designer',
+            other: 'Andere',
+          },
+          resume: 'Lebenslauf / CV *',
+          resumePlaceholder: 'Lebenslauf hochladen (PDF, DOC, DOCX)',
+        },
+        errors: {
+          name: 'Vollständiger Name ist erforderlich.',
+          email: 'Eine gültige E-Mail-Adresse ist erforderlich.',
+          resume: 'Lebenslauf ist erforderlich.',
+        }
+      },
+      resume: {
+        title: 'Lebenslauf senden',
+        subtitle: 'Keine passende Position gefunden? Senden Sie uns Ihren Lebenslauf und wir melden uns, wenn es eine Übereinstimmung gibt.',
+        submit: 'Lebenslauf senden',
+        error: 'Lebenslauf konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+        success: {
+          title: 'Lebenslauf gesendet!',
+          message: 'Vielen Dank für Ihr Interesse. Wir bewahren Ihren Lebenslauf auf und kontaktieren Sie, wenn eine passende Position frei wird.'
+        },
+        fields: {
+          name: 'Vollständiger Name *',
+          email: 'E-Mail-Adresse *',
+          phone: 'Telefonnummer',
+          linkedin: 'LinkedIn-Profil',
+          github: 'GitHub-Profil',
+          message: 'Nachricht',
+          messagePlaceholder: 'Erzählen Sie uns von Ihren Fähigkeiten, Erfahrungen oder was Sie suchen (optional)',
+          experience: 'Jahre Erfahrung',
+          experiencePlaceholder: 'Wählen Sie Ihr Erfahrungsniveau',
+          experienceOptions: {
+            '0-1': '0-1 Jahre',
+            '1-3': '1-3 Jahre',
+            '3-5': '3-5 Jahre',
+            '5-10': '5-10 Jahre',
+            '10+': '10+ Jahre',
+          },
+          position: 'Bevorzugte Position',
+          positionPlaceholder: 'Wählen Sie Ihre bevorzugte Rolle',
+          positionOptions: {
+            frontend: 'Frontend-Entwickler',
+            backend: 'Backend-Entwickler',
+            fullstack: 'Full Stack-Entwickler',
+            mobile: 'Mobile-Entwickler',
+            devops: 'DevOps-Ingenieur',
+            'ui-ux': 'UI/UX-Designer',
+            other: 'Andere',
+          },
+          resume: 'Lebenslauf / CV *',
+          resumePlaceholder: 'Lebenslauf hochladen (PDF, DOC, DOCX)',
+        },
+        errors: {
+          name: 'Vollständiger Name ist erforderlich.',
+          email: 'Eine gültige E-Mail-Adresse ist erforderlich.',
+          resume: 'Lebenslauf ist erforderlich.',
+        }
+      }
     },
   },
 
@@ -289,5 +512,13 @@ export const de = {
       twitter: 'Folgen Sie uns auf Twitter',
       linkedin: 'Folgen Sie uns auf LinkedIn',
     },
+  },
+
+  // Common
+  common: {
+    close: 'Schließen',
+    cancel: 'Abbrechen',
+    loading: 'Wird geladen...',
+    validationErrors: 'Bitte beheben Sie die folgenden Fehler:',
   },
 }; 

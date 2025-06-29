@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import Approach from "@/components/Approach";
 import TechStack from "@/components/TechStack";
 import Services from "@/components/Services";
+import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Services />
         <About />
         <Testimonials />
+        <Contact />
       </main>
       <Footer />
     </>

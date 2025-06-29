@@ -28,19 +28,31 @@ const getNestedValue = (obj: any, path: string): string => {
   }, obj);
 };
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguageState] = useState<Language>('de'); // Default to German
+export const LanguageProvider = ({ 
+  children, 
+  initialLanguage 
+}: { 
+  children: ReactNode;
+  initialLanguage?: 'en' | 'de';
+}) => {
+  const [language, setLanguageState] = useState<Language>(initialLanguage || 'de');
 
   useEffect(() => {
-    // Load language from localStorage if available and user has explicitly set a preference
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'de')) {
-      setLanguageState(savedLanguage);
+    if (initialLanguage) {
+      // If initialLanguage is provided, use it and save to localStorage
+      setLanguageState(initialLanguage);
+      localStorage.setItem('language', initialLanguage);
     } else {
-      // Ensure German is set as default and saved to localStorage for new users
-      localStorage.setItem('language', 'de');
+      // Load language from localStorage if available and user has explicitly set a preference
+      const savedLanguage = localStorage.getItem('language') as Language;
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'de')) {
+        setLanguageState(savedLanguage);
+      } else {
+        // Ensure German is set as default and saved to localStorage for new users
+        localStorage.setItem('language', 'de');
+      }
     }
-  }, []);
+  }, [initialLanguage]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
