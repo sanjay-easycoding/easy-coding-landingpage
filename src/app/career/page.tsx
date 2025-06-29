@@ -6,7 +6,7 @@ export default function CareerPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-16">
+      <main>
         <CareerHero lang="de" />
       </main>
       <Footer />

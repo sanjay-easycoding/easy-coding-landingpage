@@ -2,205 +2,127 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { FaRocket, FaArrowRight, FaPlay } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { FaArrowRight, FaRocket, FaCode, FaUsers } from 'react-icons/fa';
+import Lottie from 'lottie-react';
+import codingAnimation from '../../public/coding-animation3.json';
+import { useScrollTo } from '@/hooks/useScrollTo';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface HeroProps {
   lang: 'de' | 'en';
 }
 
 const Hero: React.FC<HeroProps> = ({ lang }) => {
-  const translations = {
-    de: {
-      title: 'Innovative Softwarelösungen für die digitale Zukunft',
-      subtitle: 'Wir entwickeln maßgeschneiderte Anwendungen, die Ihr Unternehmen voranbringen. Von Web-Apps bis zu mobilen Lösungen - wir machen Ihre Vision zur Realität.',
-      ctaPrimary: 'Projekt starten',
-      ctaSecondary: 'Mehr erfahren',
-      watchDemo: 'Demo ansehen',
-      stats: {
-        projects: 'Projekte',
-        clients: 'Kunden',
-        years: 'Jahre Erfahrung'
-      }
-    },
-    en: {
-      title: 'Innovative Software Solutions for the Digital Future',
-      subtitle: 'We develop custom applications that drive your business forward. From web apps to mobile solutions - we turn your vision into reality.',
-      ctaPrimary: 'Start Project',
-      ctaSecondary: 'Learn More',
-      watchDemo: 'Watch Demo',
-      stats: {
-        projects: 'Projects',
-        clients: 'Clients',
-        years: 'Years Experience'
-      }
-    }
+  const { scrollToSection } = useScrollTo();
+  const { t } = useLanguage();
+
+  const scrollToContact = () => {
+    scrollToSection("letsTalk", "/#letsTalk");
   };
 
-  const t = translations[lang];
+  const scrollToServices = () => {
+    scrollToSection("services", "/#services");
+  };
+
+  // Add gradient classes for top stripes and backgrounds for stat cards
+  const statStripeGradients = [
+    'from-cyan-400 to-blue-500',    // Projects
+    'from-blue-500 to-purple-500',  // Clients
+    'from-purple-500 to-pink-400',  // Support
+  ];
+  const statBgColors = [
+    'bg-cyan-50/80',
+    'bg-blue-50/80',
+    'bg-purple-50/80',
+  ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <section className="relative w-full pt-36 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50" role="banner" aria-label="Hero section">
+      
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5" aria-hidden="true">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-30"
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 100 - 50, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 3 + i,
-              repeat: Infinity,
-              delay: i * 0.5,
-            }}
-            style={{
-              left: `${20 + i * 10}%`,
-              top: `${30 + i * 8}%`,
-            }}
-          />
-        ))}
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Content */}
+          <article className="text-center lg:text-left">
+            
+            {/* Badge */}
+            <header>
+              <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 rounded-full mb-3 sm:mb-4 md:mb-6">
+                <FaRocket className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-600 mr-1.5 sm:mr-2" aria-hidden="true" />
+                <span className="text-xs sm:text-sm font-medium text-cyan-700">
+                  {t('hero.badge')}
+                </span>
+              </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="text-center">
-          {/* Main Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight"
-            >
-              <span className="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                {t.title.split(' ').slice(0, 2).join(' ')}
-              </span>
-              <br />
-              <span className="text-slate-800">
-                {t.title.split(' ').slice(2).join(' ')}
-              </span>
-            </motion.h1>
+              {/* Main Heading */}
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-2 sm:mb-3 md:mb-4 leading-tight px-2 sm:px-0">
+                {t('hero.title')}
+                <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent block sm:inline">{t('hero.titleHighlight')}</span>
+              </h1>
+            </header>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-8"
-            >
-              {t.subtitle}
-            </motion.p>
-          </motion.div>
+            {/* Description */}
+            <p className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto lg:mx-0 mb-3 sm:mb-4 md:mb-6 px-2 sm:px-0 leading-relaxed">
+              {t('hero.description')}
+            </p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12"
-          >
-            <Link
-              href={`/${lang === 'de' ? '' : lang}/contact`}
-              className="group relative inline-flex items-center px-8 py-4 text-lg font-semibold bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 10 }}
-                whileTap={{ scale: 0.95 }}
-                className="mr-3 relative z-10"
+            {/* CTA Buttons */}
+            <nav className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start px-2 sm:px-0 mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-8 md:mt-10 lg:mt-12" role="navigation" aria-label="Call to action buttons">
+              <button 
+                onClick={scrollToContact} 
+                className="px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 active:bg-blue-700 border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transform transition-all duration-150 ease-in-out flex items-center justify-center gap-2"
+                aria-label="Start your project with EasyCoding"
               >
-                <FaRocket className="w-5 h-5" />
-              </motion.div>
-              <span className="relative z-10">{t.ctaPrimary}</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-700 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={false}
-              />
-            </Link>
-
-            <div className="flex items-center space-x-4">
-              <Link
-                href={`/${lang === 'de' ? '' : lang}/about`}
-                className="group inline-flex items-center px-6 py-3 text-lg font-semibold border-2 border-slate-300 text-slate-700 rounded-2xl hover:border-cyan-500 hover:text-cyan-600 transition-all duration-300"
-              >
-                <span>{t.ctaSecondary}</span>
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  className="ml-2"
-                >
-                  <FaArrowRight className="w-4 h-4" />
-                </motion.div>
-              </Link>
-
-              <button className="group inline-flex items-center px-4 py-3 text-lg font-semibold text-slate-600 hover:text-cyan-600 transition-colors duration-300">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mr-3 shadow-lg"
-                >
-                  <FaPlay className="w-4 h-4 text-white ml-1" />
-                </motion.div>
-                <span>{t.watchDemo}</span>
+                <span>{t('nav.startProject')}</span>
+                <FaArrowRight className="w-3 h-3" aria-hidden="true" />
               </button>
+              
+              <button 
+                onClick={scrollToServices}
+                className="px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm border border-slate-200 text-slate-700 font-semibold rounded-full shadow-md hover:bg-slate-50 hover:border-slate-300 transition-all duration-150 ease-in-out"
+                aria-label="Explore our services"
+              >
+                {t('nav.exploreServices')}
+              </button>
+            </nav>
+
+            {/* Stats */}
+            <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0" aria-label="Company statistics">
+              {[0,1,2].map(idx => (
+                <article key={idx} className={`rounded-xl ${statBgColors[idx]} backdrop-blur-sm border border-white/50 shadow-sm overflow-hidden text-center`}>
+                  <div className={`h-2 w-full bg-gradient-to-r ${statStripeGradients[idx]}`} />
+                  <div className="p-2.5 sm:p-3 md:p-4">
+                    <div className="flex justify-center mb-1.5 sm:mb-2">
+                      {idx === 0 && <FaCode className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600" aria-hidden="true" />}
+                      {idx === 1 && <FaUsers className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" aria-hidden="true" />}
+                      {idx === 2 && <FaRocket className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" aria-hidden="true" />}
+                    </div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-0.5 sm:mb-1">{idx === 0 ? '18+' : idx === 1 ? '10+' : '24/7'}</div>
+                    <div className="text-xs text-slate-600">{idx === 0 ? t('hero.stats.projects') : idx === 1 ? t('hero.stats.clients') : t('hero.stats.support')}</div>
+                  </div>
+                </article>
+              ))}
+            </section>
+          </article>
+
+          {/* Right Animation */}
+          <aside className="hidden lg:flex items-center justify-center" aria-label="Coding animation">
+            <div className="w-full max-w-md xl:max-w-lg">
+              <Lottie 
+                animationData={codingAnimation} 
+                loop={true}
+                autoplay={true}
+                className="w-full h-auto"
+                aria-label="Animated coding illustration"
+              />
             </div>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-center"
-            >
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent mb-2">
-                150+
-              </div>
-              <div className="text-slate-600 font-medium">
-                {t.stats.projects}
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-center"
-            >
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-2">
-                50+
-              </div>
-              <div className="text-slate-600 font-medium">
-                {t.stats.clients}
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-center"
-            >
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent mb-2">
-                8+
-              </div>
-              <div className="text-slate-600 font-medium">
-                {t.stats.years}
-              </div>
-            </motion.div>
-          </motion.div>
+          </aside>
         </div>
       </div>
     </section>

@@ -82,6 +82,8 @@ const Portfolio = () => {
                         src={project.image} 
                         alt={project.title} 
                         fill
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="rounded-xl transition-transform duration-500 group-hover:scale-105 h-[400px] object-contain"  
                       />
                     </div>
