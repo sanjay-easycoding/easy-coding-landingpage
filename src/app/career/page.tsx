@@ -1,15 +1,15 @@
-import Hero from "@/components/Hero";
+import CareerHero from "@/components/CareerHero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function CareerPage() {
   return (
     <>
       <Navbar />
       <main className="pt-16">
-        <Hero lang="de" />
+        <CareerHero lang="de" />
       </main>
       <Footer lang="de" />
     </>
   );
-}
+} 
