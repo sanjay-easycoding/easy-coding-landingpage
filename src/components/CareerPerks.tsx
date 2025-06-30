@@ -52,7 +52,7 @@ const CareerPerks = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50" aria-labelledby="perks-heading">
+    <section id="why-join-us" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50" aria-labelledby="perks-heading">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-12 sm:mb-16">
           <h2 id="perks-heading" className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">

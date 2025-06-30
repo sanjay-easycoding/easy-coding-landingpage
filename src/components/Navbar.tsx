@@ -111,7 +111,7 @@ const Navbar = () => {
         className="flex items-center gap-2 px-2 xl:px-3 py-2 text-xs font-medium text-slate-600 hover:text-slate-800 transition-all duration-300 rounded-lg hover:bg-white/50"
       >
         <FaGlobe className="w-3 xl:w-4 h-3 xl:h-4" />
-        <span className="hidden sm:inline">{language.toUpperCase()}</span>
+          <span className="hidden sm:inline font-medium font-family-inter text-sm">{language.toUpperCase()}</span>
         <FaChevronDown className={`w-2 xl:w-3 h-2 xl:h-3 transition-transform duration-300 ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} />
       </button>
       {isLanguageDropdownOpen && (
@@ -125,7 +125,7 @@ const Navbar = () => {
             }`}
           >
             <img src="/en.png" alt="English flag" width={16} height={12} className="xl:w-5 xl:h-4 rounded-sm" />
-            English
+            <span className="font-medium font-family-inter text-sm">English</span>
           </button>
           <button 
             onClick={() => selectLanguage('de')} 
@@ -136,7 +136,7 @@ const Navbar = () => {
             }`}
           >
             <img src="/de.png" alt="German flag" width={16} height={12} className="xl:w-5 xl:h-4 rounded-sm" />
-            Deutsch
+            <span className="font-medium font-family-inter text-sm">Deutsch</span>
           </button>
         </div>
       )}
@@ -150,7 +150,7 @@ const Navbar = () => {
         className="w-full flex justify-center items-center gap-2 text-sm sm:text-base font-medium py-3 text-slate-600 hover:text-slate-800 transition-colors rounded-lg hover:bg-slate-50/50"
       >
         <FaGlobe className="w-4 h-4" />
-        {language.toUpperCase()}
+        <span className="font-medium font-family-inter text-sm">{language.toUpperCase()}</span>
         <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${isMobileLanguageOpen ? 'rotate-180' : ''}`} />
       </button>
       {isMobileLanguageOpen && (
@@ -165,7 +165,7 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-center gap-2">
               <img src="/en.png" alt="English flag" width={18} height={14} className="sm:w-5 sm:h-4 rounded-sm" />
-              English
+              <span className="font-medium font-family-inter text-sm">English</span>
             </div>
           </button>
           <button 
@@ -178,7 +178,7 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-center gap-2">
               <img src="/de.png" alt="German flag" width={18} height={14} className="sm:w-5 sm:h-4 rounded-sm" />
-              Deutsch
+              <span className="font-medium font-family-inter text-sm">Deutsch</span>  
             </div>
           </button>
         </div>

@@ -28,11 +28,11 @@ const CareerCTA: React.FC<CareerCTAProps> = ({ onSendResume }) => {
           >
             {t('career.cta.sendResume')}
           </button>
-          <Link href="/#letsTalk" aria-label="Contact easyCoding team">
+          {/* <Link href="/#letsTalk" aria-label="Contact easyCoding team">
             <button className="px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base border border-white text-white font-semibold rounded-full shadow-md hover:bg-white hover:text-cyan-600 transition-all duration-150 ease-in-out">
               {t('career.cta.contactUs')}
             </button>
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </section>

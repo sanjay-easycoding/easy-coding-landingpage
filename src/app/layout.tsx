@@ -24,11 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider initialLanguage="de">
+        <LanguageProvider initialLanguage="en">
           {children}
         </LanguageProvider>
       </body>

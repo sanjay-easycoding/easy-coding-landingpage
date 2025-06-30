@@ -20,7 +20,7 @@ const Footer = () => {
             <p className="text-xs sm:text-sm md:text-sm text-slate-400 mb-4 leading-relaxed">
               {t('footer.tagline')}
             </p>
-            <nav className="flex justify-center md:justify-start gap-3" aria-label="Social media links">
+            {/* <nav className="flex justify-center md:justify-start gap-3" aria-label="Social media links">
               <a href="#" aria-label={t('footer.social.facebook')} className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 hover:text-blue-400 hover:bg-blue-900 transition-all duration-300">
                 <FaFacebookF size={14} aria-hidden="true" />
               </a>
@@ -30,7 +30,7 @@ const Footer = () => {
               <a href="#" aria-label={t('footer.social.linkedin')} className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 hover:text-blue-500 hover:bg-blue-900 transition-all duration-300">
                 <FaLinkedinIn size={14} aria-hidden="true" />
               </a>
-            </nav>
+            </nav> */}
           </section>
 
           {/* Quick Links */}
@@ -98,13 +98,10 @@ const Footer = () => {
               {t('footer.copyright')}
             </p>
             <nav className="flex flex-wrap justify-center sm:justify-end gap-x-4 gap-y-2" aria-label="Legal links">
-              <a href="#" className="text-xs sm:text-sm md:text-sm text-slate-400 hover:text-white transition-colors">
-                {t('footer.legal.privacy')}
+              <a href="/terms-and-privacy" className="text-xs sm:text-sm md:text-sm text-slate-400 hover:text-white transition-colors">
+                {t('footer.legal.termsPrivacy')}
               </a>
-              <a href="#" className="text-xs sm:text-sm md:text-sm text-slate-400 hover:text-white transition-colors">
-                {t('footer.legal.terms')}
-              </a>
-              <a href="#" className="text-xs sm:text-sm md:text-sm text-slate-400 hover:text-white transition-colors">
+              <a href="/cookie-policy" className="text-xs sm:text-sm md:text-sm text-slate-400 hover:text-white transition-colors">
                 {t('footer.legal.cookies')}
               </a>
             </nav>

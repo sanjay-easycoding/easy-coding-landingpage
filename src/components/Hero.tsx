@@ -61,10 +61,17 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-2 sm:mb-3 md:mb-4 leading-tight px-2 sm:px-0">
-                {t('hero.title')}
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight px-2 sm:px-0">
+                <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-cyan-600 bg-clip-text text-transparent">
+                  {t('hero.title')}
+                </span>
                 <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent block sm:inline">{t('hero.titleHighlight')}</span>
               </h1>
+
+              {/* Subtitle */}
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-3 sm:mb-4 md:mb-6 px-2 sm:px-0 font-semibold">
+                {t('hero.subtitle')}
+              </p>
             </header>
 
             {/* Description */}

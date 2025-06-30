@@ -24,9 +24,11 @@ const CareerHero = () => {
                 {t('career.hero.viewPositions')}
               </button>
             </Link>
-            <button className="px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base border border-slate-200 text-slate-700 font-semibold rounded-full shadow-md hover:bg-slate-50 hover:border-slate-300 transition-all duration-150 ease-in-out">
-              {t('career.hero.learnCulture')}
-            </button>
+            <Link href="#why-join-us" aria-label="Learn about why to join our team">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base border border-slate-200 text-slate-700 font-semibold rounded-full shadow-md hover:bg-slate-50 hover:border-slate-300 transition-all duration-150 ease-in-out">
+                {t('career.hero.whyJoinUs')}
+              </button>
+            </Link>
           </nav>
         </div>
       </div>

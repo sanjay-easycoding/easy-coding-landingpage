@@ -14,9 +14,10 @@ export const en = {
   // Hero Section
   hero: {
     badge: 'Your Reliable IT Partner',
-    title: 'Software solutions',
-    titleHighlight: ' for your projects',
-    description: 'From product creation to process optimization and support, we partner with businesses to deliver impactful results that drive growth and innovation.',
+    title: 'Your Vision, Built with Code',
+    titleHighlight: '',
+    subtitle: 'Smart solutions for modern businesses',
+    description: 'From concept to design, development, and ongoing support — we build websites, mobile apps, dashboards, and custom software that drive growth and innovation.',
     stats: {
       projects: 'Projects Delivered',
       clients: 'Happy Clients',
@@ -122,8 +123,8 @@ export const en = {
 
   // Tech Stack Section
   techstack: {
-    title: 'Our Tech Stack',
-    subtitle: 'We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.',
+    title: 'Built With the Best',
+    subtitle: 'From blazing-fast frontends to rock-solid backends, we use proven technologies to build products that perform and scale beautifully.',
   },
 
   // Portfolio/Case Studies Section
@@ -284,7 +285,7 @@ export const en = {
       titleHighlight: ' Team',
       subtitle: 'Build the future with us. We\'re looking for passionate individuals who want to make a difference in the world of technology and innovation.',
       viewPositions: 'View Open Positions',
-      learnCulture: 'Learn About Our Culture',
+      whyJoinUs: 'Why Join Us',
     },
     values: {
       title: 'Our Values',
@@ -490,6 +491,14 @@ export const en = {
     },
   },
 
+  // Project CTA Section
+  projectCTA: {
+    title: 'Got an idea? Let\'s build something amazing.',
+    description: 'Whether you\'re starting fresh or scaling up, we\'re here to turn your vision into real, working software. Let\'s find the perfect approach for your project.',
+    startProject: 'Start Your Project',
+    viewWork: 'View Our Work',
+  },
+
   // Footer
   footer: {
     tagline: 'Building the future with innovative technology solutions.',
@@ -503,15 +512,175 @@ export const en = {
     location: 'Bangalore, India',
     copyright: '© 2025 easyCoding. All rights reserved.',
     legal: {
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Service',
-      cookies: 'Cookie Policy',
+      termsPrivacy: 'Terms & Privacy',
+      cookies: 'Cookie policy',
     },
     social: {
       facebook: 'Follow us on Facebook',
       twitter: 'Follow us on Twitter',
       linkedin: 'Follow us on LinkedIn',
     },
+  },
+
+  // Terms & Privacy
+  termsPrivacy: {
+    title: 'Terms & Privacy',
+    lastUpdated: 'Last updated: 20th March, 2025',
+    intro: 'Welcome to easyCoding ("we", "our", or "us"). This document explains how we handle your data and outlines the terms for using our website: https://www.easy-coding.io. By using our site, you agree to these terms.',
+    sections: {
+      whatWeCollect: {
+        title: 'What We Collect',
+        description: 'We may collect and process the following information:',
+        personalData: {
+          title: 'Personal Data',
+          items: [
+            'Name, email address, phone number (if provided)',
+            'Resumes or portfolios (if submitted voluntarily)',
+            'Other data you submit via contact forms or email'
+          ]
+        },
+        usageData: {
+          title: 'Usage Data',
+          items: [
+            'IP address, browser type, operating system',
+            'Pages visited, time spent on site, click behavior',
+            'Collected via analytics tools (e.g., Google Analytics)'
+          ]
+        },
+        cookies: {
+          title: 'Cookies',
+          description: 'See our Cookie Policy for full details.'
+        }
+      },
+      howWeUse: {
+        title: 'How We Use Your Data (Lawful Basis for Processing)',
+        description: 'We process your personal data only when there is a lawful basis, such as:',
+        basis: [
+          'Consent – when you voluntarily submit forms or resumes',
+          'Legitimate Interest – to analyze site usage and improve services',
+          'Contractual Necessity – when discussing or fulfilling client work',
+          'Legal Obligation – if required to comply with applicable laws'
+        ],
+        usesTitle: 'Uses include:',
+        uses: [
+          'Responding to inquiries or project requests',
+          'Improving website performance',
+          'Communicating with potential clients or team members',
+          'Ensuring site security and legal compliance'
+        ]
+      },
+      dataSharing: {
+        title: 'Data Sharing and Transfers',
+        items: [
+          'We do not sell or rent your data.',
+          'We may share your data with trusted third-party providers (e.g., analytics, email platforms, cloud hosting), all of whom are GDPR-compliant.',
+          'We do not transfer your data outside the EEA unless adequate safeguards are in place.'
+        ]
+      },
+      dataRetention: {
+        title: 'Data Retention',
+        description: 'We retain personal data:',
+        items: [
+          'Only as long as needed to fulfill its original purpose',
+          'Or until you request deletion (see below)'
+        ],
+        contact: 'Email us to request deletion or inquire about retention periods.'
+      },
+      gdprRights: {
+        title: 'Your GDPR Rights',
+        description: 'As a data subject, you have the right to:',
+        items: [
+          'Access your personal data',
+          'Correct inaccuracies',
+          'Request deletion ("right to be forgotten")',
+          'Restrict or object to processing',
+          'Withdraw consent at any time (without affecting previous processing)',
+          'Lodge a complaint with a data protection authority'
+        ],
+        contact: 'To exercise these rights, email us at info@easy-coding.io.'
+      },
+      termsOfUse: {
+        title: 'Terms of Use',
+        description: 'By using our website, you agree:',
+        items: [
+          'Not to misuse or hack the website',
+          'Not to copy or redistribute our content without permission',
+          'Not to impersonate others or submit false information'
+        ],
+        discretion: 'We may update or remove content or access at our discretion.'
+      },
+      intellectualProperty: {
+        title: 'Intellectual Property',
+        description: 'All content on this site-including code, design, illustrations, and copy is the intellectual property of easyCoding and may not be reused without written consent.'
+      }
+    }
+  },
+
+  // Cookie Policy
+  cookiePolicy: {
+    title: 'Cookie Policy',
+    lastUpdated: 'Last updated: 20th March, 2025',
+    intro: 'This Cookie Policy explains how Easy Coding ("we", "our", or "us") uses cookies and similar tracking technologies when you visit our website at https://www.easy-coding.io.',
+    consent: 'By continuing to browse or use our website, you agree to the use of cookies as described below, unless you choose to disable them via your browser settings.',
+    sections: {
+      whatAreCookies: {
+        title: 'What Are Cookies?',
+        description: 'Cookies are small text files placed on your device (computer, tablet, or mobile) when you visit a website. They help us improve your experience and analyze how the website is used.'
+      },
+      typesOfCookies: {
+        title: 'Types of Cookies We Use',
+        table: {
+          essential: {
+            type: 'Essential Cookies',
+            purpose: 'Required for basic site functionality, such as page navigation and form submissions.'
+          },
+          analytics: {
+            type: 'Analytics Cookies',
+            purpose: 'Help us understand how visitors interact with the website (e.g., Google Analytics).'
+          },
+          performance: {
+            type: 'Performance Cookies',
+            purpose: 'Track technical performance (e.g., page load times, error reporting).'
+          },
+          preference: {
+            type: 'Preference Cookies',
+            purpose: 'Remember user choices such as language or region.'
+          }
+        },
+        note: 'Note: We do not use cookies for advertising or tracking across third-party sites.'
+      },
+      thirdPartyCookies: {
+        title: 'Third-Party Cookies',
+        description: 'Some cookies may be set by third-party tools we use, such as:',
+        items: [
+          'Google Analytics: to collect anonymized usage data',
+          'Cloudflare or hosting/CDN providers for security and performance'
+        ],
+        note: 'These third parties may use cookies independently under their own privacy policies.'
+      },
+      managingCookies: {
+        title: 'Managing Cookies',
+        description: 'You can manage or disable cookies through your browser settings:',
+        browsers: [
+          'Chrome: Settings → Privacy & Security → Cookies and other site data',
+          'Firefox: Preferences → Privacy & Security → Cookies and Site Data',
+          'Safari: Preferences → Privacy → Manage Website Data',
+          'Edge: Settings → Cookies and site permissions'
+        ],
+        note: 'Note: Disabling cookies may affect your experience on our website.'
+      },
+      changes: {
+        title: 'Changes to This Policy',
+        description: 'We may update this Cookie Policy to reflect changes in our practices or legal requirements. Please review it periodically.'
+      },
+      contact: {
+        title: 'Contact',
+        description: 'If you have any questions about our cookie use or this policy, please contact:',
+        company: 'easyCoding',
+        email: 'Email: info@easy-coding.io',
+        website: 'Website: https://www.easy-coding.io'
+      }
+    }
   },
 
   // Common

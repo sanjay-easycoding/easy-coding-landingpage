@@ -14,9 +14,10 @@ export const de = {
   // Hero Section
   hero: {
     badge: 'Ihr zuverlässiger IT-Partner',
-    title: 'Softwarelösungen',
-    titleHighlight: ' für Ihre Projekte',
-    description: 'Von der Produkterstellung bis zur Prozessoptimierung und Unterstützung arbeiten wir mit Unternehmen zusammen, um wirkungsvolle Ergebnisse zu erzielen, die Wachstum und Innovation fördern.',
+    title: 'Ihre Vision, in Code gebaut',
+    titleHighlight: '',
+    subtitle: 'Intelligente Lösungen für moderne Unternehmen',
+    description: 'Von der Konzeption über Design, Entwicklung und kontinuierliche Unterstützung — wir entwickeln Websites, Mobile Apps, Dashboards und maßgeschneiderte Software, die Wachstum und Innovation fördern.',
     stats: {
       projects: 'Abgeschlossene Projekte',
       clients: 'Zufriedene Kunden',
@@ -122,8 +123,8 @@ export const de = {
 
   // Tech Stack Section
   techstack: {
-    title: 'Unser Tech Stack',
-    subtitle: 'Wir nutzen modernste Technologien, um robuste, skalierbare und leistungsstarke Lösungen zu entwickeln.',
+    title: 'Gebaut mit den Besten',
+    subtitle: 'Von blitzschnellen Frontends bis zu felsenfesten Backends verwenden wir bewährte Technologien, um Produkte zu entwickeln, die performant und skalierbar sind.',
   },
 
   // Portfolio/Case Studies Section
@@ -284,7 +285,7 @@ export const de = {
       titleHighlight: ' Teams',
       subtitle: 'Gestalten Sie die Zukunft mit uns. Wir suchen leidenschaftliche Menschen, die einen Unterschied in der Welt der Technologie und Innovation machen möchten.',
       viewPositions: 'Offene Positionen anzeigen',
-      learnCulture: 'Unsere Kultur kennenlernen',
+      whyJoinUs: 'Warum zu uns?',
     },
     values: {
       title: 'Unsere Werte',
@@ -490,6 +491,14 @@ export const de = {
     },
   },
 
+  // Project CTA Section
+  projectCTA: {
+    title: 'Haben Sie eine Idee? Lassen Sie uns etwas Großartiges bauen.',
+    description: 'Ob Sie neu anfangen oder skalieren möchten, wir sind hier, um Ihre Vision in echte, funktionierende Software zu verwandeln. Lassen Sie uns den perfekten Ansatz für Ihr Projekt finden.',
+    startProject: 'Ihr Projekt starten',
+    viewWork: 'Unsere Arbeit ansehen',
+  },
+
   // Footer
   footer: {
     tagline: 'Wir bauen die Zukunft mit innovativen Technologielösungen.',
@@ -503,8 +512,7 @@ export const de = {
     location: 'Bangalore, Indien',
     copyright: '© 2025 easyCoding. Alle Rechte vorbehalten.',
     legal: {
-      privacy: 'Datenschutzrichtlinie',
-      terms: 'Nutzungsbedingungen',
+      termsPrivacy: 'AGB & Datenschutz',
       cookies: 'Cookie-Richtlinie',
     },
     social: {
@@ -512,6 +520,167 @@ export const de = {
       twitter: 'Folgen Sie uns auf Twitter',
       linkedin: 'Folgen Sie uns auf LinkedIn',
     },
+  },
+
+  // Terms & Privacy
+  termsPrivacy: {
+    title: 'AGB & Datenschutz',
+    lastUpdated: 'Zuletzt aktualisiert: 20. März 2025',
+    intro: 'Willkommen bei easyCoding ("wir", "uns" oder "unser"). Dieses Dokument erklärt, wie wir mit Ihren Daten umgehen und beschreibt die Bedingungen für die Nutzung unserer Website: https://www.easy-coding.io. Durch die Nutzung unserer Website stimmen Sie diesen Bedingungen zu.',
+    sections: {
+      whatWeCollect: {
+        title: 'Was wir sammeln',
+        description: 'Wir können folgende Informationen sammeln und verarbeiten:',
+        personalData: {
+          title: 'Personenbezogene Daten',
+          items: [
+            'Name, E-Mail-Adresse, Telefonnummer (falls angegeben)',
+            'Lebensläufe oder Portfolios (falls freiwillig eingereicht)',
+            'Andere Daten, die Sie über Kontaktformulare oder E-Mail einreichen'
+          ]
+        },
+        usageData: {
+          title: 'Nutzungsdaten',
+          items: [
+            'IP-Adresse, Browsertyp, Betriebssystem',
+            'Besuchte Seiten, Verweildauer auf der Website, Klickverhalten',
+            'Gesammelt über Analyse-Tools (z.B. Google Analytics)'
+          ]
+        },
+        cookies: {
+          title: 'Cookies',
+          description: 'Siehe unsere Cookie-Richtlinie für vollständige Details.'
+        }
+      },
+      howWeUse: {
+        title: 'Wie wir Ihre Daten verwenden (Rechtmäßige Grundlage für die Verarbeitung)',
+        description: 'Wir verarbeiten Ihre personenbezogenen Daten nur, wenn eine rechtmäßige Grundlage vorliegt, wie:',
+        basis: [
+          'Einverständnis – wenn Sie freiwillig Formulare oder Lebensläufe einreichen',
+          'Berechtigtes Interesse – zur Analyse der Website-Nutzung und Verbesserung der Dienste',
+          'Vertragsnotwendigkeit – bei der Besprechung oder Erfüllung von Kundenaufträgen',
+          'Rechtliche Verpflichtung – falls erforderlich zur Einhaltung geltender Gesetze'
+        ],
+        usesTitle: 'Verwendungszwecke umfassen:',
+        uses: [
+          'Beantwortung von Anfragen oder Projektanfragen',
+          'Verbesserung der Website-Leistung',
+          'Kommunikation mit potenziellen Kunden oder Teammitgliedern',
+          'Gewährleistung der Website-Sicherheit und rechtlichen Compliance'
+        ]
+      },
+      dataSharing: {
+        title: 'Datenweitergabe und -übertragung',
+        items: [
+          'Wir verkaufen oder vermieten Ihre Daten nicht.',
+          'Wir können Ihre Daten mit vertrauenswürdigen Drittanbietern teilen (z.B. Analytics, E-Mail-Plattformen, Cloud-Hosting), die alle DSGVO-konform sind.',
+          'Wir übertragen Ihre Daten nicht außerhalb des EWR, es sei denn, angemessene Schutzmaßnahmen sind vorhanden.'
+        ]
+      },
+      dataRetention: {
+        title: 'Datenaufbewahrung',
+        description: 'Wir behalten personenbezogene Daten:',
+        items: [
+          'Nur so lange wie nötig, um den ursprünglichen Zweck zu erfüllen',
+          'Oder bis Sie die Löschung beantragen (siehe unten)'
+        ],
+        contact: 'E-Mail an uns, um die Löschung zu beantragen oder sich über Aufbewahrungsfristen zu erkundigen.'
+      },
+      gdprRights: {
+        title: 'Ihre DSGVO-Rechte',
+        description: 'Als betroffene Person haben Sie das Recht:',
+        items: [
+          'Auf Ihre personenbezogenen Daten zuzugreifen',
+          'Ungenauigkeiten zu korrigieren',
+          'Die Löschung zu beantragen ("Recht auf Vergessenwerden")',
+          'Die Verarbeitung einzuschränken oder zu widersprechen',
+          'Die Einwilligung jederzeit zu widerrufen (ohne Auswirkung auf die vorherige Verarbeitung)',
+          'Eine Beschwerde bei einer Datenschutzbehörde einzulegen'
+        ],
+        contact: 'Um diese Rechte auszuüben, e-mailen Sie uns an info@easy-coding.io.'
+      },
+      termsOfUse: {
+        title: 'Nutzungsbedingungen',
+        description: 'Durch die Nutzung unserer Website stimmen Sie zu:',
+        items: [
+          'Die Website nicht zu missbrauchen oder zu hacken',
+          'Unsere Inhalte nicht ohne Erlaubnis zu kopieren oder weiterzuverbreiten',
+          'Andere nicht zu imitieren oder falsche Informationen einzureichen'
+        ],
+        discretion: 'Wir können Inhalte oder Zugang nach unserem Ermessen aktualisieren oder entfernen.'
+      },
+      intellectualProperty: {
+        title: 'Geistiges Eigentum',
+        description: 'Alle Inhalte auf dieser Website – einschließlich Code, Design, Illustrationen und Text – sind das geistige Eigentum von easyCoding und dürfen ohne schriftliche Zustimmung nicht wiederverwendet werden.'
+      }
+    }
+  },
+
+  // Cookie Policy
+  cookiePolicy: {
+    title: 'Cookie-Richtlinie',
+    lastUpdated: 'Zuletzt aktualisiert: 20. März 2025',
+    intro: 'Diese Cookie-Richtlinie erklärt, wie Easy Coding ("wir", "uns" oder "unser") Cookies und ähnliche Tracking-Technologien verwendet, wenn Sie unsere Website unter https://www.easy-coding.io besuchen.',
+    consent: 'Durch das weitere Browsen oder Nutzen unserer Website stimmen Sie der Verwendung von Cookies wie unten beschrieben zu, es sei denn, Sie entscheiden sich, diese über Ihre Browser-Einstellungen zu deaktivieren.',
+    sections: {
+      whatAreCookies: {
+        title: 'Was sind Cookies?',
+        description: 'Cookies sind kleine Textdateien, die auf Ihrem Gerät (Computer, Tablet oder Mobilgerät) platziert werden, wenn Sie eine Website besuchen. Sie helfen uns, Ihre Erfahrung zu verbessern und zu analysieren, wie die Website genutzt wird.'
+      },
+      typesOfCookies: {
+        title: 'Arten von Cookies, die wir verwenden',
+        table: {
+          essential: {
+            type: 'Notwendige Cookies',
+            purpose: 'Erforderlich für grundlegende Website-Funktionalität, wie Seitennavigation und Formularübermittlungen.'
+          },
+          analytics: {
+            type: 'Analyse-Cookies',
+            purpose: 'Helfen uns zu verstehen, wie Besucher mit der Website interagieren (z.B. Google Analytics).'
+          },
+          performance: {
+            type: 'Leistungs-Cookies',
+            purpose: 'Verfolgen technische Leistung (z.B. Seitenladezeiten, Fehlerberichterstattung).'
+          },
+          preference: {
+            type: 'Präferenz-Cookies',
+            purpose: 'Merken sich Benutzerauswahl wie Sprache oder Region.'
+          }
+        },
+        note: 'Hinweis: Wir verwenden keine Cookies für Werbung oder Tracking über Drittanbieter-Websites.'
+      },
+      thirdPartyCookies: {
+        title: 'Drittanbieter-Cookies',
+        description: 'Einige Cookies können von Drittanbieter-Tools gesetzt werden, die wir verwenden, wie:',
+        items: [
+          'Google Analytics: zur Sammlung anonymisierter Nutzungsdaten',
+          'Cloudflare oder Hosting/CDN-Anbieter für Sicherheit und Leistung'
+        ],
+        note: 'Diese Drittanbieter können Cookies unabhängig unter ihren eigenen Datenschutzrichtlinien verwenden.'
+      },
+      managingCookies: {
+        title: 'Cookies verwalten',
+        description: 'Sie können Cookies über Ihre Browser-Einstellungen verwalten oder deaktivieren:',
+        browsers: [
+          'Chrome: Einstellungen → Datenschutz & Sicherheit → Cookies und andere Website-Daten',
+          'Firefox: Einstellungen → Datenschutz & Sicherheit → Cookies und Website-Daten',
+          'Safari: Einstellungen → Datenschutz → Website-Daten verwalten',
+          'Edge: Einstellungen → Cookies und Website-Berechtigungen'
+        ],
+        note: 'Hinweis: Das Deaktivieren von Cookies kann Ihre Erfahrung auf unserer Website beeinträchtigen.'
+      },
+      changes: {
+        title: 'Änderungen dieser Richtlinie',
+        description: 'Wir können diese Cookie-Richtlinie aktualisieren, um Änderungen in unseren Praktiken oder rechtlichen Anforderungen widerzuspiegeln. Bitte überprüfen Sie sie regelmäßig.'
+      },
+      contact: {
+        title: 'Kontakt',
+        description: 'Wenn Sie Fragen zu unserer Cookie-Nutzung oder dieser Richtlinie haben, kontaktieren Sie bitte:',
+        company: 'easyCoding',
+        email: 'E-Mail: info@easy-coding.io',
+        website: 'Website: https://www.easy-coding.io'
+      }
+    }
   },
 
   // Common
