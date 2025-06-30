@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaUsers, FaRocket, FaHeart, FaLightbulb, FaArrowRight, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import { FaUsers, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 
 const teamKeys = ['alex', 'sarah', 'mike', 'emily'];

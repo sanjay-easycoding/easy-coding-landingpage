@@ -38,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
   return (
     <section className="relative w-full pt-36 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50" role="banner" aria-label="Hero section">
-      
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5" aria-hidden="true">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-3xl"></div>
@@ -47,10 +47,10 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Content */}
           <article className="text-center lg:text-left">
-            
+
             {/* Badge */}
             <header>
               <div className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 rounded-full mb-3 sm:mb-4 md:mb-6">
@@ -81,16 +81,16 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
             {/* CTA Buttons */}
             <nav className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start px-2 sm:px-0 mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-8 md:mt-10 lg:mt-12" role="navigation" aria-label="Call to action buttons">
-              <button 
-                onClick={scrollToContact} 
+              <button
+                onClick={scrollToContact}
                 className="px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 active:bg-blue-700 border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transform transition-all duration-150 ease-in-out flex items-center justify-center gap-2"
                 aria-label="Start your project with EasyCoding"
               >
                 <span>{t('nav.startProject')}</span>
                 <FaArrowRight className="w-3 h-3" aria-hidden="true" />
               </button>
-              
-              <button 
+
+              <button
                 onClick={scrollToServices}
                 className="px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm border border-slate-200 text-slate-700 font-semibold rounded-full shadow-md hover:bg-slate-50 hover:border-slate-300 transition-all duration-150 ease-in-out"
                 aria-label="Explore our services"
@@ -101,9 +101,8 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
             {/* Stats */}
             <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0" aria-label="Company statistics">
-              {[0,1,2].map(idx => (
-                <article key={idx} className={`rounded-xl ${statBgColors[idx]} backdrop-blur-sm border border-white/50 shadow-sm overflow-hidden text-center`}>
-                  <div className={`h-2 w-full bg-gradient-to-r ${statStripeGradients[idx]}`} />
+              {[0, 1, 2].map(idx => (
+                <article key={idx} className={`bg-white rounded-2xl shadow-lg overflow-hidden text-center`}>
                   <div className="p-2.5 sm:p-3 md:p-4">
                     <div className="flex justify-center mb-1.5 sm:mb-2">
                       {idx === 0 && <FaCode className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600" aria-hidden="true" />}
@@ -119,13 +118,13 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
           </article>
 
           {/* Right Animation */}
-          <aside className="hidden lg:flex items-center justify-center" aria-label="Coding animation">
-            <div className="w-full max-w-md xl:max-w-lg">
-              <Lottie 
-                animationData={codingAnimation} 
+          <aside className="hidden lg:flex items-center justify-center h-full w-full" aria-label="Coding animation">
+            <div className="h-full w-full flex-1">
+              <Lottie
+                animationData={codingAnimation}
                 loop={true}
                 autoplay={true}
-                className="w-full h-auto"
+                className="h-full w-full object-cover"
                 aria-label="Animated coding illustration"
               />
             </div>

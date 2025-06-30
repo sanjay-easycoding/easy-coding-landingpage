@@ -61,16 +61,13 @@ const Services = () => {
             const title = t(`services.items.${key}.title`);
             const description = t(`services.items.${key}.description`);
             const features = (t(`services.items.${key}.features`) as unknown as string[]);
-           
+
             return (
               <article
                 key={key}
-                className="group relative flex flex-col items-stretch overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="flex flex-col items-stretch overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300"
                 role="listitem"
               >
-                {/* Colored Top Border */}
-                <div className={`h-2 w-full bg-gradient-to-r ${stripeGradients[index]}`} />
-
                 {/* Icon */}
                 <div className="flex justify-center mt-4 mb-4">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-100 shadow">

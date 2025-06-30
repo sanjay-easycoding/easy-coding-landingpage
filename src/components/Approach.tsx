@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaComments, FaLightbulb, FaCode, FaRocket, FaArrowRight } from 'react-icons/fa';
+import { FaComments, FaLightbulb, FaCode, FaRocket } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Approach = () => {
@@ -9,47 +9,44 @@ const Approach = () => {
 
   const approachSteps = [
     {
-      icon: <FaComments className="text-2xl sm:text-3xl text-cyan-500" />,
+      icon: <FaComments className="text-xl sm:text-2xl text-white" />,
+      iconBg: 'bg-gradient-to-br from-cyan-500 to-blue-500',
       title: t('approach.steps.discovery.title'),
       description: t('approach.steps.discovery.description'),
       step: '01'
     },
     {
-      icon: <FaLightbulb className="text-2xl sm:text-3xl text-purple-500" />,
+      icon: <FaLightbulb className="text-xl sm:text-2xl text-white" />,
+      iconBg: 'bg-gradient-to-br from-pink-500 to-purple-500',
       title: t('approach.steps.design.title'),
       description: t('approach.steps.design.description'),
       step: '02'
     },
     {
-      icon: <FaCode className="text-2xl sm:text-3xl text-green-500" />,
+      icon: <FaCode className="text-xl sm:text-2xl text-white" />,
+      iconBg: 'bg-gradient-to-br from-green-500 to-emerald-400',
       title: t('approach.steps.development.title'),
       description: t('approach.steps.development.description'),
       step: '03'
     },
     {
-      icon: <FaRocket className="text-2xl sm:text-3xl text-orange-500" />,
+      icon: <FaRocket className="text-xl sm:text-2xl text-white" />,
+      iconBg: 'bg-gradient-to-br from-orange-400 to-yellow-400',
       title: t('approach.steps.launch.title'),
       description: t('approach.steps.launch.description'),
       step: '04'
     }
   ];
 
-  const underlineGradients = [
-    'from-cyan-500 to-blue-400',    // Discovery
-    'from-purple-500 to-pink-400',  // Design
-    'from-green-500 to-emerald-400',// Development
-    'from-orange-500 to-yellow-400' // Launch
-  ];
-
   return (
-    <section id="approach" className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50" aria-labelledby="approach-heading">
+    <section id="approach" className="py-8 sm:py-12 md:py-16 px-2 sm:px-4 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50" aria-labelledby="approach-heading">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <header className="text-center mb-8 sm:mb-12">
-          <h2 id="approach-heading" className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
+        <header className="text-center mb-6 sm:mb-8 md:mb-12">
+          <h2 id="approach-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight">
             {t('approach.title')}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto px-4 sm:px-0">
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto px-2 sm:px-0 leading-relaxed">
             {t('approach.subtitle')}
           </p>
         </header>
@@ -59,24 +56,16 @@ const Approach = () => {
           {approachSteps.map((step, index) => (
             <article
               key={index}
-              className="group relative flex flex-col items-stretch overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300"
+              className="flex flex-col items-center justify-center text-center bg-white rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 transition-all duration-300"
               role="listitem"
             >
-              {/* Colored Top Border */}
-              <div className={`h-2 w-full bg-gradient-to-r ${underlineGradients[index]}`} />
-
-              {/* Icon in Circle */}
-              <div className="flex justify-center mt-8 mb-4" aria-hidden="true">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-slate-50 to-white border border-slate-200 shadow">
-                  {step.icon}
-                </div>
+              {/* Icon in Rounded Square */}
+              <div className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl mb-4 sm:mb-6 ${step.iconBg}`}>
+                {step.icon}
               </div>
-
               {/* Content */}
-              <div className="flex flex-col flex-1 px-2 pb-6 text-center">
-                <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
-              </div>
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2">{step.title}</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.description}</p>
             </article>
           ))}
         </div>

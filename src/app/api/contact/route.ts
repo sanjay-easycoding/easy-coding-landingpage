@@ -1,15 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Define interfaces for better type safety
+interface ContactFormData {
+  name: string;
+  email: string;
+  company?: string;
+  message: string;
+}
 
-console.log(process.env.GMAIL_USER);
-console.log(process.env.GMAIL_PASS);
+interface ResumeSubmissionData {
+  name: string;
+  email: string;
+  phone?: string;
+  position?: string;
+  experience?: string;
+  message?: string;
+  resume: File;
+}
+
+interface JobApplicationData {
+  name: string;
+  email: string;
+  phone?: string;
+  position: string;
+  experience: string;
+  company?: string;
+  salary?: string;
+  coverLetter?: string;
+  portfolio?: string;
+  jobTitle?: string;
+  resume: File;
+}
+
+interface MailOptions {
+  from: string;
+  to: string;
+  replyTo: string;
+  subject: string;
+  html: string;
+  attachments?: Array<{
+    filename: string;
+    content: Buffer;
+    contentType: string;
+  }>;
+}
 
 export async function POST(request: NextRequest) {
   try {
     const contentType = request.headers.get('content-type') || '';
     let formData: FormData;
-    let jsonData: any = {};
+    let jsonData: Record<string, string | File> = {};
 
     // Handle both JSON and FormData
     if (contentType.includes('application/json')) {
@@ -57,10 +98,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let mailOptions: any = {
+    let mailOptions: MailOptions = {
       from: `"Website Contact Form" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER, // Send to yourself
+      to: process.env.GMAIL_USER!, // Send to yourself
       replyTo: formData.get('email') as string, // Set reply-to as the sender's email
+      subject: '',
+      html: ''
     };
 
     if (type === 'resume_submission') {

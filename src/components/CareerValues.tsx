@@ -52,8 +52,7 @@ const CareerValues = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" role="list">
           {companyValues.map((value, index) => (
-            <article key={index} className="rounded-2xl bg-white border border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden" role="listitem">
-              <div className={`h-2 w-full bg-gradient-to-r ${valueStripeGradients[index]}`} />
+            <article key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden" role="listitem">
               <div className="text-center p-4 sm:p-6">
                 <div className="flex justify-center mb-3 sm:mb-4" aria-hidden="true">{value.icon}</div>
                 <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2 sm:mb-3">{value.title}</h3>

@@ -71,8 +71,7 @@ const CareerJobs: React.FC<CareerJobsProps> = ({ onApplyJob }) => {
         </header>
         <div className="space-y-6 sm:space-y-8" role="list">
           {jobOpenings.map((job, index) => (
-            <article key={job.id} className="rounded-2xl bg-white border border-slate-200 p-0 hover:shadow-lg transition-all duration-300 overflow-hidden" role="listitem">
-              <div className={`h-2 w-full bg-gradient-to-r ${jobStripeGradients[index % jobStripeGradients.length]}`} />
+            <article key={job.id} className="bg-white rounded-2xl shadow-lg p-0 overflow-hidden" role="listitem">
               <div className="p-4 sm:p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 mb-4 lg:mb-0 text-left">
                   <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 w-full">
@@ -100,9 +99,9 @@ const CareerJobs: React.FC<CareerJobsProps> = ({ onApplyJob }) => {
                     </div>
                   </div>
                   {/* Apply Now button: full width on mobile, right on md+ */}
-                  <button 
+                  <button
                     onClick={() => onApplyJob(job)}
-                    className="w-full md:w-auto px-4 py-2 md:px-5 md:py-2 lg:px-6 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 active:bg-blue-700 border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transform transition-all duration-150 ease-in-out mt-2 md:mt-0 flex items-center justify-center whitespace-nowrap" 
+                    className="w-full md:w-auto px-4 py-2 md:px-5 md:py-2 lg:px-6 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 active:bg-blue-700 border-b-4 border-blue-700 active:border-b-0 active:translate-y-1 transform transition-all duration-150 ease-in-out mt-2 md:mt-0 flex items-center justify-center whitespace-nowrap"
                     aria-label={`Apply for ${job.title} position`}
                   >
                     {t('career.jobs.applyNow')}
