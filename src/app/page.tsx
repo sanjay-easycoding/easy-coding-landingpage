@@ -22,7 +22,7 @@ export default function Home() {
         <Portfolio />
         <TechStack />
         <Services />
-     
+
         <Contact />
       </main>
       <Footer />
