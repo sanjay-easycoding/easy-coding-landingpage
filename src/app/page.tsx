@@ -23,8 +23,8 @@ export default function Home() {
         <Portfolio />
         <TechStack />
         <Services />
-        <About />
-        <Testimonials />
+        {/* <About /> */}
+        {/* <Testimonials /> */}
         <Contact />
       </main>
       <Footer />

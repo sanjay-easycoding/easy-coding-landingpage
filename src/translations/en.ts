@@ -54,7 +54,7 @@ export const en = {
         ],
       },
       uiuxDesign: {
-        title: 'Landing Pages & Microsites',
+        title: 'Landing Pages & Promo Sites',
         description: 'Need to launch fast? We deliver high-converting, beautiful landing pages built for speed and scalability.',
         features: [
           'Marketing sites',

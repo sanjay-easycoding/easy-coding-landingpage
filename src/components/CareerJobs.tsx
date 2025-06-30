@@ -59,7 +59,7 @@ const CareerJobs: React.FC<CareerJobsProps> = ({ onApplyJob }) => {
   ];
 
   return (
-    <section id="openings" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white" aria-labelledby="jobs-heading">
+    <section id="openings" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-transparent" aria-labelledby="jobs-heading">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-12 sm:mb-16">
           <h2 id="jobs-heading" className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">
@@ -71,7 +71,7 @@ const CareerJobs: React.FC<CareerJobsProps> = ({ onApplyJob }) => {
         </header>
         <div className="space-y-6 sm:space-y-8" role="list">
           {jobOpenings.map((job, index) => (
-            <article key={job.id} className="bg-white rounded-2xl shadow-lg p-0 overflow-hidden" role="listitem">
+            <article key={job.id} className="bg-[#eaeaea] rounded-2xl shadow-lg p-0 overflow-hidden" role="listitem">
               <div className="p-4 sm:p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 mb-4 lg:mb-0 text-left">
                   <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 w-full">

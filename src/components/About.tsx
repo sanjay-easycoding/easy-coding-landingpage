@@ -18,7 +18,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-4 sm:py-6 md:py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-slate-50 to-blue-50" aria-labelledby="about-heading">
+    <section id="about" className="py-4 sm:py-6 md:py-6 px-4 sm:px-6 lg:px-8 bg-transparent" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="text-center mb-8 sm:mb-12">

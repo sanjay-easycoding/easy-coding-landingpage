@@ -8,7 +8,7 @@ const CareerHero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative pt-36 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 bg-white" role="banner">
+    <section className="relative pt-36 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 bg-transparent" role="banner">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">

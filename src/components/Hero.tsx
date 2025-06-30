@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
   ];
 
   return (
-    <section className="relative w-full pt-36 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50" role="banner" aria-label="Hero section">
+    <section className="relative w-full pt-36 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden bg-transparent" role="banner" aria-label="Hero section">
 
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5" aria-hidden="true">
@@ -102,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
             {/* Stats */}
             <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0" aria-label="Company statistics">
               {[0, 1, 2].map(idx => (
-                <article key={idx} className={`bg-white rounded-2xl shadow-lg overflow-hidden text-center`}>
+                <article key={idx} className={`bg-[#eaeaea] rounded-2xl shadow-lg overflow-hidden text-center transition-all duration-300 transform hover:scale-105 hover:shadow-xl`}>
                   <div className="p-2.5 sm:p-3 md:p-4">
                     <div className="flex justify-center mb-1.5 sm:mb-2">
                       {idx === 0 && <FaCode className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600" aria-hidden="true" />}
@@ -118,13 +118,13 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
           </article>
 
           {/* Right Animation */}
-          <aside className="hidden lg:flex items-center justify-center h-full w-full" aria-label="Coding animation">
-            <div className="h-full w-full flex-1">
+          <aside className="hidden lg:flex items-stretch justify-stretch h-full w-full flex-1" aria-label="Coding animation">
+            <div className="flex-1 h-full w-full flex items-center justify-center">
               <Lottie
                 animationData={codingAnimation}
                 loop={true}
                 autoplay={true}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
                 aria-label="Animated coding illustration"
               />
             </div>

@@ -49,7 +49,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50" aria-labelledby="testimonials-heading">
+    <section id="testimonials" className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-transparent" aria-labelledby="testimonials-heading">
       <div className="max-w-xl mx-auto">
         <header className="text-center mb-8 sm:mb-10">
           <h2 id="testimonials-heading" className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-2 sm:mb-3">

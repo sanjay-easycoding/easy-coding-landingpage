@@ -40,7 +40,7 @@ const CareerValues = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white" aria-labelledby="values-heading">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-transparent " aria-labelledby="values-heading">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-12 sm:mb-16">
           <h2 id="values-heading" className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">
@@ -52,7 +52,7 @@ const CareerValues = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" role="list">
           {companyValues.map((value, index) => (
-            <article key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden" role="listitem">
+            <article key={index} className="bg-[#eaeaea] rounded-2xl shadow-lg overflow-hidden" role="listitem">
               <div className="text-center p-4 sm:p-6">
                 <div className="flex justify-center mb-3 sm:mb-4" aria-hidden="true">{value.icon}</div>
                 <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2 sm:mb-3">{value.title}</h3>

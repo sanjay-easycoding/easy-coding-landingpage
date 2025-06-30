@@ -30,8 +30,8 @@ export default async function Page({ params }: PageProps) {
         <Portfolio />
         <TechStack />
         <Services />
-        <About />
-        <Testimonials />
+        {/* <About /> */}
+        {/* <Testimonials /> */}
         <Contact />
       </main>
       <Footer />
