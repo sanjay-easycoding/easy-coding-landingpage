@@ -58,16 +58,16 @@ export default function CareerPage() {
         <CareerCTA onSendResume={handleSendResume} />
       </main>
       <Footer />
-      
+
       {/* Modals */}
-      <ApplyModal 
-        isOpen={isApplyModalOpen} 
-        onClose={handleCloseApplyModal} 
-        job={selectedJob} 
+      <ApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={handleCloseApplyModal}
+        job={selectedJob}
       />
-      <ResumeModal 
-        isOpen={isResumeModalOpen} 
-        onClose={handleCloseResumeModal} 
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={handleCloseResumeModal}
       />
     </LanguageProvider>
   );
